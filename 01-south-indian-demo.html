@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arjun & Priya | South Indian Wedding Invitation | MyWedLink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+Telugu:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:#1C0A00;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  overflow-x:hidden;
+  color:#2C1A0A;
+}
+
+
+
+.cover-section::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center, rgba(200,146,26,0.08), transparent 70%);
+  pointer-events:none;
+}
+
+/* ─────────────────────────────────────────────
+   FLOATING PETALS (fixed, above everything)
+───────────────────────────────────────────── */
+#petal-layer{
+  position:fixed;inset:0;pointer-events:none;
+  z-index:9999;overflow:hidden;
+}
+.petal{
+  position:absolute;
+  top:-40px;
+  font-size:16px;
+  animation:petalDrift linear infinite;
+  opacity:0;
+}
+@keyframes petalDrift{
+  0%  {opacity:0;transform:translateY(0)   rotate(0deg)   translateX(0px);}
+  5%  {opacity:.85;}
+  90% {opacity:.5;}
+  100%{opacity:0;transform:translateY(105vh) rotate(720deg) translateX(30px);}
+}
+
+/* ─────────────────────────────────────────────
+   ENVELOPE / LANDING SCREEN
+───────────────────────────────────────────── */
+#landing{
+  position:fixed;inset:0;z-index:1000;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 30%,#3D1500 0%,#1C0A00 70%);
+  transition:opacity .9s ease,transform .9s ease;
+  overflow:hidden;
+}
+#landing.opened{opacity:0;transform:scale(1.06);pointer-events:none;}
+
+/* Mandala BG on landing */
+#landing::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:
+    url('images/assets/mandala-gold.png');
+  background-size:400px 400px;
+  background-position:center;
+  opacity:.06;
+  pointer-events:none;
+}
+
+/* Envelope box */
+.env-wrap{
+  position:relative;
+  width:300px;height:210px;
+  cursor:pointer;
+  margin-bottom:28px;
+  filter:drop-shadow(0 24px 60px rgba(200,146,26,.5));
+}
+.env-back{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#C8921A 0%,#E8B84B 40%,#C8921A 70%,#9A6C08);
+  border:1px solid #E8B84B;
+  border-radius:3px;
+}
+/* Bottom triangle */
+.env-bottom{
+  position:absolute;bottom:0;left:0;right:0;
+  height:55%;overflow:hidden;
+}
+.env-bottom::after{
+  content:'';display:block;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-bottom:120px solid #8B6010;
+}
+/* Left wing */
+.env-left{
+  position:absolute;left:0;top:0;bottom:0;width:50%;
+  background:linear-gradient(to right,#8B6010,#B07818);
+  clip-path:polygon(0 0,0 100%,100% 50%);
+}
+/* Right wing */
+.env-right{
+  position:absolute;right:0;top:0;bottom:0;width:50%;
+  background:linear-gradient(to left,#8B6010,#B07818);
+  clip-path:polygon(100% 0,100% 100%,0 50%);
+}
+/* Flap */
+.env-flap{
+  position:absolute;top:0;left:0;right:0;height:55%;
+  background:linear-gradient(175deg,#C8921A,#E8B84B 60%,#C8921A);
+  clip-path:polygon(0 0,50% 100%,100% 0);
+  transform-origin:top center;
+  transition:transform .75s cubic-bezier(.4,0,.2,1);
+  z-index:4;
+}
+.env-flap.flip{transform:rotateX(180deg) scaleY(-1);}
+
+/* Seal */
+.env-seal{
+  position:absolute;inset:0;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+}
+.seal-disc{
+  width:68px;height:68px;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%,#FAC75A,#8B1A1A 80%);
+  border:2.5px solid #FAF0D7;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;
+  box-shadow:0 0 0 0 rgba(200,146,26,.6);
+  animation:sealPulse 2.5s ease-in-out infinite;
+}
+@keyframes sealPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(200,146,26,.5);}
+  50%{box-shadow:0 0 0 14px rgba(200,146,26,0);}
+}
+
+/* Landing text */
+.land-name{
+  font-family:'Cinzel',serif;font-size:22px;letter-spacing:.06em;
+  color:#E8B84B;text-align:center;
+}
+.land-sub{
+  font-style:italic;font-size:16px;
+  color:rgba(255,220,150,.5);
+  margin-top:4px;text-align:center;
+}
+.land-btn{
+  margin-top:22px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.32em;
+  color:rgba(200,146,26,.85);
+  border:1px solid rgba(200,146,26,.4);
+  padding:11px 30px;
+  background:transparent;cursor:pointer;
+  animation:tapBlink 2.2s ease-in-out infinite;
+}
+@keyframes tapBlink{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+/* ─────────────────────────────────────────────
+   MAIN INVITATION WRAPPER
+───────────────────────────────────────────── */
+#invitation{
+  display:none;
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+}
+#invitation.show{display:block;}
+
+/* ─────────────────────────────────────────────
+   COVER SECTION  (dark, full-screen style)
+───────────────────────────────────────────── */
+.cover-section{
+  position:relative;
+  min-height:100vh;
+  background:#1C0A00;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding:20px 16px 40px;
+}
+
+/* Mandala corners via real asset */
+.mandala-corner{
+  position:absolute;
+  width:220px;height:220px;
+  background-image:url('images/assets/mandala-gold.png');
+  background-size:contain;background-repeat:no-repeat;
+  opacity:.18;pointer-events:none;
+}
+.mandala-tl{top:-30px;left:-30px;}
+.mandala-tr{top:-30px;right:-30px;transform:scaleX(-1);}
+.mandala-bl{bottom:-30px;left:-30px;transform:scaleY(-1);}
+.mandala-br{bottom:-30px;right:-30px;transform:scale(-1);}
+
+/* Lotus center subtle bg */
+.lotus-bg{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-60%);
+  width:300px;height:300px;
+  background-image:url('images/assets/lotus.png');
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+  opacity:.07;pointer-events:none;
+}
+
+/* Kalash pot (top right decorative) */
+.kalash-img{
+  position:absolute;top:80px;right:12px;
+  width:60px;
+  opacity:.5;
+  animation:floatY 5s ease-in-out infinite;
+}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+/* Garland header strip */
+.garland-strip{
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  margin-bottom:20px;
+}
+.garland-img{
+  width:50%;flex-shrink:0;
+  /* uses the actual garland asset */
+  background-image:url('images/assets/garland-header.png');
+  background-size:contain;background-repeat:no-repeat;background-position:center;
+  height:55px;
+}
+.garland-img:last-child{transform:scaleX(-1);}
+
+/* Ganesha */
+.ganesha-img{
+  width:min(180px,45vw);
+  margin-bottom:10px;
+  animation:floatY 4s ease-in-out infinite;
+  filter:drop-shadow(0 8px 20px rgba(200,146,26,.3));
+}
+
+/* Gold SVG divider */
+.gold-divider{
+  width:90%;max-width:320px;
+  height:24px;
+  background-image:url('images/assets/gold-divider.svg');
+  background-repeat:no-repeat;background-position:center;background-size:contain;
+  margin:12px auto;
+}
+
+.cover-invite{
+  font-style:italic;font-size:15px;
+  color:rgba(255,215,140,.6);
+  margin:6px 0 12px;
+}
+.cover-name{
+  font-family:'Cinzel',serif;
+  font-size:min(42px,10vw);font-weight:700;
+  background:linear-gradient(135deg,#B87010,#E8B84B 40%,#FAC75A 55%,#E8B84B 70%,#B87010);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.1;letter-spacing:.04em;
+  animation:shimmerName 3.5s linear infinite;
+  background-size:200% auto;
+}
+@keyframes shimmerName{
+  0%{background-position:0% center;}
+  100%{background-position:200% center;}
+}
+.cover-amp{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:32px;color:rgba(200,146,26,.6);
+  display:block;margin:4px 0;
+}
+.cover-date{
+  font-family:'Cinzel',serif;font-size:12px;letter-spacing:.14em;
+  color:rgba(255,215,140,.4);margin-top:14px;
+}
+
+/* Gopuram illustration */
+.gopuram-img{
+  width:100%;margin-top:24px;
+  filter:sepia(20%) hue-rotate(-10deg) brightness(.85);
+}
+
+/* ─────────────────────────────────────────────
+   TORAN ROW
+───────────────────────────────────────────── */
+.toran-row{
+  width:100%;
+  display:flex;overflow:hidden;
+  background:#2C1010;
+}
+.toran-unit{
+  flex-shrink:0;
+  display:flex;flex-direction:column;
+  align-items:center;
+}
+.toran-unit img{width:48px;}
+
+/* ─────────────────────────────────────────────
+   SECTION REVEAL ANIMATION
+───────────────────────────────────────────── */
+.reveal-section{
+  opacity:0;
+  transform:translateY(60px) scale(0.96);
+  transition:
+    opacity .8s ease,
+    transform 1s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal-section.in-view{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+
+.couple-section{
+  background:#FFF8EC;
+  padding:40px 18px;
+  text-align:center;
+  position:relative;
+
+  box-shadow:
+    inset 0 1px 0 rgba(200,146,26,0.1),
+    0 10px 40px rgba(0,0,0,0.05);
+}
+
+.person-card{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .8s ease;
+}
+
+.reveal-section.in-view .person-card:nth-child(1){
+  transition-delay:0.1s;
+}
+.reveal-section.in-view .person-card:nth-child(2){
+  transition-delay:0.3s;
+}
+.reveal-section.in-view .person-card:nth-child(3){
+  transition-delay:0.5s;
+}
+
+.reveal-section.in-view .person-card{
+  opacity:1;
+  transform:translateY(0);
+}
+/* ─────────────────────────────────────────────
+   QUOTE / INVITATION CARD
+───────────────────────────────────────────── */
+.invite-card{
+  background:#FFF8EC;
+  padding:32px 22px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.invite-card::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('images/assets/mandala-gold.png');
+  background-size:300px;background-position:center;background-repeat:no-repeat;
+  opacity:.04;pointer-events:none;
+}
+
+/* Second Ganesha in invite card */
+.ganesha-small{
+  width:min(120px,30vw);margin:0 auto 12px;
+  filter:drop-shadow(0 4px 12px rgba(200,146,26,.25));
+}
+
+.invite-blessing{
+  font-family:'Cinzel',serif;font-size:10px;
+  letter-spacing:.28em;color:#C8921A;margin-bottom:8px;
+}
+.invite-quote{
+  font-style:italic;font-size:18px;line-height:1.85;
+  color:#5C3020;max-width:340px;margin:0 auto;
+}
+.invite-tagline{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.18em;
+  color:#C8921A;margin-top:14px;
+}
+
+/* Names in invite card */
+.invite-groom{
+  font-family:'Cinzel',serif;font-size:min(36px,9vw);font-weight:700;
+  color:#8B1A1A;margin:10px 0 2px;
+}
+.invite-bride{
+  font-family:'Cinzel',serif;font-size:min(36px,9vw);font-weight:700;
+  color:#8B1A1A;margin:2px 0 10px;
+}
+.invite-amp{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:28px;color:rgba(200,146,26,.7);
+  display:block;
+}
+.invite-location{
+  font-size:13px;color:#9A6050;font-style:italic;margin-top:6px;
+}
+
+/* Banana leaves framing */
+.banana-wrap{
+  position:relative;width:100%;
+  background:#FFF8EC;
+  overflow:hidden;
+}
+.banana-left,.banana-right{
+  position:absolute;bottom:0;
+  width:120px;opacity:.7;
+  pointer-events:none;
+}
+.banana-left{left:0;}
+.banana-right{right:0;transform:scaleX(-1);}
+
+/* Hero sky + gopuram watercolor */
+.hero-sky{
+  width:100%;
+  display:block;
+}
+.baraat-img{
+  width:100%;display:block;
+  margin-top:-2px;
+}
+
+/* ─────────────────────────────────────────────
+   ABOUT THE COUPLE
+───────────────────────────────────────────── */
+.couple-section{
+  background:#FFF8EC;
+  padding:32px 18px;
+  text-align:center;
+  position:relative;
+}
+.section-heading{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.28em;
+  color:#C8921A;margin-bottom:12px;text-transform:uppercase;
+}
+.marigold-wreath{
+  width:min(130px,35vw);margin:0 auto 14px;
+  display:block;
+}
+.person-card{
+  display:inline-flex;flex-direction:column;
+  align-items:center;max-width:160px;
+}
+.person-photo{
+  width:100px;height:100px;border-radius:50%;
+  overflow:hidden;border:3px solid #C8921A;
+  box-shadow:0 0 0 6px rgba(200,146,26,.14),0 0 0 7px rgba(200,146,26,.3);
+  margin-bottom:10px;
+  background:#F5E4B8;
+}
+.person-photo img{width:100%;height:100%;object-fit:cover;}
+.person-name{
+  font-family:'Cinzel',serif;font-size:17px;font-weight:600;
+  color:#5C1010;
+}
+.person-relation{font-size:12px;color:#9A6050;font-style:italic;}
+.person-parents{font-size:13px;color:#7A4838;line-height:1.55;}
+.couple-amp-big{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:44px;color:#C8921A;
+  margin:0 12px;align-self:center;
+}
+.couple-row{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:8px;margin-top:8px;
+}
+
+/* Twin elephants */
+.elephants-img{
+  width:100%;margin-top:20px;display:block;
+  filter:sepia(15%) brightness(.95);
+}
+
+
+.person-card{
+  position:relative;
+  padding:12px;
+  border-radius:12px;
+  transition:all 0.4s ease;
+}
+
+.person-card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:12px;
+  background:linear-gradient(135deg, rgba(200,146,26,0.2), transparent);
+  opacity:0;
+  transition:0.4s;
+}
+
+.person-card:hover::before{
+  opacity:1;
+}
+
+.person-card:hover{
+  transform:translateY(-8px) scale(1.03);
+}
+/* ─────────────────────────────────────────────
+   WEDDING EVENTS
+───────────────────────────────────────────── */
+.events-section{
+  background:#FFF3DC;padding:32px 18px;
+}
+.event-card{
+  background:#FFFDF5;
+  border:1px solid rgba(200,146,26,.22);
+  border-radius:3px;
+  padding:16px 16px 14px;
+  margin-bottom:14px;
+  position:relative;overflow:hidden;
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.event-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(200,146,26,.18);
+}
+.event-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(to bottom,#C8921A,#E8B84B,#C8921A);
+}
+.event-card::after{
+  content:'';position:absolute;top:-20px;right:-20px;
+  width:80px;height:80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,146,26,.08),transparent 70%);
+}
+.event-badge{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.22em;
+  color:#C8921A;margin-bottom:4px;
+}
+.event-title{
+  font-family:'Cinzel',serif;font-size:15px;font-weight:600;
+  color:#5C1010;margin-bottom:10px;
+}
+.event-details{
+  font-size:13.5px;color:#7A4838;line-height:1.75;
+}
+.event-map-link{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:10px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;
+  color:#C8921A;text-decoration:none;
+  border-bottom:1px solid rgba(200,146,26,.3);
+  padding-bottom:2px;
+  transition:color .2s,border-color .2s;
+}
+.event-map-link:hover{color:#E8B84B;border-color:#E8B84B;}
+
+/* ─────────────────────────────────────────────
+   COUNTDOWN
+───────────────────────────────────────────── */
+.countdown-section{
+  background:linear-gradient(180deg,#2C1010 0%,#1C0800 100%);
+  padding:40px 20px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.countdown-section::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('images/assets/mandala-gold.png');
+  background-size:260px;background-position:center;background-repeat:no-repeat;
+  opacity:.05;pointer-events:none;
+}
+.cd-heading{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.26em;
+  color:#E8B84B;margin-bottom:4px;
+}
+.cd-sub{
+  font-style:italic;font-size:15px;
+  color:rgba(232,184,75,.4);margin-bottom:24px;
+}
+.cd-row{
+  display:flex;justify-content:center;align-items:flex-start;
+  gap:0;
+}
+.cd-block{text-align:center;padding:0 10px;}
+.cd-num{
+  font-family:'Cinzel',serif;font-size:min(44px,10vw);font-weight:700;
+  color:#E8B84B;line-height:1;display:block;
+}
+.cd-label{
+  font-size:9px;letter-spacing:.2em;
+  color:rgba(232,184,75,.4);text-transform:uppercase;
+  margin-top:4px;display:block;
+}
+.cd-sep{
+  font-family:'Cinzel',serif;font-size:min(34px,8vw);
+  color:#C8921A;padding-top:2px;
+}
+
+/* ─────────────────────────────────────────────
+   PHOTO GALLERY
+───────────────────────────────────────────── */
+.gallery-section{
+  background:#FFF8EC;padding:32px 18px;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:4px;margin-top:14px;
+}
+.gallery-cell{
+  aspect-ratio:1/1;overflow:hidden;
+  cursor:pointer;position:relative;
+  background:#F0D8A0;
+}
+.gallery-cell img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform .55s ease;
+}
+.gallery-cell:hover img{transform:scale(1.1);}
+.gallery-cell::after{
+  content:'';position:absolute;inset:0;
+  background:rgba(139,26,26,0);
+  transition:background .3s;
+}
+.gallery-cell:hover::after{background:rgba(139,26,26,.15);}
+
+/* Lightbox */
+.lightbox{
+  position:fixed;inset:0;z-index:3000;
+  background:rgba(0,0,0,.94);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+}
+.lightbox.active{display:flex;}
+.lightbox img{max-width:100%;max-height:88vh;object-fit:contain;border-radius:2px;}
+.lightbox-close{
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;cursor:pointer;
+}
+
+/* ─────────────────────────────────────────────
+   VENUE MAP
+───────────────────────────────────────────── */
+.venue-section{
+  background:#FFF3DC;padding:28px 18px;text-align:center;
+}
+.venue-name{
+  font-family:'Cinzel',serif;font-size:16px;font-weight:600;
+  color:#5C1010;margin-bottom:4px;
+}
+.venue-address{font-size:13px;color:#7A4838;font-style:italic;}
+.venue-map-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:12px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;
+  color:#C8921A;text-decoration:none;
+  border:1px solid rgba(200,146,26,.35);
+  padding:9px 22px;
+  transition:all .2s;
+}
+.venue-map-btn:hover{background:#C8921A;color:#fff;}
+
+/* ─────────────────────────────────────────────
+   RSVP
+───────────────────────────────────────────── */
+.rsvp-section{
+  background:#FFF8EC;padding:32px 18px;
+}
+.rsvp-intro{
+  font-style:italic;font-size:15px;color:#7A4838;
+  text-align:center;margin-bottom:20px;line-height:1.7;
+}
+.form-input{
+  width:100%;padding:12px 14px;
+  border:1px solid rgba(200,146,26,.28);
+  background:rgba(255,255,255,.8);
+  font-family:'Cormorant Garamond',serif;font-size:16px;
+  color:#2C1810;outline:none;
+  margin-bottom:12px;border-radius:1px;
+  transition:border-color .2s;
+}
+.form-input:focus{border-color:#C8921A;}
+.form-input::placeholder{color:#C8A080;}
+.attend-row{display:flex;gap:10px;margin-bottom:12px;}
+.attend-btn{
+  flex:1;padding:12px 8px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;
+  border:1px solid rgba(200,146,26,.4);background:transparent;
+  color:#5C1010;cursor:pointer;transition:all .2s;
+}
+.attend-btn.selected,
+.attend-btn:hover{background:#C8921A;color:#fff;border-color:#C8921A;}
+.submit-btn{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,#8B1A1A,#5C1010);
+  color:#E8B84B;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.26em;
+  border:none;cursor:pointer;
+  transition:opacity .2s;
+  margin-top:4px;
+}
+.submit-btn:hover{opacity:.88;}
+.rsvp-thanks{
+  display:none;text-align:center;padding:24px 10px;
+  font-size:20px;font-style:italic;color:#5C1010;
+}
+.rsvp-thanks span{font-size:32px;display:block;margin-bottom:8px;}
+
+/* ─────────────────────────────────────────────
+   SHARE BUTTONS
+───────────────────────────────────────────── */
+.share-section{
+  background:#FFF3DC;padding:28px 18px;text-align:center;
+  border-top:1px solid rgba(200,146,26,.15);
+}
+.share-row{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.share-btn{
+  padding:10px 18px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;
+  border:1px solid rgba(200,146,26,.3);background:transparent;
+  color:#5C1010;cursor:pointer;transition:all .2s;
+}
+.share-btn:hover{background:#C8921A;color:#fff;border-color:#C8921A;}
+.share-btn.wa{
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;border-color:transparent;
+}
+.share-btn.wa:hover{opacity:.88;color:#fff;}
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+.inv-footer{
+  background:linear-gradient(180deg,#8B1A1A,#5C1010);
+  padding:30px 20px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.inv-footer::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('images/assets/mandala-gold.png');
+  background-size:200px;background-position:center;background-repeat:no-repeat;
+  opacity:.06;pointer-events:none;
+}
+/* Gopuram at footer */
+.footer-gopuram{
+  width:100%;display:block;margin-bottom:14px;
+  filter:sepia(20%) brightness(.8) hue-rotate(-5deg);
+}
+.footer-name{
+  font-family:'Cinzel',serif;font-size:15px;font-weight:600;
+  color:#E8B84B;margin-bottom:4px;
+}
+.footer-date{font-style:italic;color:rgba(232,184,75,.45);font-size:13px;}
+.footer-credit{
+  font-size:11px;color:rgba(232,184,75,.28);margin-top:10px;
+}
+.footer-credit a{color:#E8B84B;text-decoration:none;}
+
+/* ─────────────────────────────────────────────
+   DEMO PURCHASE BANNER (fixed bottom)
+───────────────────────────────────────────── */
+.demo-banner{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:rgba(10,4,0,.95);
+  border-top:1px solid rgba(200,146,26,.4);
+  padding:12px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:9999;
+}
+.demo-info p:first-child{
+  font-family:'Cinzel',serif;font-size:12px;font-weight:600;
+  color:#E8B84B;
+}
+.demo-info p:last-child{
+  font-size:11px;color:rgba(255,255,255,.3);margin-top:1px;
+}
+.demo-order{
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;
+  padding:10px 20px;text-decoration:none;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+
+#petal-layer{
+  position:fixed;
+}
+
+
+
+.person-img-wrap{
+  position:relative;
+  width:120px;
+  height:120px;
+  margin-bottom:14px;
+}
+
+@media (max-width:768px){
+
+  .person-img-wrap{
+    animation:none !important;
+  }
+
+  .couple-section::after{
+    animation:none !important;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .couple-row{
+    display:flex;
+    flex-wrap:nowrap;        /* 🔥 IMPORTANT */
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .person-card{
+    width:48%;               /* 🔥 makes 2 columns */
+    max-width:none;
+    padding:8px;
+  }
+
+  .couple-amp-big{
+    display:none;            /* ❌ remove & for mobile */
+  }
+
+}
+/* wreath sits behind image */
+.marigold-wreath{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(1.25);
+  width:140px;
+  z-index:1;
+  opacity:0.95;
+}
+
+/* image on top */
+.person-photo{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:100px;
+  height:100px;
+  z-index:2;
+}
+/* ─────────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────────── */
+@media(max-width:400px){
+  .cd-num{font-size:34px;}
+  .cd-block{padding:0 6px;}
+  .cover-name{font-size:32px;}
+}
+
+
+/* ✨ glow aura behind wreath */
+.person-img-wrap::before{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:160px;height:160px;
+  background:radial-gradient(circle, rgba(200,146,26,0.25), transparent 70%);
+  filter:blur(10px);
+  z-index:0;
+}
+
+/* ✨ floating animation */
+.person-img-wrap{
+  animation:floatSoft 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floatSoft{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-6px); }
+}
+
+/* ✨ subtle scale hover (premium feel) */
+.person-card:hover .person-img-wrap{
+  transform:translateY(-6px) scale(1.05);
+  transition:0.4s ease;
+}
+
+/* ✨ name highlight */
+.person-name{
+  position:relative;
+}
+
+.person-name::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  bottom:-4px;
+  width:40%;
+  height:1px;
+  background:linear-gradient(to right,transparent,#C8921A,transparent);
+  transform:translateX(-50%);
+  opacity:0.6;
+}
+
+/* ✨ ampersand glow */
+.couple-amp-big{
+  animation:ampGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes ampGlow{
+  0%,100%{ opacity:0.6; transform:scale(1); }
+  50%{ opacity:1; transform:scale(1.1); }
+}
+
+.reveal-section{
+  opacity:0;
+  transform:translateY(80px) scale(0.95);
+  filter:blur(0);
+  transition:
+    opacity 1s ease,
+    transform 1.2s cubic-bezier(.2,.7,.2,1),
+    filter 1s ease;
+}
+
+.reveal-section.in-view{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+
+section{
+  transition:all 0.6s ease;
+}
+
+.couple-section::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:url('images/assets/mandala-gold.png');
+  background-size:280px;
+  background-position:center;
+  opacity:0.03;
+  animation:slowRotate 60s linear infinite;
+}
+
+@keyframes slowRotate{
+  from{ transform:rotate(0deg); }
+  to{ transform:rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<!-- PETAL LAYER -->
+<div id="petal-layer"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- ══════════════════════════════════════════
+     LANDING / ENVELOPE SCREEN
+══════════════════════════════════════════ -->
+<div id="landing">
+  <div class="env-wrap" onclick="openInvitation()">
+    <div class="env-back"></div>
+    <div class="env-left"></div>
+    <div class="env-right"></div>
+    <div class="env-bottom"></div>
+    <div class="env-flap" id="env-flap"></div>
+    <div class="env-seal">
+      <div class="seal-disc">🕉️</div>
+    </div>
+  </div>
+
+  <p class="land-name">Arjun &amp; Priya</p>
+  <p class="land-sub">South Indian Wedding Invitation</p>
+  <button class="land-btn" onclick="openInvitation()">✦ TAP TO OPEN ✦</button>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FULL INVITATION
+══════════════════════════════════════════ -->
+<div id="invitation">
+
+  <!-- ── COVER ── -->
+  <section class="cover-section">
+    <!-- Mandala corners (real asset) -->
+    <div class="mandala-corner mandala-tl"></div>
+    <div class="mandala-corner mandala-tr"></div>
+    <div class="mandala-corner mandala-bl"></div>
+    <div class="mandala-corner mandala-br"></div>
+    <!-- Lotus BG -->
+    <div class="lotus-bg"></div>
+    <!-- Kalash pot top right -->
+    
+
+    <!-- Garland header -->
+    <div class="garland-strip" style="position:absolute;top:0;left:0;right:0;">
+      <div class="garland-img"></div>
+      <div class="garland-img"></div>
+    </div>
+
+    <!-- Lord Ganesha -->
+    <img class="ganesha-img"
+      src="images/assets/ganesha.png"
+      alt="Lord Ganesha">
+
+    <p class="invite-blessing">॥ Sri Ganeshaya Namah ॥</p>
+    <div class="gold-divider"></div>
+    <p class="cover-invite">You are invited to the wedding of</p>
+
+    <div class="cover-name">Arjun</div>
+    <span class="cover-amp">&amp;</span>
+    <div class="cover-name">Priya</div>
+
+    <div class="gold-divider"></div>
+    <p class="cover-date">SATURDAY · 20 DECEMBER 2026 · HYDERABAD</p>
+
+    <!-- Gopuram illustration (real asset) -->
+    <img class="gopuram-img"
+      src="images/assets/gopuram-illustration-cropped.png"
+      alt="South Indian temple gopuram" loading="lazy">
+  </section>
+
+  <!-- ── TORAN ROW 1 ── -->
+  <div class="toran-row" id="toran1"></div>
+
+  <!-- ── INVITE CARD (Ganesha + quote + names) ── -->
+
+
+
+
+  <!-- ── ABOUT THE COUPLE ── -->
+  <section class="couple-section reveal-section">
+    <p class="section-heading">About the Couple</p>
+    <div class="couple-row">
+
+      <!-- Groom -->
+      <div class="person-card">
+        <div class="person-img-wrap">
+        <img class="marigold-wreath"
+          src="images/assets/marigold-wreath.png"
+          alt="" loading="lazy">
+        <div class="person-photo">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format" alt="Arjun">
+            </div>
+       </div>
+        <p class="person-name">Arjun Sharma</p>
+        <p class="person-relation">Son of</p>
+        <p class="person-parents">Sri Ramesh Sharma<br>&amp; Smt. Lakshmi Sharma</p>
+      </div>
+
+      <span class="couple-amp-big">&amp;</span>
+
+      <!-- Bride -->
+      <div class="person-card">
+        <div class="person-img-wrap">
+        <img class="marigold-wreath"
+          src="images/assets/marigold-wreath.png"
+          alt="" loading="lazy">
+        <div class="person-photo">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face&auto=format" alt="Priya">
+        </div>
+        </div>
+        <p class="person-name">Priya Reddy</p>
+        <p class="person-relation">Daughter of</p>
+        <p class="person-parents">Sri Suresh Reddy<br>&amp; Smt. Padma Reddy</p>
+      </div>
+    </div>
+
+    <!-- Twin elephants -->
+    <img class="elephants-img"
+      src="images/assets/twin-elephants-clean.png"
+      alt="Twin elephants" loading="lazy">
+  </section>
+
+  <!-- ── TORAN ROW 2 ── -->
+  <div class="toran-row" id="toran2"></div>
+
+  <!-- ── WEDDING EVENTS ── -->
+  <section class="events-section reveal-section">
+    <p class="section-heading" style="text-align:center;">Wedding Events</p>
+    <div class="gold-divider"></div>
+
+    <div style="margin-top:18px;">
+      <div class="event-card">
+        <p class="event-badge">Muhurtham</p>
+        <p class="event-title">Wedding Ceremony</p>
+        <p class="event-details">
+          📅 Saturday, 20 December 2026<br>
+          ⏰ 10:30 AM – Auspicious Lagna<br>
+          📍 Sri Venkateswara Kalyana Mandapam<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Banjara Hills, Hyderabad
+        </p>
+        <a class="event-map-link" href="https://maps.google.com" target="_blank">
+          📍 Get Directions
+        </a>
+      </div>
+
+      <div class="event-card">
+        <p class="event-badge">Haldi</p>
+        <p class="event-title">Haldi Ceremony</p>
+        <p class="event-details">
+          📅 Friday, 19 December 2026<br>
+          ⏰ 10:00 AM onwards<br>
+          📍 Sharma Residence, Jubilee Hills
+        </p>
+        <a class="event-map-link" href="https://maps.google.com" target="_blank">
+          📍 Get Directions
+        </a>
+      </div>
+
+      <div class="event-card">
+        <p class="event-badge">Mehendi</p>
+        <p class="event-title">Mehendi &amp; Sangeet</p>
+        <p class="event-details">
+          📅 Friday, 19 December 2026<br>
+          ⏰ 6:00 PM onwards<br>
+          📍 Reddy Residence, Jubilee Hills, Hyderabad
+        </p>
+        <a class="event-map-link" href="https://maps.google.com" target="_blank">
+          📍 Get Directions
+        </a>
+      </div>
+
+      <div class="event-card">
+        <p class="event-badge">Reception</p>
+        <p class="event-title">Grand Reception</p>
+        <p class="event-details">
+          📅 Sunday, 21 December 2026<br>
+          ⏰ 7:00 PM onwards<br>
+          📍 The Westin Hyderabad Mindspace
+        </p>
+        <a class="event-map-link" href="https://maps.google.com" target="_blank">
+          📍 Get Directions
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COUNTDOWN ── -->
+  <section class="countdown-section reveal-section">
+    <p class="cd-heading">Counting Down To</p>
+    <p class="cd-sub">Our Special Day</p>
+    <div class="cd-row">
+      <div class="cd-block">
+        <span class="cd-num" id="cd-d">00</span>
+        <span class="cd-label">Days</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block">
+        <span class="cd-num" id="cd-h">00</span>
+        <span class="cd-label">Hours</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block">
+        <span class="cd-num" id="cd-m">00</span>
+        <span class="cd-label">Minutes</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block">
+        <span class="cd-num" id="cd-s">00</span>
+        <span class="cd-label">Seconds</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PHOTO GALLERY ── -->
+  <section class="gallery-section reveal-section">
+    <p class="section-heading" style="text-align:center;">Captured Moments</p>
+    <div class="gold-divider"></div>
+    <div class="gallery-grid">
+      <div class="gallery-cell" onclick="openLightbox('https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=800&auto=format')">
+        <img src="https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=400&h=400&fit=crop&auto=format" alt="Wedding photo 1" loading="lazy">
+      </div>
+      <div class="gallery-cell" onclick="openLightbox('https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&auto=format')">
+        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=400&fit=crop&auto=format" alt="Wedding photo 2" loading="lazy">
+      </div>
+      <div class="gallery-cell" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format')">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop&auto=format" alt="Wedding photo 3" loading="lazy">
+      </div>
+      <div class="gallery-cell" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format')">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=400&fit=crop&auto=format" alt="Wedding photo 4" loading="lazy">
+      </div>
+      <div class="gallery-cell" onclick="openLightbox('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&auto=format')">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=400&fit=crop&auto=format" alt="Wedding photo 5" loading="lazy">
+      </div>
+      <div class="gallery-cell" onclick="openLightbox('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&auto=format')">
+        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&h=400&fit=crop&auto=format" alt="Wedding photo 6" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VENUE ── -->
+  <section class="venue-section reveal-section">
+    <p class="section-heading">When &amp; Where</p>
+    <div class="gold-divider"></div>
+    <p class="venue-name">Sri Venkateswara Kalyana Mandapam</p>
+    <p class="venue-address">Banjara Hills, Hyderabad, Telangana, India</p>
+    <a class="venue-map-btn" href="https://maps.google.com" target="_blank">
+      📍 Get Directions
+    </a>
+  </section>
+
+  <!-- ── RSVP ── -->
+  <section class="rsvp-section reveal-section">
+    <p class="section-heading" style="text-align:center;">Will You Join Us?</p>
+    <div class="gold-divider"></div>
+    <p class="rsvp-intro">We would be honoured by your presence at our wedding celebration.</p>
+
+    <div id="rsvp-form">
+      <input class="form-input" type="text" id="rsvp-name" placeholder="Your Name">
+      <div class="attend-row">
+        <button class="attend-btn" id="btn-yes" onclick="selectAttend('yes')">Joyfully Accept</button>
+        <button class="attend-btn" id="btn-no"  onclick="selectAttend('no')">Respectfully Decline</button>
+      </div>
+      <textarea class="form-input" id="rsvp-msg" rows="2"
+        style="resize:none;" placeholder="Message (optional)"></textarea>
+      <button class="submit-btn" onclick="submitRsvp()">Confirm Attendance</button>
+    </div>
+    <div class="rsvp-thanks" id="rsvp-thanks">
+      <span>🙏</span>
+      Thank you! Arjun &amp; Priya are delighted and look forward to celebrating with you!
+    </div>
+  </section>
+
+  <!-- ── SHARE ── -->
+  <section class="share-section reveal-section">
+    <p class="section-heading">Share This Invitation</p>
+    <div class="share-row">
+      <button class="share-btn wa" onclick="shareWhatsApp()">📱 WhatsApp</button>
+      <button class="share-btn" onclick="addToCalendar()">📅 Add to Calendar</button>
+      <button class="share-btn" onclick="copyLink()">🔗 Copy Link</button>
+    </div>
+  </section>
+
+  <!-- ── TORAN ROW 3 ── -->
+  <div class="toran-row" id="toran3"></div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="inv-footer">
+    <img class="footer-gopuram"
+      src="images/assets/gopuram-illustration-cropped.png"
+      alt="" loading="lazy">
+    <!-- Toran again above footer brand -->
+    <div class="toran-row" id="toran4" style="background:#5C1010;margin-bottom:18px;"></div>
+    <p class="footer-name">The Wedding of Arjun &amp; Priya</p>
+    <p class="footer-date">Made with love by <a href="#">MyWedLink</a></p>
+  </footer>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    <div class="demo-info">
+      <p>South Indian Premium &nbsp;·&nbsp; ₹2,599</p>
+      <p>This is a demo preview</p>
+    </div>
+    <a class="demo-order"
+      href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20the%20South%20Indian%20template%20%28%E2%82%B93%2C999%29"
+      target="_blank">
+      ₹3,999 &nbsp;Order Now
+    </a>
+  </div>
+
+</div><!-- /invitation -->
+
+<audio id="bg-music" loop>
+  <source src="images/assets/pelli-song.mp3" type="audio/mp3">
+</audio>
+
+<button id="music-btn" style="
+  position:fixed;
+  bottom:90px;
+  right:16px;
+  z-index:9999;
+  background:#C8921A;
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:50%;
+  cursor:pointer;
+">
+🔊
+</button>
+
+
+<script>
+  
+const audio = document.getElementById("bg-music");
+const btn = document.getElementById("music-btn");
+
+btn.addEventListener("click", () => {
+
+  if (audio.paused) {
+    audio.volume = 0;
+    audio.play();
+    fadeAudio(1);
+  } else {
+    fadeAudio(0);
+  }
+
+});
+
+function fadeAudio(targetVolume, duration = 500){
+  const step = 0.05;
+  const interval = duration * step;
+
+  const fade = setInterval(() => {
+    if (audio.volume < targetVolume) {
+      audio.volume = Math.min(audio.volume + step, targetVolume);
+    } else {
+      audio.volume = Math.max(audio.volume - step, targetVolume);
+    }
+
+    if (audio.volume === targetVolume) {
+      clearInterval(fade);
+      if(targetVolume === 0) audio.pause();
+    }
+  }, interval);
+}
+
+/* ─────────────────────────────────────────
+   TORAN builder  (alternating toran-type-1 / toran-type-2)
+───────────────────────────────────────── */
+function buildToran(id) {
+  const row = document.getElementById(id);
+  if (!row) return;
+  // Each image is 48px wide; we need to fill viewport (~480px) → ~12 units
+  for (let i = 0; i < 14; i++) {
+    const img = document.createElement('img');
+    img.style.cssText = 'width:48px;flex-shrink:0;display:block;';
+    img.src = (i % 2 === 0)
+      ? 'images/assets/south-indian/toran-type-1.png'
+      : 'images/assets/south-indian/toran-type-2.png';
+    img.alt = '';
+    img.loading = 'lazy';
+    row.appendChild(img);
+  }
+}
+['toran1','toran2','toran3','toran4'].forEach(buildToran);
+
+/* ─────────────────────────────────────────
+   PETALS
+───────────────────────────────────────── */
+const petalEmojis = ['🌸','🌺','🌹','✿','🌼','🌷'];
+function spawnPetal() {
+  const layer = document.getElementById('petal-layer');
+  const p = document.createElement('span');
+  p.className = 'petal';
+  const sz = 12 + Math.random() * 14;
+  const dur = 7 + Math.random() * 8;
+  const delay = Math.random() * 3;
+  p.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+  p.style.cssText = `
+    left:${Math.random()*100}%;
+    font-size:${sz}px;
+    animation-duration:${dur}s;
+    animation-delay:${delay}s;
+  `;
+  layer.appendChild(p);
+  setTimeout(() => p.remove(), (dur + delay + 1) * 1000);
+}
+// Pre-spawn a few immediately, then keep spawning
+for (let i = 0; i < 8; i++) setTimeout(spawnPetal, i * 300);
+setInterval(spawnPetal, 2000);
+/* ─────────────────────────────────────────
+   ENVELOPE OPEN → SHOW INVITATION
+───────────────────────────────────────── */
+function openInvitation() {
+  const flap = document.getElementById('env-flap');
+  flap.classList.add('flip');
+  setTimeout(() => {
+    const landing = document.getElementById('landing');
+    landing.classList.add('opened');
+    setTimeout(() => {
+      landing.style.display = 'none';
+      const inv = document.getElementById('invitation');
+      inv.classList.add('show');
+
+setTimeout(() => {
+
+  const tl = gsap.timeline();
+
+  tl.from(".ganesha-img", {
+    scale: 0,
+    opacity: 0,
+    duration: 1,
+    ease: "back.out(1.7)"
+  })
+
+  .from(".cover-name", {
+    y: 80,
+    opacity: 0,
+    stagger: 0.3,
+    duration: 1.2,
+    ease: "power4.out"
+  }, "-=0.5")
+
+  .from(".cover-date", {
+    y: 40,
+    opacity: 0,
+    duration: 0.8
+  }, "-=0.6");
+
+}, 200);
+
+
+      startCountdown();
+      initScrollReveal();
+    }, 900);
+  }, 600);
+
+  audio.play().catch(()=>{});
+  btn.innerText = "🔇";
+}
+
+audio.addEventListener("play", () => {
+  btn.innerText = "🔇";
+});
+
+audio.addEventListener("pause", () => {
+  btn.innerText = "🔊";
+});
+/* ─────────────────────────────────────────
+   COUNTDOWN
+───────────────────────────────────────── */
+function startCountdown() {
+  const target = new Date('2026-12-20T10:30:00').getTime();
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      ['cd-d','cd-h','cd-m','cd-s'].forEach(id =>
+        document.getElementById(id).textContent = '00');
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────── */
+function initScrollReveal() {
+  const els = document.querySelectorAll('.reveal-section');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+  // Immediately reveal any already in view
+  els.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('in-view');
+  });
+}
+
+/* ─────────────────────────────────────────
+   RSVP
+───────────────────────────────────────── */
+let attendChoice = null;
+function selectAttend(choice) {
+  attendChoice = choice;
+  document.getElementById('btn-yes').classList.toggle('selected', choice === 'yes');
+  document.getElementById('btn-no').classList.toggle('selected',  choice === 'no');
+}
+function submitRsvp() {
+  const name = document.getElementById('rsvp-name').value.trim();
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!attendChoice) { alert('Please select whether you will attend.'); return; }
+  // In production: POST to Google Apps Script
+  document.getElementById('rsvp-form').style.display = 'none';
+  document.getElementById('rsvp-thanks').style.display = 'block';
+}
+
+/* ─────────────────────────────────────────
+   GALLERY LIGHTBOX
+───────────────────────────────────────── */
+function openLightbox(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+/* ─────────────────────────────────────────
+   SHARE
+───────────────────────────────────────── */
+function shareWhatsApp() {
+  const url = window.location.href;
+  const text = `You're invited to Arjun & Priya's wedding! 🎊\nView invitation: ${url}`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+function addToCalendar() {
+  const gcal = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=Arjun+%26+Priya+Wedding' +
+    '&dates=20261220T050000Z/20261220T130000Z' +
+    '&details=Wedding+Ceremony+at+Sri+Venkateswara+Kalyana+Mandapam%2C+Banjara+Hills%2C+Hyderabad' +
+    '&location=Banjara+Hills%2C+Hyderabad';
+  window.open(gcal, '_blank');
+}
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href)
+    .then(() => alert('Invitation link copied!'))
+    .catch(() => alert('Copy: ' + window.location.href));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MyWedLink | Digital Wedding Invitations India</title>
+<meta name="description" content="Create stunning digital wedding invitations for Indian weddings. Telugu, South Indian & Pan-Indian templates with RSVP, countdown, gallery & maps."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9972B;
+  --gold-light:#F0D080;
+  --gold-pale:#FDF8EE;
+  --deep:#1A0A2E;
+  --deep2:#2D1557;
+  --ink:#2C1A3A;
+  --muted:#7A6585;
+  --cream:#FEFAF3;
+  --white:#FFFFFF;
+  --border:#EAE0F5;
+  --r:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif}
+
+/* ── NAVBAR ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;background:rgba(254,250,243,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--deep)}
+.logo-ring{width:32px;height:32px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{text-decoration:none;font-size:14px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--deep)}
+.nav-cta{background:var(--deep);color:#fff;padding:9px 22px;border-radius:40px;text-decoration:none;font-size:13px;font-weight:500;transition:background .2s}
+.nav-cta:hover{background:var(--deep2)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
+@media(max-width:768px){
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);flex-direction:column;padding:20px 5% 28px;gap:18px;border-bottom:1px solid var(--border)}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .nav-cta{display:none}
+}
+
+/* ── HERO ── */
+.hero{padding-top:68px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(201,151,43,0.10) 0%,transparent 70%);pointer-events:none}
+.mandala-bg{position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:600px;height:600px;opacity:0.04;pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;padding:80px 5% 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-left{}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(201,151,43,0.12);color:var(--gold);border:1px solid rgba(201,151,43,0.3);padding:6px 14px;border-radius:40px;font-size:12px;font-weight:500;margin-bottom:24px}
+.hero-chip-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
+h1.hero-title{font-size:clamp(42px,5vw,66px);line-height:1.1;color:var(--deep);margin-bottom:20px}
+h1.hero-title em{color:var(--gold);font-style:italic}
+.hero-sub{font-size:16px;line-height:1.7;color:var(--muted);margin-bottom:32px;max-width:480px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#fff;padding:13px 28px;border-radius:40px;text-decoration:none;font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-gold:hover{background:#b5851f;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--deep);border:1.5px solid var(--border);padding:13px 28px;border-radius:40px;text-decoration:none;font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.htag{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.htag svg{color:var(--gold)}
+.hero-right{display:flex;align-items:center;justify-content:center}
+.hero-mockup{width:260px;height:480px;background:var(--deep);border-radius:32px;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(26,10,46,0.3),0 0 0 8px rgba(201,151,43,0.15)}
+.hm-top{position:absolute;top:0;left:0;right:0;height:180px;background:linear-gradient(135deg,#2D1557,#1A0A2E);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.hm-flowers{font-size:22px;letter-spacing:4px}
+.hm-couple{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold-light);font-style:italic}
+.hm-body{position:absolute;top:180px;left:0;right:0;bottom:0;background:#FDF8EE;padding:16px}
+.hm-date-box{background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:10px;text-align:center;border:1px solid var(--border)}
+.hm-date-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.hm-date{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--deep);font-weight:600}
+.hm-divider{height:1px;background:var(--border);margin:10px 0}
+.hm-event-row{display:flex;align-items:center;gap:8px;padding:6px 0}
+.hm-event-dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.hm-event-name{font-size:11px;color:var(--ink);font-weight:500}
+.hm-event-time{font-size:10px;color:var(--muted);margin-left:auto}
+.hm-rsvp-btn{position:absolute;bottom:16px;left:16px;right:16px;background:var(--deep);color:#fff;border-radius:20px;padding:10px;text-align:center;font-size:12px;font-weight:500;letter-spacing:.5px}
+.hero-stats{background:var(--deep);padding:28px 5%}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold-light);font-weight:600}
+.stat-lbl{font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px;letter-spacing:.5px}
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;text-align:center;gap:40px}
+  .hero-right{order:-1}
+  .hero-sub{margin-left:auto;margin-right:auto}
+  .hero-btns{justify-content:center}
+  .hero-tags{justify-content:center}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── SECTION COMMONS ── */
+.section{padding:90px 5%}
+.s-inner{max-width:1200px;margin:0 auto}
+.s-chip{display:inline-block;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);background:rgba(201,151,43,0.1);padding:5px 14px;border-radius:40px;margin-bottom:14px}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4vw,52px);color:var(--deep);line-height:1.1;margin-bottom:12px}
+.s-sub{font-size:16px;color:var(--muted);max-width:580px;line-height:1.6}
+
+/* ── TEMPLATES ── */
+.templates-section{background:var(--white)}
+.tpl-header{margin-bottom:52px}
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:28px}
+.tpl-card{border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;cursor:pointer}
+.tpl-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(26,10,46,0.12)}
+.tpl-card:hover .tpl-overlay{opacity:1}
+.tpl-visual{height:320px;position:relative;overflow:hidden}
+.tpl-overlay{position:absolute;inset:0;background:rgba(26,10,46,0.7);display:flex;align-items:center;justify-content:center;gap:12px;opacity:0;transition:opacity .3s}
+.btn-sm-w{background:#fff;color:var(--deep);padding:9px 18px;border-radius:30px;text-decoration:none;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px}
+.btn-sm-g{background:var(--gold);color:#fff;padding:9px 18px;border-radius:30px;text-decoration:none;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px}
+.tpl-info{padding:18px 20px 20px}
+.tpl-name{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--deep);font-weight:600}
+.tpl-row{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+.badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
+.b-premium{background:rgba(201,151,43,0.12);color:#9A6B10}
+.b-standard{background:rgba(45,21,87,0.1);color:var(--deep2)}
+.tpl-price{font-size:18px;font-weight:500;color:var(--deep)}
+
+/* Template Visual Styles */
+.tv-1{background:linear-gradient(145deg,#1A0A2E 0%,#3D1860 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.tv-1 .tv-border{border:1.5px solid rgba(201,151,43,0.4);border-radius:12px;padding:28px 24px;width:100%}
+.tv-1 .tv-flowers{font-size:26px;letter-spacing:8px;margin-bottom:10px}
+.tv-1 .tv-or{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:3px;margin-bottom:6px;text-transform:uppercase}
+.tv-1 .tv-names{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold-light);font-style:italic;line-height:1.2}
+.tv-1 .tv-line{width:50px;height:1px;background:var(--gold);margin:12px auto}
+.tv-1 .tv-date{font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:2px}
+.tv-1 .tv-venue{font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px}
+
+.tv-2{background:linear-gradient(160deg,#0A1628 0%,#1E3A5F 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;position:relative}
+.tv-2::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.tv-2 .tv-crown{font-size:32px;margin-bottom:12px}
+.tv-2 .tv-names{font-family:'Cormorant Garamond',serif;font-size:28px;color:#E8C97A;font-style:italic}
+.tv-2 .tv-date{background:rgba(232,201,122,0.15);border:1px solid rgba(232,201,122,0.3);color:#E8C97A;font-size:11px;letter-spacing:3px;padding:5px 16px;border-radius:20px;margin-top:12px;display:inline-block}
+.tv-2 .tv-venue{font-size:11px;color:rgba(255,255,255,0.5);margin-top:10px}
+
+.tv-3{background:linear-gradient(150deg,#3D1A00 0%,#6B2F00 50%,#3D1A00 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;position:relative}
+.tv-3 .tv-lamp{font-size:22px;letter-spacing:10px;margin-bottom:8px}
+.tv-3 .tv-kolam{color:rgba(255,200,100,0.3);font-size:32px;position:absolute;top:14px;right:14px}
+.tv-3 .tv-names{font-family:'Cormorant Garamond',serif;font-size:27px;color:#FFD580;font-style:italic}
+.tv-3 .tv-telugu{font-size:11px;color:rgba(255,200,100,0.6);margin-bottom:6px;letter-spacing:1px}
+.tv-3 .tv-date{font-size:11px;color:rgba(255,200,100,0.8);letter-spacing:2px;margin-top:8px}
+.tv-3 .tv-venue{font-size:11px;color:rgba(255,255,255,0.45);margin-top:6px}
+.tv-3 .tv-border{border:1px solid rgba(255,200,100,0.2);border-radius:10px;padding:24px 20px;width:100%}
+
+.tv-4{background:linear-gradient(160deg,#0D2818 0%,#1A4A2E 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.tv-4 .tv-cross-wrap{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px}
+.tv-4 .tv-names{font-family:'Cormorant Garamond',serif;font-size:27px;color:#C8E6C9;font-style:italic}
+.tv-4 .tv-line{width:60px;height:1px;background:rgba(255,255,255,0.3);margin:12px auto}
+.tv-4 .tv-date{font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:3px}
+.tv-4 .tv-venue{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px}
+.tv-4 .tv-verse{font-size:10px;color:rgba(200,230,201,0.5);font-style:italic;margin-top:12px;line-height:1.5}
+
+.sec-cta{text-align:center;margin-top:48px}
+
+/* ── HOW IT WORKS ── */
+.how-section{background:var(--gold-pale)}
+.steps-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:52px;position:relative}
+.steps-wrap::after{content:'';position:absolute;top:40px;left:16%;right:16%;height:1px;background:repeating-linear-gradient(90deg,var(--gold) 0,var(--gold) 8px,transparent 8px,transparent 18px);pointer-events:none}
+.step-box{background:#fff;border-radius:20px;padding:36px 28px;position:relative;border:1px solid var(--border);transition:transform .3s}
+.step-box:hover{transform:translateY(-4px)}
+.step-n{position:absolute;top:-20px;left:28px;background:var(--deep);color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.step-icon-wrap{width:52px;height:52px;border-radius:14px;background:rgba(201,151,43,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--deep);margin-bottom:10px}
+.step-desc{font-size:14px;color:var(--muted);line-height:1.6}
+@media(max-width:768px){.steps-wrap{grid-template-columns:1fr;gap:40px}.steps-wrap::after{display:none}}
+
+/* ── FEATURES ── */
+.features-section{background:var(--deep)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
+.feat-item{background:rgba(255,255,255,0.04);padding:32px 28px;transition:background .2s}
+.feat-item:hover{background:rgba(255,255,255,0.08)}
+.feat-icon{width:44px;height:44px;border-radius:12px;border:1px solid rgba(201,151,43,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:20px}
+.feat-name{font-family:'Cormorant Garamond',serif;font-size:21px;color:#fff;margin-bottom:8px}
+.feat-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6}
+@media(max-width:768px){.feat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.feat-grid{grid-template-columns:1fr}}
+
+/* ── COMPARE ── */
+.compare-section{background:var(--white)}
+.compare-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:48px}
+table.ctable{width:100%;border-collapse:separate;border-spacing:0;min-width:600px}
+table.ctable th{padding:14px 18px;font-size:13px;font-weight:500;color:var(--muted);text-align:center;border-bottom:2px solid var(--border)}
+table.ctable th:first-child{text-align:left}
+table.ctable th.hl{background:var(--deep);color:var(--gold-light);border-radius:12px 12px 0 0;font-family:'Cormorant Garamond',serif;font-size:16px}
+table.ctable td{padding:13px 18px;font-size:14px;text-align:center;border-bottom:1px solid var(--border);color:var(--muted)}
+table.ctable td:first-child{text-align:left;color:var(--ink);font-weight:500}
+table.ctable td.hl{background:rgba(26,10,46,0.04)}
+table.ctable tr:last-child td.hl{border-radius:0 0 12px 12px}
+.y{color:#22c55e;font-size:16px}
+.n{color:#e5e7eb;font-size:16px}
+.p{color:var(--gold);font-size:14px}
+
+/* ── TESTIMONIALS ── */
+.testi-section{background:var(--gold-pale)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.testi-card{background:#fff;border-radius:20px;padding:32px 28px;border:1px solid var(--border);position:relative}
+.testi-mark{font-family:'Cormorant Garamond',serif;font-size:72px;color:var(--gold);line-height:.8;position:absolute;top:20px;right:24px;opacity:0.3}
+.testi-text{font-size:15px;line-height:1.7;color:var(--ink);margin-bottom:24px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-ava{width:42px;height:42px;border-radius:50%;background:var(--deep);color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.testi-name{font-size:14px;font-weight:500;color:var(--deep)}
+.testi-city{font-size:12px;color:var(--muted)}
+.testi-stars{color:var(--gold);font-size:14px;margin-top:16px;letter-spacing:2px}
+.testi-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;background:var(--deep);border-radius:20px;padding:32px}
+.tb-stat{text-align:center}
+.tb-num{font-family:'Cormorant Garamond',serif;font-size:42px;color:var(--gold-light);font-weight:600}
+.tb-lbl{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;letter-spacing:.5px}
+@media(max-width:768px){.testi-grid{grid-template-columns:1fr}.testi-bottom{grid-template-columns:1fr}}
+
+/* ── PRICING ── */
+.pricing-section{background:var(--white)}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px}
+.p-card{border-radius:22px;padding:36px 28px;border:1.5px solid var(--border);position:relative;transition:transform .3s}
+.p-card:hover{transform:translateY(-4px)}
+.p-popular{border-color:var(--gold);background:var(--deep);color:#fff}
+.p-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:11px;font-weight:600;letter-spacing:1px;padding:4px 16px;border-radius:20px;white-space:nowrap}
+.p-plan{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.p-popular .p-plan{color:rgba(255,255,255,0.6)}
+.p-price{font-family:'Cormorant Garamond',serif;font-size:56px;color:var(--deep);font-weight:700;line-height:1}
+.p-popular .p-price{color:var(--gold-light)}
+.p-curr{font-size:24px;vertical-align:super;font-weight:500}
+.p-note{font-size:12px;color:var(--muted);margin-top:6px;margin-bottom:24px}
+.p-popular .p-note{color:rgba(255,255,255,0.5)}
+.p-divider{height:1px;background:var(--border);margin-bottom:24px}
+.p-popular .p-divider{background:rgba(255,255,255,0.1)}
+.p-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.p-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink)}
+.p-popular .p-list li{color:rgba(255,255,255,0.8)}
+.p-list li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px}
+.p-popular .p-list li::before{color:var(--gold-light)}
+.p-list li.dim{opacity:.45}
+.p-list li.dim::before{content:'–';color:var(--muted)}
+.btn-buy{display:block;text-align:center;padding:13px;border-radius:40px;text-decoration:none;font-size:14px;font-weight:500;transition:all .2s}
+.btn-buy-out{border:1.5px solid var(--border);color:var(--deep)}
+.btn-buy-out:hover{border-color:var(--gold);color:var(--gold)}
+.btn-buy-gold{background:var(--gold);color:#fff}
+.btn-buy-gold:hover{background:#b5851f}
+.btn-buy-deep{background:#fff;color:var(--deep)}
+.btn-buy-deep:hover{background:rgba(255,255,255,0.9)}
+@media(max-width:900px){.pricing-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
+
+/* ── FAQ ── */
+.faq-section{background:var(--gold-pale)}
+.faq-wrap{margin-top:48px;max-width:720px;margin-left:auto;margin-right:auto;display:flex;flex-direction:column;gap:0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;padding:20px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--deep);gap:16px}
+.faq-q .faq-arrow{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);transition:transform .3s}
+.faq-q.open .faq-arrow{transform:rotate(180deg);background:var(--deep);border-color:var(--deep);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
+.faq-a.open{max-height:200px;padding-bottom:18px}
+.faq-a p{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* ── CTA BANNER ── */
+.cta-banner{background:linear-gradient(135deg,var(--deep) 0%,#3D1860 100%);padding:80px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(201,151,43,0.12) 0%,transparent 70%)}
+.cta-banner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);color:#fff;margin-bottom:16px}
+.cta-banner p{font-size:16px;color:rgba(255,255,255,0.65);max-width:500px;margin:0 auto 36px}
+.btn-cta{background:var(--gold);color:#fff;padding:15px 36px;border-radius:40px;text-decoration:none;font-size:16px;font-weight:500;display:inline-flex;align-items:center;gap:10px;transition:all .2s}
+.btn-cta:hover{background:#b5851f;transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{background:var(--deep);padding:60px 5% 30px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;margin-top:14px;max-width:260px}
+.footer-social{display:flex;gap:10px;margin-top:20px}
+.footer-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:14px;text-decoration:none;transition:all .2s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+.footer-col h4{font-size:13px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,0.5);margin-bottom:16px;text-transform:uppercase}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{text-decoration:none;font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s}
+.footer-col ul a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;text-align:center;font-size:12px;color:rgba(255,255,255,0.3)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px}
+.footer-logo-ring{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo"><div class="logo-ring">💍</div>MyWedLink</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#templates">Templates</a>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <a href="#templates" class="nav-cta">Get Started</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="mandala-bg" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="300" cy="300" r="280" stroke="#C9972B" stroke-width="1"/>
+    <circle cx="300" cy="300" r="230" stroke="#C9972B" stroke-width="1"/>
+    <circle cx="300" cy="300" r="180" stroke="#C9972B" stroke-width="1"/>
+    <circle cx="300" cy="300" r="130" stroke="#C9972B" stroke-width="1"/>
+    <circle cx="300" cy="300" r="80" stroke="#C9972B" stroke-width="1"/>
+    <line x1="300" y1="20" x2="300" y2="580" stroke="#C9972B" stroke-width="0.5"/>
+    <line x1="20" y1="300" x2="580" y2="300" stroke="#C9972B" stroke-width="0.5"/>
+    <line x1="102" y1="102" x2="498" y2="498" stroke="#C9972B" stroke-width="0.5"/>
+    <line x1="498" y1="102" x2="102" y2="498" stroke="#C9972B" stroke-width="0.5"/>
+    <line x1="50" y1="195" x2="550" y2="405" stroke="#C9972B" stroke-width="0.3"/>
+    <line x1="195" y1="50" x2="405" y2="550" stroke="#C9972B" stroke-width="0.3"/>
+    <line x1="550" y1="195" x2="50" y2="405" stroke="#C9972B" stroke-width="0.3"/>
+    <line x1="405" y1="50" x2="195" y2="550" stroke="#C9972B" stroke-width="0.3"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-chip"><span class="hero-chip-dot"></span>Trusted by couples across India</div>
+      <h1 class="hero-title">Digital Wedding<br/>Invitations<br/><em>your guests will love</em></h1>
+      <p class="hero-sub">Telugu, South Indian & Pan-Indian templates with RSVP tracking, live countdown, photo gallery & venue maps — all in one elegant link.</p>
+      <div class="hero-btns">
+        <a href="#templates" class="btn-gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Browse Templates
+        </a>
+        <a href="01-south-indian-demo.html" class="btn-ghost" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          See Live Demo
+        </a>
+      </div>
+      <div class="hero-tags">
+        <span class="htag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9972B" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          No hidden fees
+        </span>
+        <span class="htag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9972B" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Ready in 2–4 days
+        </span>
+        <span class="htag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9972B" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share via WhatsApp
+        </span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-mockup">
+        <div class="hm-top">
+          <div class="hm-flowers">🌸 🌺 🌸</div>
+          <div class="hm-couple">Priya &amp; Arjun</div>
+          <div style="font-size:11px;color:rgba(240,208,128,0.6);letter-spacing:2px;margin-top:4px">WEDDING</div>
+        </div>
+        <div class="hm-body">
+          <div class="hm-date-box">
+            <div class="hm-date-label">Save the Date</div>
+            <div class="hm-date">12 · 02 · 2026</div>
+          </div>
+          <div class="hm-divider"></div>
+          <div class="hm-event-row"><div class="hm-event-dot"></div><div class="hm-event-name">Haldi Ceremony</div><div class="hm-event-time">9:00 AM</div></div>
+          <div class="hm-event-row"><div class="hm-event-dot" style="background:#9370DB"></div><div class="hm-event-name">Mehendi Night</div><div class="hm-event-time">6:00 PM</div></div>
+          <div class="hm-event-row"><div class="hm-event-dot" style="background:#E67E22"></div><div class="hm-event-name">Wedding Ceremony</div><div class="hm-event-time">11:00 AM</div></div>
+          <div class="hm-event-row"><div class="hm-event-dot" style="background:#27AE60"></div><div class="hm-event-name">Reception</div><div class="hm-event-time">7:00 PM</div></div>
+          <div class="hm-rsvp-btn">RSVP Now →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-num" data-target="15">0</div><div class="stat-lbl">Premium Templates</div></div>
+      <div class="stat"><div class="stat-num" data-target="6">0</div><div class="stat-lbl">Events Per Card</div></div>
+      <div class="stat"><div class="stat-num" data-target="10">0</div><div class="stat-lbl">Photos Per Gallery</div></div>
+      <div class="stat"><div class="stat-num" data-target="500">0</div><div class="stat-lbl">Happy Couples</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATES -->
+<section class="section templates-section" id="templates">
+  <div class="s-inner">
+    <div class="tpl-header">
+      <div class="s-chip">Our Collection</div>
+      <h2 class="s-title">Live Invitation Demos</h2>
+      <p class="s-sub">Each design is handcrafted with cultural authenticity — click Demo to see it come alive.</p>
+    </div>
+    <div class="tpl-grid">
+
+      <!-- Card 1 -->
+      <div class="tpl-card">
+        <div class="tpl-visual tv-1">
+          <div class="tv-border">
+            <div class="tv-flowers">🌸🌺🌸</div>
+            <div class="tv-or">with joy invite you to</div>
+            <div class="tv-names">Priya &amp; Arjun</div>
+            <div class="tv-line"></div>
+            <div class="tv-date">12 · 02 · 2026</div>
+            <div class="tv-venue">Grand Palace, Hyderabad</div>
+          </div>
+        </div>
+        <div class="tpl-overlay">
+          <a href="03-signature-love.html" class="btn-sm-w"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Demo</a>
+          <a href="03-signature-love.html" class="btn-sm-g" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg> Buy Now</a>
+        </div>
+        <div class="tpl-info">
+          <div class="tpl-name">Signature of Love</div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹1,999</div></div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="tpl-card">
+        <div class="tpl-visual tv-2">
+          <div class="tv-crown">👑</div>
+          <div class="tv-names">Sneha &amp; Vikram</div>
+          <div class="tv-date">25 · 03 · 2026</div>
+          <div class="tv-venue">Royal Marriott, Mumbai</div>
+        </div>
+        <div class="tpl-overlay">
+          <a href="02-royal-premium.html" class="btn-sm-w"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Demo</a>
+          <a href="02-royal-premium.html" class="btn-sm-g" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg> Buy Now</a>
+        </div>
+        <div class="tpl-info">
+          <div class="tpl-name">Royal Premium</div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹2,499</div></div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="tpl-card">
+        <div class="tpl-visual tv-3">
+          <div class="tv-kolam">✿</div>
+          <div class="tv-border">
+            <div class="tv-lamp">🪔🌺🪔</div>
+            <div class="tv-telugu">శుభ వివాహం</div>
+            <div class="tv-names">Kavitha &amp; Ravi</div>
+            <div class="tv-date">14 · 04 · 2026</div>
+            <div class="tv-venue">Nagarjuna Hall, Chennai</div>
+          </div>
+        </div>
+        <div class="tpl-overlay">
+          <a href="01-south-indian-demo.html" class="btn-sm-w"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Demo</a>
+          <a href="01-south-indian.html" class="btn-sm-g" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg> Buy Now</a>
+        </div>
+        <div class="tpl-info">
+          <div class="tpl-name">South Indian</div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹2,499</div></div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="tpl-card">
+        <div class="tpl-visual tv-4">
+          <div class="tv-cross-wrap">✝️</div>
+          <div class="tv-names">Sarah &amp; John</div>
+          <div class="tv-line"></div>
+          <div class="tv-date">08 · 06 · 2026</div>
+          <div class="tv-venue">Sacred Heart Church, Bangalore</div>
+          <div class="tv-verse">"Two are better than one" — Eccl. 4:9</div>
+        </div>
+        <div class="tpl-overlay">
+          <a href="04-christian-elegance.html" class="btn-sm-w"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Demo</a>
+          <a href="04-christian-elegance.html" class="btn-sm-g" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg> Buy Now</a>
+        </div>
+        <div class="tpl-info">
+          <div class="tpl-name">Christian Elegance</div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹2,499</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="sec-cta">
+      <a href="https://wa.me/918247855938?text=Hi, I'd like to see all templates" class="btn-ghost" target="_blank">View All Templates &nbsp;→</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-section" id="how">
+  <div class="s-inner">
+    <div class="s-chip">Simple Process</div>
+    <h2 class="s-title">Three steps to your<br/>perfect invitation</h2>
+    <p class="s-sub">We handle the design and tech — you focus on your celebration.</p>
+    <div class="steps-wrap">
+      <div class="step-box">
+        <div class="step-n">01</div>
+        <div class="step-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9972B" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3 class="step-title">Pick Your Design</h3>
+        <p class="step-desc">Browse our curated collection. Each template is handcrafted with cultural authenticity and premium animations.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-n">02</div>
+        <div class="step-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9972B" stroke-width="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3 class="step-title">Share Your Story</h3>
+        <p class="step-desc">Send us your details via WhatsApp — names, dates, venues, and photos. We handle all the customization.</p>
+      </div>
+      <div class="step-box">
+        <div class="step-n">03</div>
+        <div class="step-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9972B" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </div>
+        <h3 class="step-title">Share &amp; Celebrate</h3>
+        <p class="step-desc">Get your unique link in 2–4 days. Share on WhatsApp, track RSVPs live, and enjoy your special day.</p>
+      </div>
+    </div>
+    <div class="sec-cta" style="margin-top:40px">
+      <a href="#templates" class="btn-gold">Browse Templates</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-section" id="features">
+  <div class="s-inner">
+    <div class="s-chip" style="background:rgba(201,151,43,0.15)">Everything Included</div>
+    <h2 class="s-title" style="color:#fff">Features that make your<br/>invitation unforgettable</h2>
+    <div class="feat-grid">
+      <div class="feat-item">
+        <div class="feat-icon">👥</div>
+        <h3 class="feat-name">RSVP Tracking</h3>
+        <p class="feat-desc">Real-time attendance updates. Know exactly who's coming without making a single phone call.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🖼️</div>
+        <h3 class="feat-name">Photo Gallery</h3>
+        <p class="feat-desc">Showcase up to 10 couple photos in a beautiful lightbox gallery your guests will cherish.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">⏱️</div>
+        <h3 class="feat-name">Live Countdown</h3>
+        <p class="feat-desc">A real-time timer ticking down to your big day — building excitement with every refresh.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🎵</div>
+        <h3 class="feat-name">Background Music</h3>
+        <p class="feat-desc">Custom music that plays the moment guests open your invitation. Set the mood instantly.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">📍</div>
+        <h3 class="feat-name">Venue Maps</h3>
+        <p class="feat-desc">One-tap Google Maps navigation for all your event venues. No more confusion for guests.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🎬</div>
+        <h3 class="feat-name">Video &amp; Livestream</h3>
+        <p class="feat-desc">Embed videos and livestream links so faraway guests never miss a moment of your joy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="section compare-section" id="compare">
+  <div class="s-inner">
+    <div class="s-chip">Why Choose Us</div>
+    <h2 class="s-title">How we compare</h2>
+    <p class="s-sub">See why couples across India are choosing digital invitations over traditional options.</p>
+    <div class="compare-scroll">
+      <table class="ctable">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>🖨️ Printed Cards</th>
+            <th>🖼️ Photo Invite</th>
+            <th>🎬 Video Invite</th>
+            <th class="hl">✨ MyWedLink</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Cost per invite</td><td>₹50–200</td><td>₹1,000</td><td>₹4,000</td><td class="hl"><strong>₹1,000+</strong></td></tr>
+          <tr><td>RSVP tracking</td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td class="hl"><span class="y">✓</span></td></tr>
+          <tr><td>Photo gallery</td><td><span class="n">✗</span></td><td><span class="p">~</span></td><td><span class="n">✗</span></td><td class="hl"><span class="y">✓</span></td></tr>
+          <tr><td>Live countdown</td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td class="hl"><span class="y">✓</span></td></tr>
+          <tr><td>Venue map &amp; directions</td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td class="hl"><span class="y">✓</span></td></tr>
+          <tr><td>Background music</td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td><span class="p">~</span></td><td class="hl"><span class="y">✓</span></td></tr>
+          <tr><td>Easy to share</td><td><span class="n">✗</span></td><td><span class="p">~</span></td><td><span class="p">~</span></td><td class="hl"><span class="y">✓</span></td></tr>
+          <tr><td>Eco-friendly</td><td><span class="n">✗</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td class="hl"><span class="y">✓</span></td></tr>
+          <tr><td>Personalized guest names</td><td><span class="p">~</span></td><td><span class="n">✗</span></td><td><span class="n">✗</span></td><td class="hl"><span class="y">✓</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testi-section" id="testimonials">
+  <div class="s-inner">
+    <div class="s-chip">Real Stories</div>
+    <h2 class="s-title">Loved by couples<br/>across India</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <p class="testi-text">Our guests were blown away by the digital invitation. The countdown timer and venue maps made everything so easy!</p>
+        <div class="testi-author">
+          <div class="testi-ava">KS</div>
+          <div><div class="testi-name">Kavitha &amp; Srinivas</div><div class="testi-city">Hyderabad</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <p class="testi-text">The South Indian template was perfect for our traditional wedding. Every detail was beautiful and cultural.</p>
+        <div class="testi-author">
+          <div class="testi-ava">DR</div>
+          <div><div class="testi-name">Deepika &amp; Ravi</div><div class="testi-city">Chennai</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-mark">"</div>
+        <p class="testi-text">Within 3 days we had a stunning invitation ready to share on WhatsApp. Highly recommend to all couples!</p>
+        <div class="testi-author">
+          <div class="testi-ava">PA</div>
+          <div><div class="testi-name">Priyanka &amp; Anil</div><div class="testi-city">Bangalore</div></div>
+        </div>
+        <div class="testi-stars">★★★★★</div>
+      </div>
+    </div>
+    <div class="testi-bottom">
+      <div class="tb-stat"><div class="tb-num">500+</div><div class="tb-lbl">Happy Couples</div></div>
+      <div class="tb-stat"><div class="tb-num">4.9</div><div class="tb-lbl">Average Rating</div></div>
+      <div class="tb-stat"><div class="tb-num">100%</div><div class="tb-lbl">Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="s-inner">
+    <div class="s-chip">Transparent Pricing</div>
+    <h2 class="s-title">Simple, fair pricing</h2>
+    <p class="s-sub">No hidden charges. No subscriptions. One-time payment for a lifetime invitation link.</p>
+    <div class="pricing-grid">
+
+      <!-- Basic -->
+      <div class="p-card">
+        <div class="p-plan">Basic</div>
+        <div class="p-price"><span class="p-curr">₹</span>1,000</div>
+        <div class="p-note">One-time · No expiry</div>
+        <div class="p-divider"></div>
+        <ul class="p-list">
+          <li>Simple, elegant template</li>
+          <li>Up to 3 event cards</li>
+          <li>Venue map link</li>
+          <li>WhatsApp sharing</li>
+          <li class="dim">Photo gallery</li>
+          <li class="dim">RSVP tracking</li>
+          <li class="dim">Live countdown</li>
+          <li class="dim">Background music</li>
+        </ul>
+        <a href="https://wa.me/919999999999?text=Hi, I'm interested in the Basic plan (₹1000)" class="btn-buy btn-buy-out" target="_blank">Get Started</a>
+      </div>
+
+      <!-- Standard (Popular) -->
+      <div class="p-card p-popular">
+        <div class="p-badge">✦ Most Popular</div>
+        <div class="p-plan">Standard</div>
+        <div class="p-price"><span class="p-curr">₹</span>1,999</div>
+        <div class="p-note">One-time · No expiry</div>
+        <div class="p-divider"></div>
+        <ul class="p-list">
+          <li>Premium template design</li>
+          <li>Up to 6 event cards</li>
+          <li>Photo gallery (up to 10)</li>
+          <li>Live countdown timer</li>
+          <li>Google Maps integration</li>
+          <li>WhatsApp sharing</li>
+          <li>RSVP tracking</li>
+          <li>2–4 day delivery</li>
+        </ul>
+        <a href="https://wa.me/919999999999?text=Hi, I'm interested in the Standard plan (₹1999)" class="btn-buy btn-buy-gold" target="_blank">Get Started</a>
+      </div>
+
+      <!-- Premium -->
+      <div class="p-card">
+        <div class="p-plan">Premium</div>
+        <div class="p-price"><span class="p-curr">₹</span>2,499</div>
+        <div class="p-note">One-time · No expiry</div>
+        <div class="p-divider"></div>
+        <ul class="p-list">
+          <li>Everything in Standard</li>
+          <li>Custom background music</li>
+          <li>Video &amp; livestream embed</li>
+          <li>Envelope opening animation</li>
+          <li>Animated scroll effects</li>
+          <li>Confetti celebrations</li>
+          <li>Priority 1–2 day delivery</li>
+          <li>Unlimited revisions</li>
+        </ul>
+        <a href="https://wa.me/919999999999?text=Hi, I'm interested in the Premium plan (₹2499)" class="btn-buy btn-buy-out" target="_blank">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section" id="faq">
+  <div class="s-inner">
+    <div class="s-chip">Got Questions?</div>
+    <h2 class="s-title">Frequently asked questions</h2>
+    <p class="s-sub">Everything you need to know before placing your order.</p>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How does the ordering process work? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a"><p>Choose a template, share your event details (names, dates, venue, photos) via WhatsApp, and we'll customize your invitation. You'll receive a preview within 2–4 days for your approval.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I make changes after I receive the preview? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a"><p>Absolutely. We offer revisions to make sure everything is perfect. Premium plan customers get unlimited revisions until you're 100% satisfied.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do guests RSVP through the invitation? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a"><p>Each invitation has a built-in RSVP form. Guests fill in their name and attendance — you get real-time updates on who's coming, no phone calls needed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Will the invitation work on all phones? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a"><p>Yes! Our invitations are fully responsive and tested on all devices — Android, iPhone, tablets, and desktops. They load fast and look beautiful everywhere.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is there a limit on the number of guests? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a"><p>No limits! Your invitation link can be shared with as many guests as you want. There's no per-guest charge — pay once, share forever.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you offer refunds? <span class="faq-arrow">▾</span></button>
+        <div class="faq-a"><p>Since each invitation is custom-made, we don't offer refunds after work has begun. However, we work closely with you to ensure you're completely satisfied before delivery.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container" style="position:relative;z-index:1;max-width:1200px;margin:0 auto">
+    <h2>Ready to Create Your Invitation?</h2>
+    <p>Join hundreds of couples who made their wedding unforgettable with a beautiful digital invitation.</p>
+    <a href="https://wa.me/919999999999?text=Hi, I'd like to create a wedding invitation" class="btn-cta" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Start on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo"><div class="footer-logo-ring">💍</div>MyWedLink</a>
+        <p>Beautiful, personalized digital wedding invitations crafted with love and cultural care for your special day.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/mywedlink" target="_blank" aria-label="Instagram">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/919999999999" target="_blank" aria-label="WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </a>
+          <a href="mailto:hello@mywedlink.in" aria-label="Email">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#templates">All Templates</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Templates</h4>
+        <ul>
+          <li><a href="#templates">South Indian</a></li>
+          <li><a href="#templates">Royal Premium</a></li>
+          <li><a href="#templates">Christian Elegance</a></li>
+          <li><a href="#templates">Signature of Love</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <ul>
+          <li><a href="https://wa.me/919999999999" target="_blank">WhatsApp Us</a></li>
+          <li><a href="https://instagram.com/mywedlink" target="_blank">Instagram</a></li>
+          <li><a href="mailto:hello@mywedlink.in">hello@mywedlink.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 MyWedLink. All rights reserved. Made with ♥ for Indian weddings.</p>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/918247855938?text=Hi, I'm interested in your wedding invitation services" 
+   class="wa-float" 
+   target="_blank">
+   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="">
+</a>
+<style>
+  .wa-float img{
+  width:24px;
+  height:24px;
+}
+
+.wa-float{
+  position:fixed;
+  bottom:90px;   /* above your bottom banner */
+  right:16px;
+  width:50px;
+  height:50px;
+  background:#25D366;
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
+  z-index:9999;
+  text-decoration:none;
+  transition:all 0.3s ease;
+}
+
+.wa-float:hover{
+  transform:scale(1.1);
+}
+</style>
+<script>
+// Hamburger
+document.getElementById('hamburger').addEventListener('click',function(){
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// FAQ
+function toggleFaq(btn){
+  const ans=btn.nextElementSibling;
+  const isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-q.open').forEach(q=>q.classList.remove('open'));
+  if(!isOpen){ans.classList.add('open');btn.classList.add('open')}
+}
+
+// Counter animation
+function animateCounter(el){
+  const target=parseInt(el.dataset.target);
+  const dur=1800;
+  const start=performance.now();
+  function step(now){
+    const p=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-p,3);
+    el.textContent=Math.floor(ease*target);
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=target;
+  }
+  requestAnimationFrame(step);
+}
+const counterObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);counterObs.unobserve(e.target)}});
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el=>counterObs.observe(el));
+
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').style.boxShadow=window.scrollY>30?'0 2px 24px rgba(26,10,46,0.08)':'none';
+});
+
+// Fade-in on scroll
+const fadeObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';fadeObs.unobserve(e.target)}
+  });
+},{threshold:.1});
+document.querySelectorAll('.tpl-card,.step-box,.feat-item,.testi-card,.p-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .5s ease,transform .5s ease';
+  fadeObs.observe(el);
+});
+</script>
+</body>
+</html>

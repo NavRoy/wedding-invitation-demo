@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Premium | Milind & Avika Wedding | MyWedLink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────
+   REAL CLASS NAMES — matching the site's
+   BEM structure exactly from the source HTML
+   (royal-premium, rp-entry, rp-rain, etc.)
+───────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  background:#080C25;color:#1a0d30;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+a{text-decoration:none}
+
+/* ── FONTS matching real site ── */
+.rp-font-label{font-family:'Cinzel',serif;letter-spacing:.08em}
+.rp-font-script{font-family:'Cinzel',serif}
+
+
+.rp-entry__content{
+  animation: floatEntry 6s ease-in-out infinite;
+}
+
+@keyframes floatEntry{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-8px); }
+}
+
+/* ═══════════════════════════════════════
+   PETAL RAIN  —  exact .rp-rain structure
+═══════════════════════════════════════ */
+.rp-rain{
+  position:fixed;inset:0;
+  pointer-events:none;z-index:9999;
+  overflow:hidden;
+}
+.rp-rain__petal{
+  position:absolute;
+  top:calc(-60px - var(--delay,0s) * 30px);
+  left:var(--left,50%);
+  width:var(--size,28px);
+  animation:
+    rpFall var(--dur,9s) var(--delay,0s) linear infinite,
+    rpSway var(--sway,4s) var(--delay,0s) ease-in-out infinite alternate;
+  opacity:0;
+  transform-origin:center center;
+}
+.rp-rain__petal-img{
+  width:100%;height:auto;
+  display:block;
+}
+@keyframes rpFall{
+  0%  {opacity:0;  transform:translateY(0)    rotate(var(--rot0,0deg))   scale(var(--sc,1));}
+  8%  {opacity:.9;}
+  90% {opacity:.6;}
+  100%{opacity:0;  transform:translateY(110vh) rotate(var(--rot1,720deg)) scale(var(--sc,1));}
+}
+@keyframes rpSway{
+  from{margin-left:0}
+  to  {margin-left:var(--drift,30px)}
+}
+
+.rp-sec{
+  padding:100px 24px;
+  position:relative;
+  z-index:1;
+}
+.rp-entry__flash { display:none; }  /* REMOVE */
+.rp-entry__glow { opacity:0.6; }   /* reduce */
+
+/* ═══════════════════════════════════════
+   ENTRY / COVER  —  rp-entry exact BEM
+═══════════════════════════════════════ */
+.royal-premium{
+  max-width:480px;margin:0 auto;
+  background:#080C25;
+  min-height:100vh;
+  position:relative;
+}
+
+.rp-entry{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  padding:60px 24px 120px;
+}
+
+.rp-entry__photo{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:brightness(.22) saturate(.75);
+  transform:scale(1.06);
+  animation:entryBg 16s ease-in-out infinite alternate;
+}
+@keyframes entryBg{
+  0%  {transform:scale(1.06) translate(0,0)}
+  100%{transform:scale(1.12) translate(-8px,-4px)}
+}
+
+.rp-entry__veil{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,175,55,.06) 0%, transparent 65%),
+    linear-gradient(180deg,rgba(8,12,37,.65) 0%,rgba(8,12,37,.2) 45%,rgba(8,12,37,.85) 100%);
+}
+.rp-entry__jali{
+  position:absolute;inset:0;z-index:2;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:.07;
+  animation:jaliScroll 40s linear infinite;
+}
+@keyframes jaliScroll{
+  0%  {object-position:0 0}
+  100%{object-position:200px 200px}
+}
+.rp-entry__glow{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 50% 55%,rgba(212,175,55,.08) 0%,transparent 70%);
+  animation:glowPulse 4s ease-in-out infinite alternate;
+}
+@keyframes glowPulse{0%{opacity:.6}100%{opacity:1}}
+
+.rp-entry__flash{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:rgba(212,175,55,.04);
+  animation:flashOn 8s ease-in-out infinite;
+}
+@keyframes flashOn{0%,100%{opacity:0}50%{opacity:1}}
+
+/* Decorative inner frame — exactly like real site */
+.rp-entry__frame{
+  position:absolute;inset:20px;z-index:3;pointer-events:none;
+  border:1px solid rgba(212,175,55,.2);
+}
+.rp-entry__frame::before{
+  content:'';position:absolute;inset:8px;
+  border:.5px solid rgba(212,175,55,.1);
+}
+.rp-entry__frame-corner{
+  position:absolute;width:18px;height:18px;
+  color:rgba(212,175,55,.55);font-size:12px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+}
+.rp-entry__frame-corner.tl{top:-1px;left:-1px}
+.rp-entry__frame-corner.tr{top:-1px;right:-1px}
+.rp-entry__frame-corner.bl{bottom:-1px;left:-1px}
+.rp-entry__frame-corner.br{bottom:-1px;right:-1px}
+
+.rp-entry__content{
+  position:relative;z-index:4;
+  display:flex;flex-direction:column;align-items:center;
+
+}
+
+.rp-entry__god{
+  width:85px;
+  opacity:0.7;
+  margin-bottom:10px;
+
+  filter: sepia(1) hue-rotate(20deg) saturate(4)
+          drop-shadow(0 0 12px rgba(212,175,55,0.4));
+
+  animation: fadeFloat 6s ease-in-out infinite;
+}
+
+@keyframes fadeFloat{
+  0%,100%{transform:translateY(0);opacity:0.6}
+  50%{transform:translateY(-6px);opacity:1}
+}
+.rp-entry__title{
+  font-family:'Cinzel',serif;
+  font-size:10px;letter-spacing:.38em;
+  color:rgba(212,175,55,.6);
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.rp-entry__mandala{
+  width:min(200px,50vw);height:auto;
+  margin-bottom:20px;
+  animation:mandSpin 70s linear infinite;
+  filter:drop-shadow(0 0 22px rgba(212,175,55,.32));
+}
+@keyframes mandSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.rp-entry__names{
+  font-family:'Cinzel',serif;font-weight:900;
+   letter-spacing:2px;
+  font-size:clamp(42px,11vw,58px);
+  line-height:1;
+  background:linear-gradient(135deg,
+    #7A5500 0%,#C8921A 20%,#D4AF37 35%,
+    #FAE06A 48%,#FFF5B0 50%,#FAE06A 52%,
+    #D4AF37 65%,#C8921A 80%,#7A5500 100%);
+  background-size:220% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:goldFlow 3.2s linear infinite;
+  filter:drop-shadow(0 0 1px rgba(212,175,55,.1));
+  text-shadow: 0 2px 12px rgba(212,175,55,0.25);
+}
+
+@keyframes goldFlow{0%{background-position:0% 50%}100%{background-position:220% 50%}}
+
+.rp-entry::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+  z-index:1;
+}
+
+.rp-entry__cta{
+  transition: all .4s ease;
+}
+
+.rp-entry__cta:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(212,175,55,0.25);
+}
+
+
+.rp-entry__cta{
+  transition: all 0.4s ease;
+}
+
+.rp-entry__cta:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(212,175,55,0.25);
+}
+.rp-entry__amp{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:34px;
+  color:rgba(212,175,55,.42);
+  display:block;margin:8px 0 6px;
+}
+.rp-entry__ornament{
+  width:min(270px,65vw);height:auto;
+  margin:16px auto 22px;
+  filter:drop-shadow(0 0 5px rgba(212,175,55,.25));
+}
+.rp-entry__date-line{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;
+  color:rgba(212,175,55,.32);margin-bottom:22px;
+}
+.rp-entry__cta{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.28em;
+  color:rgba(212,175,55,.88);
+  border:1px solid rgba(212,175,55,.36);
+  padding:14px 40px;
+  background:rgba(0,0,0,.28);
+  backdrop-filter:blur(12px);
+  position:relative;overflow:hidden;
+  transition:border-color .35s,background .35s;
+  animation:ctaBreathe 2.8s ease-in-out infinite;
+}
+.rp-entry__cta::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(212,175,55,.08) 50%,transparent 70%);
+  transform:translateX(-120%);
+  transition:transform .7s ease;
+}
+.rp-entry__cta:hover::before{transform:translateX(120%);}
+.rp-entry__cta:hover{border-color:rgba(212,175,55,.65);background:rgba(212,175,55,.1);}
+@keyframes ctaBreathe{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* Music btn — exact rp-music class */
+.rp-music{
+  position:absolute;top:20px;right:16px;z-index:10;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(0,0,0,.38);backdrop-filter:blur(12px);
+  border:1px solid rgba(212,175,55,.22);
+  padding:8px 16px;
+  transition:border-color .25s;
+}
+.rp-music:hover{border-color:rgba(212,175,55,.5);}
+.rp-music__icon{font-size:13px;color:rgba(212,175,55,.75);}
+.rp-music__text{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.16em;color:rgba(212,175,55,.7);}
+
+/* Demo CTA — exact demo-cta class */
+.demo-cta{
+  position:fixed;bottom:0;left:0;right:0;z-index:900;
+  max-width:480px;margin:0 auto;
+  display:flex;align-items:center;
+  background:rgba(4,5,16,.97);
+  border-top:1px solid rgba(212,175,55,.28);
+  backdrop-filter:blur(18px);
+  overflow:hidden;
+}
+.demo-cta::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,#D4AF37,#FAE06A,#D4AF37,transparent);
+}
+.demo-cta__info{padding:10px 16px;flex:1;}
+.demo-cta__info-top{font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:#D4AF37;letter-spacing:.04em;}
+.demo-cta__info-sub{font-size:11px;color:rgba(255,255,255,.22);margin-top:2px;}
+.demo-cta__price{
+  font-family:'Cinzel',serif;font-size:15px;font-weight:700;
+  color:#D4AF37;padding:0 2px 0 16px;
+}
+.demo-cta__divider{
+  width:1px;height:24px;background:rgba(212,175,55,.2);margin:0 2px;
+}
+.demo-cta__label{
+  display:flex;align-items:center;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;
+  padding:20px 20px;
+  white-space:nowrap;
+  position:relative;overflow:hidden;
+}
+.demo-cta__label::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.12),transparent);
+  transform:translateX(-100%);
+  transition:transform .5s;
+}
+.demo-cta__label:hover::before{transform:translateX(100%);}
+
+/* Float music btn */
+.rp-music-float{
+  position:fixed;bottom:72px;right:14px;z-index:800;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(8,12,37,.95);
+  border:1px solid rgba(212,175,55,.42);
+  color:#D4AF37;font-size:17px;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.45);
+  transition:transform .2s,box-shadow .2s;
+  backdrop-filter:blur(10px);
+}
+.rp-music-float.visible{display:flex;}
+.rp-music-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(212,175,55,.18);}
+
+
+/* ═══════════════════════════════════════
+   INVITATION BODY
+═══════════════════════════════════════ */
+.rp-invitation{
+  opacity:0;
+  pointer-events:none;
+  display:none;
+}
+
+.rp-invitation.open{
+  display:block;
+  opacity:1;
+  pointer-events:auto;
+}
+
+.rp-invitation.open{
+  opacity:1;
+  pointer-events:auto;
+  position:relative;
+}
+
+/* GOLD STRIPES */
+.rp-stripe{
+  height:6px;
+  background:linear-gradient(to right,#080C25,#C8921A,#FAE06A,#C8921A,#080C25);
+}
+.rp-stripe-thin{
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(212,175,55,.5),rgba(250,224,106,.8),rgba(212,175,55,.5),transparent);
+  position:relative;
+}
+.rp-stripe-thin::after{
+  content:'◆';position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  font-size:9px;color:#D4AF37;
+  background:inherit;padding:0 6px;
+}
+
+/* SECTION COMMON */
+.rp-sec{padding:80px 24px;}
+.rp-sec-dark{background:linear-gradient(180deg,#0d1030,#111540);}
+.rp-sec-dark2{background:linear-gradient(180deg,#080C25,#060921);}
+.rp-sec-light{background:linear-gradient(180deg,#F8F5E8,#FFF8EC);}
+.rp-sec-lavender{background:linear-gradient(180deg,#F0EEF8,#F8F6FF);}
+.rp-sec-ivory{background:linear-gradient(180deg,#FFF8EC,#F8F5E8);}
+
+.rp-jali-bg{
+  position:absolute;inset:0;
+  background:url('images/assets/jali-pattern.svg') center/200px repeat;
+  opacity:.05;pointer-events:none;z-index:0;
+}
+
+.rp-sec-label{
+  font-family:'Cinzel',serif;font-size:10px;font-weight:600;
+  letter-spacing:.34em;color:#C8921A;
+  text-align:center;margin-bottom:8px;
+  text-transform:uppercase;
+  position:relative;z-index:1;
+}
+.rp-ornament{
+  width:min(230px,58vw);height:auto;
+  margin:10px auto 18px;
+  display:block;
+  filter:drop-shadow(0 0 5px rgba(212,175,55,.22));
+  position:relative;z-index:1;
+}
+.rp-gold-line{
+  width:88%;max-width:270px;height:1px;
+  background:linear-gradient(to right,transparent,#D4AF37,#FAE06A,#D4AF37,transparent);
+  margin:16px auto;
+}
+
+/* ═══════════════════════════════════════
+   HERO SECTION  (inside invitation)
+═══════════════════════════════════════ */
+.rp-hero{
+  position:relative;
+  min-height:400px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:64px 24px 52px;
+  overflow:hidden;
+}
+.rp-hero__bg{
+  position:absolute;inset:0;
+  background:url('images/background-image.jpg')
+    center/cover no-repeat;
+  filter:brightness(.2) saturate(.65);
+  animation:entryBg 18s ease-in-out infinite alternate;
+}
+.rp-hero__jali{
+  position:absolute;inset:0;
+  background:url('images/assets/jali-pattern.svg') center/180px repeat;
+  opacity:.07;pointer-events:none;
+  animation:jaliScroll 35s linear infinite;
+}
+.rp-hero__glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 55% at 50% 50%,rgba(212,175,55,.07) 0%,transparent 68%);
+  pointer-events:none;
+}
+.rp-hero__frame{
+  position:absolute;inset:16px;
+  border:1px solid rgba(212,175,55,.18);pointer-events:none;z-index:3;
+}
+.rp-hero__frame::before{
+  content:'';position:absolute;inset:6px;
+  border:.5px solid rgba(212,175,55,.08);
+}
+.rp-hero__fc{position:absolute;font-size:13px;color:rgba(212,175,55,.5);}
+.rp-hero__fc.tl{top:1px;left:1px}.rp-hero__fc.tr{top:1px;right:1px}
+.rp-hero__fc.bl{bottom:1px;left:1px}.rp-hero__fc.br{bottom:1px;right:1px}
+
+.rp-hero__mandala{
+  width:min(150px,38vw);height:auto;margin-bottom:18px;
+  position:relative;z-index:2;
+  animation:mandSpin 90s linear infinite;
+  filter:drop-shadow(0 0 26px rgba(212,175,55,.38));
+}
+.rp-hero__label{
+  font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.4em;
+  color:rgba(212,175,55,.55);margin-bottom:12px;
+  position:relative;z-index:2;
+}
+.rp-hero__names{
+  font-family:'Cinzel',serif;font-weight:900;
+  font-size:clamp(34px,9vw,48px);
+  background:linear-gradient(135deg,
+    #7A5500 0%,#C8921A 20%,#D4AF37 35%,
+    #FAE06A 48%,#FFF5B0 50%,#FAE06A 52%,
+    #D4AF37 65%,#C8921A 80%,#7A5500 100%);
+  background-size:220% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:goldFlow 6s linear infinite;
+  position:relative;z-index:2;
+}
+.rp-hero__amp{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:30px;color:rgba(212,175,55,.4);
+  display:block;margin:5px 0 4px;position:relative;z-index:2;
+}
+.rp-hero__date{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.18em;
+  color:rgba(212,175,55,.36);margin-top:14px;
+  position:relative;z-index:2;
+}
+
+/* ═══════════════════════════════════════
+   BLESSING
+═══════════════════════════════════════ */
+.rp-blessing{
+  position:relative;overflow:hidden;
+  text-align:center;padding:52px 26px;
+}
+.rp-blessing__quote-mark{
+  font-family:'Playfair Display',serif;font-size:96px;font-style:italic;
+  color:rgba(212,175,55,.1);line-height:.5;
+  display:block;margin-bottom:18px;position:relative;z-index:1;
+}
+.rp-blessing__quote{
+  font-style:italic;font-size:18.5px;line-height:2;
+  color:rgba(212,175,55,.58);max-width:320px;
+  margin:0 auto;position:relative;z-index:1;
+}
+.rp-blessing__tagline{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.24em;
+  color:rgba(212,175,55,.34);margin-top:20px;
+  position:relative;z-index:1;
+}
+
+/* ═══════════════════════════════════════
+   COUPLE
+═══════════════════════════════════════ */
+.rp-couple{position:relative;overflow:hidden;}
+.rp-couple::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,transparent,#D4AF37,#FAE06A,#D4AF37,transparent);
+}
+.rp-couple__row{
+  display:flex;align-items:flex-start;justify-content:center;
+  gap:14px;flex-wrap:wrap;margin-top:14px;
+  position:relative;z-index:1;
+}
+.rp-person{display:flex;flex-direction:column;align-items:center;max-width:145px;}
+.rp-person__ring{
+  width:100px;height:100px;border-radius:50%;
+  position:relative;margin-bottom:13px;
+}
+.rp-person__ring::before{
+  content:'';position:absolute;inset:-5px;border-radius:50%;
+  border:2px solid rgba(212,175,55,.7);
+  animation:ringPulse 3.5s ease-in-out infinite;
+}
+@keyframes ringPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,0)}
+  50%{box-shadow:0 0 0 7px rgba(212,175,55,.08)}
+}
+.rp-person__ring::after{
+  content:'';position:absolute;inset:-11px;border-radius:50%;
+  border:1px solid rgba(212,175,55,.22);
+}
+.rp-person__ring-spin{
+  position:absolute;inset:-18px;border-radius:50%;
+  border:.5px dashed rgba(212,175,55,.18);
+  animation:mandSpin 24s linear infinite;
+}
+.rp-person__photo{
+  width:100%;height:100%;border-radius:50%;
+  object-fit:cover;
+  border:2.5px solid rgba(212,175,55,.48);
+}
+.rp-person__name{
+  font-family:'Cinzel',serif;font-size:18px;font-weight:700;
+  background:linear-gradient(135deg,#1A237E,#2E3AA0);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    letter-spacing:1px;
+}
+.rp-person__rel{font-style:italic;font-size:12px;color:#5050A0;margin-top:3px;}
+.rp-person__par{font-size:13px;color:#3A3080;line-height:1.6;margin-top:4px;}
+.rp-couple__and{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:52px;color:#D4AF37;
+  align-self:center;padding:0 6px;margin-top:48px;
+  filter:drop-shadow(0 0 18px rgba(212,175,55,.32));
+  animation:floatY 4.5s ease-in-out infinite;
+}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ═══════════════════════════════════════
+   EVENTS
+═══════════════════════════════════════ */
+.rp-events{position:relative;overflow:hidden;}
+.rp-event-card{
+  background:#fff;
+  border:1px solid rgba(26,35,126,.1);
+  padding:18px 16px 16px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+  isolation:isolate;
+  transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;
+}
+.rp-event-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,#1A237E,#D4AF37,#1A237E);
+  transition:background .3s;
+}
+.rp-event-card:hover::before{
+  background:linear-gradient(180deg,#D4AF37,#1A237E,#D4AF37);
+}
+.rp-event-card::after{
+  content:'';position:absolute;top:0;right:0;
+  width:110px;height:110px;
+  background:radial-gradient(circle at top right,rgba(212,175,55,.07),transparent 70%);
+  pointer-events:none;
+}
+/* Shimmer sweep */
+.rp-event-card__shimmer{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 35%,rgba(212,175,55,.05) 50%,transparent 65%);
+  transform:translateX(-120%);
+  transition:transform .65s ease;
+}
+.rp-event-card:hover .rp-event-card__shimmer{transform:translateX(180%);}
+.rp-event-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 38px rgba(26,35,126,.12);
+}
+.rp-event-card__badge{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.24em;
+  color:#D4AF37;text-transform:uppercase;margin-bottom:6px;
+}
+.rp-event-card__title{
+  font-family:'Cinzel',serif;font-size:15px;font-weight:600;
+  color:#1A237E;margin-bottom:10px;
+}
+.rp-event-card__detail{font-size:14px;color:#3A3080;line-height:1.85;}
+.rp-event-card__detail strong{color:#1a0d30;font-weight:500;}
+.rp-event-card__map{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:12px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.16em;
+  color:#D4AF37;
+  border-bottom:1px solid rgba(212,175,55,.28);
+  padding-bottom:2px;
+  transition:color .2s,border-color .2s;
+}
+.rp-event-card__map:hover{color:#1A237E;border-color:#1A237E;}
+.rp-event-card__icon{
+  position:absolute;right:14px;top:14px;
+  font-size:26px;opacity:.06;
+}
+
+.rp-entry__mandala{
+  width:140px; /* reduce size */
+  margin-bottom:18px;
+  opacity:0.9;
+
+  animation: mandalaRotate 40s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(212,175,55,0.25));
+}
+
+@keyframes mandalaRotate{
+  from{ transform: rotate(0deg);}
+  to{ transform: rotate(360deg);}
+}
+
+
+.rp-entry__content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+.rp-entry::after{
+  background: radial-gradient(circle at center,
+    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.75));
+}
+
+.rp-hero__mandala{
+  width:110px;
+  opacity:0.9;
+}
+
+
+.rp-couple::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center,
+    rgba(212,175,55,0.08),
+    transparent 70%);
+  pointer-events:none;
+}
+
+.rp-person__ring{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  position:relative;
+  margin-bottom:16px;
+  background: radial-gradient(circle,
+    rgba(212,175,55,0.15),
+    transparent);
+}
+
+.rp-person__photo{
+  border:2px solid rgba(212,175,55,0.7);
+  box-shadow:
+    0 0 20px rgba(212,175,55,0.25),
+    inset 0 0 10px rgba(212,175,55,0.1);
+}
+/* ═══════════════════════════════════════
+   COUNTDOWN
+═══════════════════════════════════════ */
+.rp-countdown{
+  position:relative;overflow:hidden;text-align:center;
+  padding:52px 20px;
+}
+.rp-countdown__glow{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,175,55,.06),transparent 68%);
+  pointer-events:none;
+  animation:glowPulse 5s ease-in-out infinite alternate;
+}
+.rp-countdown__title{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.3em;
+  color:#D4AF37;margin-bottom:4px;position:relative;z-index:1;
+}
+.rp-countdown__sub{
+  font-style:italic;font-size:17px;
+  color:rgba(212,175,55,.35);margin-bottom:34px;
+  position:relative;z-index:1;
+}
+.rp-countdown__row{
+  display:flex;align-items:flex-start;justify-content:center;
+  gap:2px;position:relative;z-index:1;
+}
+.rp-countdown__unit{text-align:center;padding:0 6px;}
+.rp-countdown__box{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(212,175,55,.16);
+  padding:12px 8px 10px;min-width:62px;
+  position:relative;overflow:hidden;
+}
+.rp-countdown__box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,#D4AF37,transparent);
+}
+.rp-countdown__num{
+  font-family:'Cinzel',serif;
+  font-size:clamp(34px,9vw,50px);font-weight:700;
+  color:#D4AF37;line-height:1;display:block;
+  /* Flip animation when number changes */
+  transition:transform .18s ease-in,opacity .18s ease-in;
+}
+.rp-countdown__num.flip{transform:translateY(-100%);opacity:0;}
+.rp-countdown__lbl{
+  font-size:9px;letter-spacing:.2em;
+  color:rgba(212,175,55,.34);text-transform:uppercase;
+  margin-top:7px;display:block;
+}
+.rp-countdown__sep{
+  font-family:'Cinzel',serif;
+  font-size:clamp(28px,7vw,38px);
+  color:#C8921A;padding-top:10px;opacity:.45;
+}
+
+/* ═══════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════ */
+.rp-gallery{position:relative;overflow:hidden;}
+.rp-gallery__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:3px;margin-top:18px;
+  position:relative;z-index:1;
+}
+.rp-gallery__cell{
+  aspect-ratio:1;overflow:hidden;cursor:pointer;
+  position:relative;background:#D0C4DC;
+}
+.rp-gallery__cell.wide{
+  grid-column:span 2;aspect-ratio:2/1;
+}
+.rp-gallery__cell img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .65s cubic-bezier(.22,1,.36,1);
+}
+.rp-gallery__cell:hover img{transform:scale(1.1);}
+.rp-gallery__cell__overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(transparent 55%,rgba(8,12,37,.65));
+  opacity:0;transition:opacity .35s;
+  display:flex;align-items:flex-end;
+  padding:10px;
+}
+.rp-gallery__cell:hover .rp-gallery__cell__overlay{opacity:1;}
+.rp-gallery__cell__label{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;
+  color:rgba(212,175,55,.9);
+}
+
+/* ═══════════════════════════════════════
+   VIDEO SECTION (from real site data)
+═══════════════════════════════════════ */
+.rp-video{position:relative;overflow:hidden;text-align:center;padding:46px 20px;}
+.rp-video__frame{
+  position:relative;width:100%;padding-bottom:56.25%;
+  border:1px solid rgba(212,175,55,.22);
+  background:#000;
+  margin-top:20px;
+}
+.rp-video__frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:none;
+}
+.rp-video__frame::before,
+.rp-video__frame::after{
+  content:'❖';position:absolute;
+  font-size:11px;color:rgba(212,175,55,.5);z-index:1;
+}
+.rp-video__frame::before{top:4px;left:6px;}
+.rp-video__frame::after{bottom:4px;right:6px;}
+
+/* ═══════════════════════════════════════
+   VENUE
+═══════════════════════════════════════ */
+.rp-venue{position:relative;overflow:hidden;}
+.rp-venue__card{
+  background:#fff;border:1px solid rgba(26,35,126,.1);
+  padding:22px 18px;margin-bottom:14px;
+  position:relative;overflow:hidden;
+}
+.rp-venue__card::after{
+  content:'';position:absolute;bottom:0;right:0;
+  width:100px;height:100px;
+  background:url('images/assets/jali-pattern.svg') right bottom/90px no-repeat;
+  opacity:.05;pointer-events:none;
+}
+.rp-venue__name{
+  font-family:'Cinzel',serif;font-size:15px;font-weight:600;
+  color:#1A237E;margin-bottom:6px;
+}
+.rp-venue__addr{font-size:13.5px;color:#3A3080;line-height:1.7;margin-bottom:14px;}
+.rp-venue__btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;
+  color:#D4AF37;border:1px solid rgba(212,175,55,.3);
+  padding:9px 20px;transition:all .25s;
+}
+.rp-venue__btn:hover{background:#D4AF37;color:#fff;border-color:#D4AF37;}
+
+/* Venue embed map */
+.rp-venue__map-embed{
+  width:100%;height:200px;border:none;
+  border:1px solid rgba(212,175,55,.2);
+  display:block;margin-top:14px;
+  filter:grayscale(.3) sepia(.1);
+}
+
+/* ═══════════════════════════════════════
+   LIVESTREAM (from real site)
+═══════════════════════════════════════ */
+.rp-live{
+  position:relative;overflow:hidden;text-align:center;
+  padding:44px 20px;
+}
+.rp-live__badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(212,175,55,.08);
+  border:1px solid rgba(212,175,55,.25);
+  padding:10px 22px;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;
+  color:#D4AF37;
+  margin-top:18px;
+}
+.rp-live__dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#D4AF37;
+  animation:livePulse 1.5s ease-in-out infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.rp-live__text{font-size:14px;color:rgba(212,175,55,.5);margin-top:12px;font-style:italic;}
+.rp-live__btn{
+  display:inline-block;margin-top:16px;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;
+  color:#fff;background:linear-gradient(135deg,#1A237E,#0D1560);
+  padding:13px 32px;transition:opacity .2s;
+}
+.rp-live__btn:hover{opacity:.88;}
+
+/* ═══════════════════════════════════════
+   RSVP
+═══════════════════════════════════════ */
+.rp-rsvp{position:relative;overflow:hidden;}
+.rp-rsvp::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,transparent,#1A237E,#3040C0,#1A237E,transparent);
+}
+.rp-rsvp__intro{
+  font-style:italic;font-size:15px;color:#3A3080;
+  text-align:center;margin-bottom:24px;line-height:1.8;
+  max-width:340px;margin-left:auto;margin-right:auto;
+  position:relative;z-index:1;
+}
+.rp-label{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;
+  color:#5050A0;margin-bottom:7px;display:block;
+  position:relative;z-index:1;
+}
+.rp-input{
+  width:100%;padding:13px 15px;
+  border:1px solid rgba(26,35,126,.16);
+  background:rgba(255,255,255,.92);
+  font-family:'Cormorant Garamond',serif;font-size:17px;color:#1a0d30;
+  outline:none;margin-bottom:14px;
+  transition:border-color .25s,box-shadow .25s;
+  position:relative;z-index:1;
+  -webkit-appearance:none;
+}
+.rp-input:focus{
+  border-color:rgba(212,175,55,.5);
+  box-shadow:0 0 0 3px rgba(212,175,55,.07);
+}
+.rp-input::placeholder{color:#9090B8;}
+.rp-attend-row{display:flex;gap:10px;margin-bottom:14px;position:relative;z-index:1;}
+.rp-att-btn{
+  flex:1;padding:13px 8px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;
+  border:1px solid rgba(26,35,126,.25);background:transparent;
+  color:#1A237E;transition:all .25s;
+}
+.rp-att-btn.picked,.rp-att-btn:hover{
+  background:#1A237E;color:#D4AF37;border-color:#1A237E;
+}
+.rp-submit-btn{
+  width:100%;padding:16px;
+  background:linear-gradient(135deg,#1A237E,#0D1560);
+  color:#D4AF37;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.28em;
+  border:none;transition:opacity .25s;
+  position:relative;overflow:hidden;z-index:1;
+}
+.rp-submit-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent,rgba(212,175,55,.1),transparent);
+  transform:translateX(-120%);transition:transform .55s;
+}
+.rp-submit-btn:hover::before{transform:translateX(120%);}
+.rp-submit-btn:hover{opacity:.9;}
+.rp-rsvp__ty{
+  display:none;text-align:center;padding:32px 10px;
+  font-style:italic;font-size:20px;color:#1A237E;line-height:1.8;
+  position:relative;z-index:1;
+}
+.rp-rsvp__ty-icon{font-size:42px;display:block;margin-bottom:12px;animation:floatY 3s ease-in-out infinite;}
+
+/* ═══════════════════════════════════════
+   SHARE
+═══════════════════════════════════════ */
+.rp-share{text-align:center;padding:30px 18px;border-top:1px solid rgba(26,35,126,.08);}
+.rp-share__row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.rp-share__btn{
+  padding:11px 20px;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;
+  border:1px solid rgba(26,35,126,.22);background:transparent;
+  color:#1A237E;transition:all .25s;
+}
+.rp-share__btn:hover{background:#1A237E;color:#D4AF37;border-color:#1A237E;}
+.rp-share__btn--wa{
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;border-color:transparent;
+}
+.rp-share__btn--wa:hover{opacity:.88;}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.rp-footer{
+  position:relative;overflow:hidden;
+  text-align:center;padding:50px 20px 30px;
+}
+.rp-footer__mandala{
+  width:min(105px,27vw);height:auto;margin:0 auto 20px;
+  animation:mandSpin 60s linear infinite;
+  filter:drop-shadow(0 0 22px rgba(212,175,55,.3));
+  position:relative;z-index:1;
+}
+.rp-footer__names{
+  font-family:'Cinzel',serif;font-size:16px;font-weight:600;
+  color:#D4AF37;margin-bottom:6px;
+  position:relative;z-index:1;
+}
+.rp-footer__date{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.22em;
+  color:rgba(212,175,55,.34);margin-bottom:18px;
+  position:relative;z-index:1;
+}
+.rp-footer__brand{
+  font-style:italic;font-size:13px;color:rgba(212,175,55,.28);
+  position:relative;z-index:1;
+}
+.rp-footer__brand a{color:rgba(212,175,55,.5);transition:color .2s;}
+.rp-footer__brand a:hover{color:#D4AF37;}
+
+/* ═══════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════ */
+.rp-lightbox{
+  position:fixed;inset:0;z-index:8000;
+  background:rgba(0,0,0,.96);
+  display:none;align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(14px);
+}
+.rp-lightbox.open{display:flex;animation:lbIn .28s ease;}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.rp-lightbox img{max-width:100%;max-height:86vh;object-fit:contain;border:1px solid rgba(212,175,55,.25);}
+.rp-lightbox__close{
+  position:absolute;top:18px;right:18px;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(212,175,55,.3);
+  background:rgba(212,175,55,.08);color:#D4AF37;font-size:18px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:background .2s;
+}
+.rp-lightbox__close:hover{background:rgba(212,175,55,.2);}
+
+/* ═══════════════════════════════════════
+   SCROLL PROGRESS BAR
+═══════════════════════════════════════ */
+#rp-progress{
+  position:fixed;top:0;left:0;height:2px;z-index:9990;width:0%;
+  background:linear-gradient(to right,#8B6914,#D4AF37,#FAE06A);
+  transition:width .1s linear;
+}
+
+/* ═══════════════════════════════════════
+   PAGE TRANSITION OVERLAY
+═══════════════════════════════════════ */
+#rp-overlay{
+inset:0;z-index:9995;
+  background:#080C25;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;
+}
+#rp-overlay.rp-overlay--out{
+  animation:overlayReveal .9s cubic-bezier(.77,0,.175,1) forwards;
+}
+@keyframes overlayReveal{
+  0%  {clip-path:inset(0 0 0 0)}
+  100%{clip-path:inset(0 0 100% 0)}
+}
+#rp-overlay .rp-overlay__mandala{
+  width:70px;height:auto;
+  animation:mandSpin 3s linear infinite;
+  filter:drop-shadow(0 0 16px rgba(212,175,55,.4));
+}
+#rp-overlay .rp-overlay__text{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.35em;
+  color:rgba(212,175,55,.45);
+  animation:textFade 1.5s ease-in-out infinite alternate;
+}
+@keyframes textFade{0%{opacity:.3}100%{opacity:.7}}
+
+@media(max-width:380px){
+  .rp-countdown__unit{padding:0 3px}
+  .rp-countdown__box{min-width:52px;padding:10px 6px 8px}
+  .rp-couple__and{margin-top:30px}
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- Page overlay -->
+<div id="rp-overlay">
+  <img class="rp-overlay__mandala" src="images/assets/mandala-bloom.svg" alt="">
+  <p class="rp-overlay__text">Preparing Your Invitation</p>
+</div>
+
+<!-- Progress bar -->
+<div id="rp-progress"></div>
+
+<!-- BG Music -->
+<audio id="rp-bgm" loop preload="none">
+  <source src="images/assets/pelli-song.mp3" type="audio/mpeg">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Lightbox -->
+<div class="rp-lightbox" id="rp-lightbox" onclick="rpCloseLB()">
+  <div class="rp-lightbox__close" onclick="rpCloseLB()">✕</div>
+  <img id="rp-lb-img" src="" alt="">
+</div>
+
+<div class="royal-premium">
+
+  <!-- ═══ PETAL RAIN  rp-rain ═══ -->
+  <div class="rp-rain" aria-hidden="true" id="rp-rain"></div>
+
+  <!-- ════════════════════════════════
+       COVER  rp-entry
+  ═════════════════════════════════ -->
+  <div class="rp-entry" id="rp-entry">
+
+    <img class="rp-entry__photo" 
+      src="
+      images/background-image.jpg"
+      alt="" width="1600" height="1100">
+
+    <div class="rp-entry__veil"></div>
+
+    <img class="rp-entry__jali"
+      src="images/assets/jali-pattern.svg"
+      alt="" width="1200" height="1200">
+
+    <div class="rp-entry__glow"></div>
+    <div class="rp-entry__flash"></div>
+
+    <!-- Decorative frame -->
+    <div class="rp-entry__frame">
+      <span class="rp-entry__frame-corner tl">❖</span>
+      <span class="rp-entry__frame-corner tr">❖</span>
+      <span class="rp-entry__frame-corner bl">❖</span>
+      <span class="rp-entry__frame-corner br">❖</span>
+    </div>
+
+    <div class="rp-entry__content">
+        <img class="rp-entry__god"
+src="images/ganesh.png"
+alt="Ganesha">
+      <p class="rp-entry__title rp-font-label">The Wedding Celebration</p>
+
+      <img class="rp-entry__mandala"
+        src="images/assets/mandala-bloom.svg"
+        alt="" width="310" height="310">
+
+      <h1 class="rp-entry__names rp-font-script">sirish <span class="rp-entry__amp">&amp;</span> Avika</h1>
+
+      <img class="rp-entry__ornament"
+        src="images/assets/ornate-divider.svg"
+        alt="" width="300" height="34">
+
+      <p class="rp-entry__date-line rp-font-label">28 · November · 2026 · Rajasthan</p>
+
+      <button class="rp-entry__cta rp-font-label" onclick="rpOpenInv()">Open Invitation</button>
+    </div>
+
+  </div><!-- /rp-entry -->
+
+  <!-- Music btn -->
+  <button type="button" class="rp-music" id="rp-music-btn" onclick="rpToggleMusic()">
+    <span class="rp-music__icon" aria-hidden="true">♪</span>
+    <span class="rp-music__text rp-font-label">Sound Off</span>
+  </button>
+
+  <!-- Demo CTA (fixed bottom bar) -->
+  <a href="https://wa.me/919553143929?text=Hi%2C%20I'm%20interested%20in%20the%20Royal%20Premium%20wedding%20invitation%20template%20(%E2%82%B93%2C999).%20I'd%20like%20to%20order%20it."
+    class="demo-cta" target="_blank" rel="noopener noreferrer"
+    role="complementary" aria-label="Order Royal Premium template for ₹2,599">
+    <div class="demo-cta__info">
+      <p class="demo-cta__info-top">Royal Premium &nbsp;·&nbsp; ₹1,999</p>
+      <p class="demo-cta__info-sub">This is a demo preview</p>
+    </div>
+    <span class="demo-cta__price">₹1,999</span>
+    <span class="demo-cta__divider"></span>
+    <span class="demo-cta__label">Order Now</span>
+  </a>
+
+  <!-- Float music btn (shows inside invitation) -->
+  <button class="rp-music-float" id="rp-mfloat" onclick="rpToggleMusic()">🎵</button>
+
+  <!-- ════════════════════════════════
+       INVITATION BODY
+  ═════════════════════════════════ -->
+  <div class="rp-invitation" id="rp-invitation">
+
+    <!-- ── HERO ── -->
+    <section class="rp-hero" data-sr="up">
+      <div class="rp-hero__bg"></div>
+      <div class="rp-hero__jali"></div>
+      <div class="rp-hero__glow"></div>
+      <div class="rp-hero__frame">
+        <span class="rp-hero__fc tl">❖</span><span class="rp-hero__fc tr">❖</span>
+        <span class="rp-hero__fc bl">❖</span><span class="rp-hero__fc br">❖</span>
+      </div>
+        <img class="rp-entry__god"
+src="images/ganesh.png"
+alt="Ganesha">
+      <img class="rp-hero__mandala"
+        src="images/assets/mandala-bloom.svg" alt="">
+      <p class="rp-hero__label">The Wedding Celebration</p>
+      <div class="rp-hero__names">Milind</div>
+      <span class="rp-hero__amp">&amp;</span>
+      <div class="rp-hero__names">Avika</div>
+      <img style="width:min(220px,55vw);height:auto;margin:14px auto;display:block;position:relative;z-index:2;filter:drop-shadow(0 0 5px rgba(212,175,55,.22))"
+        src="images/assets/ornate-divider.svg" alt="">
+      <p class="rp-hero__date">Saturday · 28 November 2026 · Jodhpur, Rajasthan</p>
+    </section>
+
+    <div class="rp-stripe"></div>
+
+    <!-- ── BLESSING ── -->
+    <section class="rp-blessing rp-sec-dark" data-sr="up" style="position:relative;overflow:hidden;">
+      <div class="rp-jali-bg"></div>
+      <p class="rp-sec-label">With Divine Blessings</p>
+      <img class="rp-ornament"
+        src="images/assets/ornate-divider.svg" alt="">
+      <span class="rp-blessing__quote-mark">"</span>
+      <p class="rp-blessing__quote">
+        May your love grow stronger with each passing day.
+        Wishing you a lifetime of happiness together.
+      </p>
+      <div class="rp-gold-line"></div>
+      <p class="rp-blessing__tagline">Together With The Blessings Of Their Families</p>
+    </section>
+
+    <div class="rp-stripe-thin"></div>
+
+    <!-- ── COUPLE ── -->
+    <section class="rp-couple rp-sec rp-sec-light" data-sr="up" style="position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:url('https://myshaadhilink.in/assets/royal-premium/jali-pattern.svg') center/230px repeat;opacity:.03;pointer-events:none;"></div>
+      <p class="rp-sec-label" style="position:relative;z-index:1;">The Couple</p>
+      <img class="rp-ornament"
+        src="images/assets/ornate-divider.svg" alt="">
+
+      <div class="rp-couple__row" data-stagger>
+
+        <div class="rp-person">
+          <div class="rp-person__ring">
+            <div class="rp-person__ring-spin"></div>
+            <img class="rp-person__photo"
+              src="images/men.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face'"
+              alt="Milind" width="200" height="200">
+          </div>
+          <p class="rp-person__name">Milind</p>
+          <p class="rp-person__rel">Son of</p>
+          <p class="rp-person__par">Khushal Chandwani<br>&amp; Deepa Chandwani</p>
+        </div>
+
+        <span class="rp-couple__and">&amp;</span>
+
+        <div class="rp-person">
+          <div class="rp-person__ring">
+            <div class="rp-person__ring-spin"></div>
+            <img class="rp-person__photo"
+              src="images/women.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face'"
+              alt="Avika" width="200" height="200">
+          </div>
+          <p class="rp-person__name">Avika</p>
+          <p class="rp-person__rel">Daughter of</p>
+          <p class="rp-person__par">Sameer Gor<br>&amp; Dr. Chetna Gor</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="rp-stripe"></div>
+
+    <!-- ── EVENTS ── -->
+    <section class="rp-events rp-sec rp-sec-lavender">
+      <p class="rp-sec-label">Royal Events</p>
+      <img class="rp-ornament"
+        src="images/assets/ornate-divider.svg" alt="">
+
+      <div style="margin-top:18px;" data-stagger>
+
+        <div class="rp-event-card" data-sr="up">
+          <div class="rp-event-card__shimmer"></div>
+          <span class="rp-event-card__icon">🌸</span>
+          <p class="rp-event-card__badge">Haldi</p>
+          <h3 class="rp-event-card__title">Haldi Ceremony</h3>
+          <div class="rp-event-card__detail">
+            <strong>Saturday, 05 March</strong><br>
+            9:00 AM onwards<br>
+            Taj Banjara
+          </div>
+          <a class="rp-event-card__map" href="https://www.google.com/maps?q=Sri+Venkateswara+Kalyana+Mandapam+Banjara+Hills+Hyderabad" target="_blank">
+            📍 Get Directions
+          </a>
+        </div>
+
+        <div class="rp-event-card" data-sr="up">
+          <div class="rp-event-card__shimmer"></div>
+          <span class="rp-event-card__icon">🎵</span>
+          <p class="rp-event-card__badge">Mehendi</p>
+          <h3 class="rp-event-card__title">Reception</h3>
+          <div class="rp-event-card__detail">
+            <strong>Saturday, 6th March</strong><br>
+            12:30 PM<br>
+            Drabad Kukat Pally
+          </div>
+          <a class="rp-event-card__map" href="https://www.google.com/maps?q=Drabad+Kukat+Pally" target="_blank">
+            📍 Get Directions
+          </a>
+        </div>
+
+        <div class="rp-event-card" data-sr="up">
+          <div class="rp-event-card__shimmer"></div>
+          <span class="rp-event-card__icon">👑</span>
+          <p class="rp-event-card__badge">Wedding</p>
+          <h3 class="rp-event-card__title">Wedding Ceremony</h3>
+          <div class="rp-event-card__detail">
+            <strong>Saturday, 7th March</strong><br>
+            9:00 PM onwards<br>
+            Kukatpally, Hyderabad
+          </div>
+          <a class="rp-event-card__map" href="https://www.google.com/maps?q=Sri+Venkateswara+Kalyana+Mandapam+Banjara+Hills+Hyderabad" target="_blank">
+            📍 Get Directions
+          </a>
+        </div>
+
+        <div class="rp-event-card" data-sr="up">
+          <div class="rp-event-card__shimmer"></div>
+          <span class="rp-event-card__icon">🎊</span>
+          <p class="rp-event-card__badge">Sangeet</p>
+          <h3 class="rp-event-card__title">Sangeeth</h3>
+          <div class="rp-event-card__detail">
+            <strong>Saturday, 8th March</strong><br>
+            9:00 PM onwards<br>
+            Kukatpally
+          </div>
+          <a class="rp-event-card__map" href="https://www.google.com/maps?q=Kukatpally" target="_blank">
+            📍 Get Directions
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── COUNTDOWN ── -->
+    <section class="rp-countdown rp-sec-dark2" data-sr="scale" style="position:relative;overflow:hidden;">
+      <div class="rp-jali-bg"></div>
+      <div class="rp-countdown__glow"></div>
+      <p class="rp-countdown__title">Counting Down To</p>
+      <p class="rp-countdown__sub">Our Royal Union</p>
+      <div class="rp-countdown__row">
+        <div class="rp-countdown__unit">
+          <div class="rp-countdown__box"><span class="rp-countdown__num" id="cd-d">00</span></div>
+          <span class="rp-countdown__lbl">Days</span>
+        </div>
+        <span class="rp-countdown__sep">:</span>
+        <div class="rp-countdown__unit">
+          <div class="rp-countdown__box"><span class="rp-countdown__num" id="cd-h">00</span></div>
+          <span class="rp-countdown__lbl">Hours</span>
+        </div>
+        <span class="rp-countdown__sep">:</span>
+        <div class="rp-countdown__unit">
+          <div class="rp-countdown__box"><span class="rp-countdown__num" id="cd-m">00</span></div>
+          <span class="rp-countdown__lbl">Mins</span>
+        </div>
+        <span class="rp-countdown__sep">:</span>
+        <div class="rp-countdown__unit">
+          <div class="rp-countdown__box"><span class="rp-countdown__num" id="cd-s">00</span></div>
+          <span class="rp-countdown__lbl">Secs</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="rp-stripe"></div>
+<!-- ── GALLERY ── -->
+<section class="rp-gallery rp-sec rp-sec-lavender">
+  <p class="rp-sec-label">Captured Moments</p>
+
+  <div class="rp-gallery__grid" data-stagger>
+
+    <div class="rp-gallery__cell wide" onclick="rpOpenLB('https://images.unsplash.com/photo-1606800052052-a08af7148866')">
+      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&auto=format&fit=crop"
+        alt="" loading="lazy">
+      <div class="rp-gallery__cell__overlay"><span>Together ✦</span></div>
+    </div>
+
+    <div class="rp-gallery__cell" onclick="rpOpenLB('https://images.unsplash.com/photo-1597225244660-1cd128c64284')">
+      <img src="https://images.unsplash.com/photo-1597225244660-1cd128c64284?w=600&auto=format&fit=crop"
+        alt="" loading="lazy">
+      <div class="rp-gallery__cell__overlay"><span>Mehndi</span></div>
+    </div>
+
+    <div class="rp-gallery__cell" onclick="rpOpenLB('https://images.unsplash.com/photo-1583939003579-730e3918a45a')">
+      <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&auto=format&fit=crop"
+        alt="" loading="lazy">
+      <div class="rp-gallery__cell__overlay"><span>Bride</span></div>
+    </div>
+
+    <div class="rp-gallery__cell" onclick="rpOpenLB('https://images.unsplash.com/photo-1604014237800-1c9102c219da')">
+      <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=600&auto=format&fit=crop"
+        alt="" loading="lazy">
+      <div class="rp-gallery__cell__overlay"><span>Ceremony</span></div>
+    </div>
+
+    <div class="rp-gallery__cell" onclick="rpOpenLB('https://images.unsplash.com/photo-1622630998477-20aa696ecb05')">
+      <img src="https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=600&auto=format&fit=crop"
+        alt="" loading="lazy">
+      <div class="rp-gallery__cell__overlay"><span>Portrait</span></div>
+    </div>
+
+    <div class="rp-gallery__cell" onclick="rpOpenLB('https://images.unsplash.com/photo-1591604466107-ec97de577aff')">
+      <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=600&auto=format&fit=crop"
+        alt="" loading="lazy">
+      <div class="rp-gallery__cell__overlay"><span>Pheras</span></div>
+    </div>
+
+  </div>
+</section>
+
+    <div class="rp-stripe-thin"></div>
+
+    <!-- ── VIDEO ── -->
+    <section class="rp-video rp-sec-dark" data-sr="up" style="position:relative;overflow:hidden;">
+      <div class="rp-jali-bg"></div>
+      <p class="rp-sec-label">A Special Glimpse</p>
+      <img class="rp-ornament"
+        src="images/assets/ornate-divider.svg" alt="">
+      <div class="rp-video__frame" style="position:relative;z-index:1;">
+        <iframe
+          src="https://www.youtube.com/embed/5qap5aO4i9A"
+          title="A Special Glimpse" allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+    </section>
+
+    <div class="rp-stripe"></div>
+
+    <!-- ── VENUE ── -->
+    <section class="rp-venue rp-sec rp-sec-ivory" data-sr="up">
+      <p class="rp-sec-label">Venue</p>
+      <img class="rp-ornament"
+        src="images/assets/ornate-divider.svg" alt="">
+
+      <div class="rp-venue__card" data-sr="up" style="position:relative;z-index:1;">
+        <p class="rp-venue__name">Pati Patni Aur Panga</p>
+        <p class="rp-venue__addr">Kukatpally, Hyderabad<br>
+          <em style="font-size:12px;color:#8080A0">Wedding Ceremony &amp; Main Venue</em>
+        </p>
+        <a class="rp-venue__btn" href="https://maps.app.goo.gl/mBMK1HkkHVTVZ6ET8" target="_blank">
+          📍 Open in Maps
+        </a>
+        <iframe class="rp-venue__map-embed"
+          src="https://maps.app.goo.gl/mBMK1HkkHVTVZ6ET8"
+          loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- ── LIVESTREAM ── -->
+    <section class="rp-live rp-sec-dark" data-sr="scale" style="position:relative;overflow:hidden;">
+      <div class="rp-jali-bg"></div>
+      <p class="rp-sec-label">Can't Attend In Person?</p>
+      <img class="rp-ornament"
+        src="images/assets/ornate-divider.svg" alt="">
+      <div class="rp-live__badge" style="position:relative;z-index:1;">
+        <span class="rp-live__dot"></span>
+        LIVE STREAM AVAILABLE
+      </div>
+      <p class="rp-live__text" style="position:relative;z-index:1;">
+        Join us virtually and witness every precious moment
+      </p>
+      <a class="rp-live__btn" href="https://maps.app.goo.gl/mBMK1HkkHVTVZ6ET8" target="_blank"
+        style="display:inline-block;margin-top:16px;position:relative;z-index:1;">
+        Watch Live Stream
+      </a>
+    </section>
+
+    <div class="rp-stripe"></div>
+
+    <!-- ── RSVP ── -->
+    <section class="rp-rsvp rp-sec rp-sec-lavender" data-sr="up">
+      <div style="position:absolute;inset:0;background:url('images/assets/jali-pattern.svg') center/220px repeat;opacity:.025;pointer-events:none;"></div>
+      <p class="rp-sec-label">Will You Join Us?</p>
+      <img class="rp-ornament"
+        src="images/assets/ornate-divider.svg" alt="">
+      <p class="rp-rsvp__intro">
+        We would be honoured by your gracious presence at our celebration.
+      </p>
+
+      <div id="rp-rsvp-form">
+        <label class="rp-label">Your Name</label>
+        <input class="rp-input" type="text" id="rp-rname" placeholder="Enter your full name">
+
+        <label class="rp-label">Number of Guests</label>
+        <input class="rp-input" type="number" id="rp-rguests" placeholder="How many people?" min="1" max="10">
+
+        <label class="rp-label">Attendance</label>
+        <div class="rp-attend-row">
+          <button class="rp-att-btn" id="rp-btn-yes" onclick="rpPick('yes')">✓ Joyfully Accept</button>
+          <button class="rp-att-btn" id="rp-btn-no"  onclick="rpPick('no')">✗ Respectfully Decline</button>
+        </div>
+
+        <label class="rp-label">Message for the Couple</label>
+        <textarea class="rp-input" id="rp-rmsg" rows="3"
+          style="resize:none;" placeholder="Write your heartfelt wishes..."></textarea>
+
+        <button class="rp-submit-btn" onclick="rpSubmitRSVP()">Confirm Attendance</button>
+      </div>
+
+      <div class="rp-rsvp__ty" id="rp-rsvp-ty">
+        <span class="rp-rsvp__ty-icon">👑</span>
+        Thank you! Milind &amp; Avika are honoured by your gracious presence!
+      </div>
+    </section>
+
+    <!-- ── SHARE ── -->
+    <section class="rp-share rp-sec-ivory" data-sr="up">
+      <p class="rp-sec-label">Share This Invitation</p>
+      <p style="font-style:italic;font-size:14px;color:#5050A0;margin-top:5px;">
+        Spread the joy with loved ones
+      </p>
+      <div class="rp-share__row">
+        <button class="rp-share__btn rp-share__btn--wa" onclick="rpDoWA()">💚 WhatsApp</button>
+        <button class="rp-share__btn" onclick="rpDoCal()">📅 Calendar</button>
+        <button class="rp-share__btn" onclick="rpDoCopy()">🔗 Copy Link</button>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="rp-footer rp-sec-dark2">
+      <div class="rp-jali-bg"></div>
+      <img class="rp-footer__mandala"
+        src="images/assets/mandala-bloom.svg" alt="">
+      <img style="width:min(200px,50vw);height:auto;margin:0 auto 16px;display:block;filter:drop-shadow(0 0 4px rgba(212,175,55,.2));position:relative;z-index:1;"
+        src="images/assets/ornate-divider.svg" alt="">
+      <p class="rp-footer__names">The Wedding of Milind &amp; Avika</p>
+      <p class="rp-footer__date">28 · November · 2026 · Jodhpur, Rajasthan</p>
+      <div class="rp-gold-line" style="max-width:180px;position:relative;z-index:1;"></div>
+      <p class="rp-footer__brand">Made with love by <a href="#">MyWedLink</a></p>
+    </footer>
+
+  </div><!-- /rp-invitation -->
+
+</div><!-- /royal-premium -->
+
+<script src="https://unpkg.com/@studio-freight/lenis"></script>
+<!-- GSAP + ScrollTrigger + Lenis -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+<script>
+
+window.addEventListener("load", () => {
+  const overlay = document.getElementById("rp-overlay");
+
+  setTimeout(() => {
+    overlay.classList.add("rp-overlay--out");
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+    }, 900);
+
+  }, 600);
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* =========================
+   SMOOTH SCROLL (LENIS)
+========================= */
+const lenis = new Lenis({
+  duration: 1.2,
+  smooth: true,
+  smoothTouch: false
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+/* IMPORTANT FIX */
+ScrollTrigger.scrollerProxy(document.body, {
+  scrollTop(value) {
+    return arguments.length
+      ? lenis.scrollTo(value)
+      : lenis.scroll.instance.scroll.y;
+  },
+  getBoundingClientRect() {
+    return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+  }
+});
+
+lenis.on("scroll", ScrollTrigger.update);
+ScrollTrigger.addEventListener("refresh", () => lenis.update());
+ScrollTrigger.refresh();
+/* =========================
+   ENTRY ANIMATION
+========================= */
+gsap.timeline()
+  .from(".rp-entry__mandala", {
+    scale: 0.6,
+    opacity: 0,
+    duration: 1.4,
+    ease: "power3.out"
+  })
+  .from(".rp-entry__names", {
+    y: 80,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power4.out"
+  }, "-=0.8")
+  .from(".rp-entry__cta", {
+    y: 40,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out"
+  }, "-=0.6");
+
+
+/* =========================
+   HERO PARALLAX
+========================= */
+gsap.to(".rp-entry__photo", {
+  scale: 1.2,
+  yPercent: 10,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".rp-entry",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
+gsap.to(".rp-hero__bg", {
+  yPercent: 20,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".rp-hero",
+    scrub: true
+  }
+});
+
+
+/* =========================
+   SECTION REVEAL (MASTER)
+========================= */
+gsap.utils.toArray(".rp-sec").forEach((section) => {
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: "top 85%",
+      toggleActions: "play none none none"
+    }
+  });
+
+  // STEP 1 — top small element (label / icon / title)
+  tl.from(section.querySelectorAll("h2, h3, .rp-sec-label"), {
+    y: 40,
+    opacity: 0,
+    duration: 0.6
+  });
+
+  // STEP 2 — main titles / names
+  tl.from(section.querySelectorAll(".rp-person__name, .rp-title"), {
+    y: 80,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 1,
+    ease: "power4.out"
+  }, "-=0.3");
+
+  // STEP 3 — content cards / blocks
+  tl.from(section.querySelectorAll(".rp-event-card, .rp-person, .rp-countdown__box"), {
+    y: 60,
+    opacity: 0,
+    stagger: 0.15,
+    duration: 0.8
+  }, "-=0.5");
+
+});
+
+/* =========================
+   STAGGER (COUPLE, EVENTS, GALLERY)
+========================= */
+gsap.utils.toArray("[data-stagger]").forEach((wrap) => {
+  const items = wrap.children;
+
+  gsap.from(items, {
+    opacity: 0,
+    y: 60,
+    stagger: 0.18,
+    duration: 1.2,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: wrap,
+      start: "top 85%"
+    }
+  });
+});
+
+
+/* =========================
+   EVENT CARDS HOVER DEPTH
+========================= */
+gsap.utils.toArray(".rp-event-card").forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    gsap.to(card, {
+      y: -8,
+      scale: 1.02,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+  });
+
+  card.addEventListener("mouseleave", () => {
+    gsap.to(card, {
+      y: 0,
+      scale: 1,
+      duration: 0.4,
+      ease: "power2.out"
+    });
+  });
+});
+
+
+/* =========================
+   PROGRESS BAR (REAL SMOOTH)
+========================= */
+ScrollTrigger.create({
+  start: 0,
+  end: "max",
+  onUpdate: self => {
+    gsap.to("#rp-progress", {
+      width: (self.progress * 100) + "%",
+      duration: 0.2,
+      ease: "none"
+    });
+  }
+});
+
+
+/* =========================
+   FLOAT MUSIC BUTTON SHOW
+========================= */
+ScrollTrigger.create({
+  trigger: ".rp-hero",
+  start: "top -100",
+  onEnter: () => document.getElementById("rp-mfloat").classList.add("visible"),
+  onLeaveBack: () => document.getElementById("rp-mfloat").classList.remove("visible")
+});
+
+</script>
+
+<script>
+/* ═══════════════════════════════════════════
+   PAGE LOAD OVERLAY
+═══════════════════════════════════════════ */
+
+
+
+
+
+
+window.addEventListener("load", () => {
+  const overlay = document.getElementById("rp-overlay");
+
+  setTimeout(() => {
+    overlay.classList.add("rp-overlay--out");
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+      document.body.style.overflow = "auto";
+    }, 900);
+
+  }, 800);
+});
+/* ═══════════════════════════════════════════
+   PETAL RAIN  — exactly 18 petals like real site
+   using the real petal SVG asset
+═══════════════════════════════════════════ */
+(function buildRain() {
+  const rain = document.getElementById('rp-rain');
+  const configs = [
+    {left:'5%', size:'22px', dur:'8.5s', delay:'0s',   rot0:'0deg',  rot1:'680deg',  drift:'-20px', sway:'3.8s', sc:.9},
+    {left:'12%',size:'28px', dur:'10s',  delay:'0.6s',  rot0:'45deg', rot1:'780deg',  drift:'25px',  sway:'4.2s', sc:1},
+    {left:'22%',size:'18px', dur:'9s',   delay:'1.2s',  rot0:'0deg',  rot1:'540deg',  drift:'-15px', sway:'3.5s', sc:.8},
+    {left:'33%',size:'32px', dur:'11s',  delay:'0.3s',  rot0:'90deg', rot1:'900deg',  drift:'30px',  sway:'4.8s', sc:1.1},
+    {left:'44%',size:'20px', dur:'8s',   delay:'1.8s',  rot0:'20deg', rot1:'620deg',  drift:'-25px', sway:'3.2s', sc:.9},
+    {left:'55%',size:'26px', dur:'12s',  delay:'0.9s',  rot0:'0deg',  rot1:'840deg',  drift:'20px',  sway:'5s',   sc:1},
+    {left:'62%',size:'16px', dur:'9.5s', delay:'2.4s',  rot0:'60deg', rot1:'700deg',  drift:'-18px', sway:'3.8s', sc:.85},
+    {left:'71%',size:'30px', dur:'10.5s',delay:'0.4s',  rot0:'0deg',  rot1:'960deg',  drift:'28px',  sway:'4.5s', sc:1.05},
+    {left:'78%',size:'24px', dur:'8.8s', delay:'1.5s',  rot0:'30deg', rot1:'660deg',  drift:'-22px', sway:'3.6s', sc:.95},
+    {left:'85%',size:'19px', dur:'11.5s',delay:'0.8s',  rot0:'0deg',  rot1:'780deg',  drift:'16px',  sway:'4.2s', sc:.88},
+    {left:'91%',size:'27px', dur:'9.2s', delay:'2.1s',  rot0:'80deg', rot1:'820deg',  drift:'-26px', sway:'3.9s', sc:1.02},
+    {left:'8%', size:'35px', dur:'13s',  delay:'0.2s',  rot0:'0deg',  rot1:'1080deg', drift:'32px',  sway:'5.5s', sc:1.1},
+    {left:'38%',size:'21px', dur:'10s',  delay:'1.1s',  rot0:'45deg', rot1:'720deg',  drift:'-20px', sway:'4s',   sc:.92},
+    {left:'50%',size:'15px', dur:'7.5s', delay:'3s',    rot0:'0deg',  rot1:'540deg',  drift:'18px',  sway:'3.2s', sc:.82},
+    {left:'66%',size:'29px', dur:'11s',  delay:'1.7s',  rot0:'20deg', rot1:'880deg',  drift:'-28px', sway:'4.7s', sc:1},
+    {left:'18%',size:'23px', dur:'9.8s', delay:'2.8s',  rot0:'0deg',  rot1:'720deg',  drift:'24px',  sway:'4.1s', sc:.94},
+    {left:'76%',size:'17px', dur:'10.5s',delay:'0.5s',  rot0:'70deg', rot1:'640deg',  drift:'-14px', sway:'3.7s', sc:.87},
+    {left:'94%',size:'31px', dur:'12.5s',delay:'1.4s',  rot0:'0deg',  rot1:'1000deg', drift:'26px',  sway:'5.2s', sc:1.08},
+  ];
+
+  configs.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'rp-rain__petal';
+    div.style.cssText = `
+      --left:${c.left};--size:${c.size};--dur:${c.dur};
+      --delay:${c.delay};--rot0:${c.rot0};--rot1:${c.rot1};
+      --drift:${c.drift};--sway:${c.sway};--sc:${c.sc};
+    `;
+    const img = document.createElement('img');
+    img.alt = ''; img.width = 38; img.height = 38;
+    img.className = 'rp-rain__petal-img';
+    img.src = 'https://myshaadhilink.in/assets/royal-premium/petal.svg';
+    img.style.color = 'transparent';
+    div.appendChild(img);
+    rain.appendChild(div);
+  });
+})();
+
+
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = "translateY(0)";
+    }
+  });
+},{threshold:0.15});
+
+document.querySelectorAll('[data-sr]').forEach(el=>{
+  el.style.opacity = 0;
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "all 0.8s ease";
+  observer.observe(el);
+});
+
+/* ═══════════════════════════════════════════
+   MUSIC
+═══════════════════════════════════════════ */
+let isPlaying = false;
+
+
+
+const audio = document.getElementById("rp-bgm");
+const musicTexts = document.querySelectorAll(".rp-music__text");
+
+function rpToggleMusic() {
+  if (!audio) return;
+
+  if (audio.paused) {
+    audio.play().then(() => {
+      updateUI("Sound On");
+    }).catch(() => {});
+  } else {
+    audio.pause();
+    updateUI("Sound Off");
+  }
+}
+
+function updateUI(text) {
+  musicTexts.forEach(el => el.innerText = text);
+}
+
+
+
+
+// UI update
+function updateUI(text) {
+  musicTexts.forEach(el => el.innerText = text);
+}
+
+// Auto play after user interaction (OPEN INVITATION)
+function rpOpenInv() {
+  document.getElementById("rp-entry").style.display = "none";
+  document.getElementById("rp-invitation").classList.add("open");
+
+  document.getElementById("rp-mfloat").classList.add("visible");
+
+  // Force play on first interaction
+  if (audio && audio.paused) {
+    audio.play().then(() => {
+      isPlaying = true;
+      updateUI("Sound On");
+    }).catch(() => {});
+  }
+}
+
+
+
+/* ═══════════════════════════════════════════
+   OPEN INVITATION  — clip-path wipe
+═══════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL  — IntersectionObserver
+   with stagger support, matching site feel
+═══════════════════════════════════════════ */
+function rpInitScrollReveal() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('sr-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  document.querySelectorAll('[data-sr], [data-stagger]').forEach(el => io.observe(el));
+
+}
+
+/* ======================
+   SINGLE CLEAN COUNTDOWN
+====================== */
+
+function rpStartCountdown() {
+  const target = new Date("2026-11-28T10:30:00").getTime();
+
+  const d = document.getElementById("cd-d");
+  const h = document.getElementById("cd-h");
+  const m = document.getElementById("cd-m");
+  const s = document.getElementById("cd-s");
+
+  if (!d || !h || !m || !s) {
+    console.error("Countdown elements missing");
+    return;
+  }
+
+  function update() {
+    const now = Date.now();
+    const diff = target - now;
+
+    if (diff <= 0) return;
+
+    set(d, Math.floor(diff / 86400000));
+    set(h, Math.floor((diff % 86400000) / 3600000));
+    set(m, Math.floor((diff % 3600000) / 60000));
+    set(s, Math.floor((diff % 60000) / 1000));
+  }
+
+  function set(el, val) {
+    const v = String(val).padStart(2, "0");
+
+    if (el.innerText !== v) {
+      el.classList.add("flip");
+
+      setTimeout(() => {
+        el.innerText = v;
+        el.classList.remove("flip");
+      }, 150);
+    }
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+
+
+/* ======================
+   OPEN INVITATION
+====================== */
+function rpOpenInv() {
+  document.getElementById("rp-entry").style.display = "none";
+  document.getElementById("rp-invitation").classList.add("open");
+
+  // 🔥 START COUNTDOWN HERE
+  rpStartCountdown();
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('rp-progress').style.width = Math.min(pct, 100) + '%';
+}, { passive: true });
+
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════ */
+function rpOpenLB(src) {
+  document.getElementById('rp-lb-img').src = src;
+  document.getElementById('rp-lightbox').classList.add('open');
+}
+function rpCloseLB() {
+  document.getElementById('rp-lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') rpCloseLB(); });
+
+/* ═══════════════════════════════════════════
+   RSVP
+═══════════════════════════════════════════ */
+let rpChoice = null;
+function rpPick(v) {
+  rpChoice = v;
+  document.getElementById('rp-btn-yes').classList.toggle('picked', v === 'yes');
+  document.getElementById('rp-btn-no').classList.toggle('picked', v === 'no');
+}
+function rpSubmitRSVP() {
+  if (!document.getElementById('rp-rname').value.trim()) {
+    alert('Please enter your name.'); return;
+  }
+  if (!rpChoice) { alert('Please select your attendance.'); return; }
+  document.getElementById('rp-rsvp-form').style.display = 'none';
+  document.getElementById('rp-rsvp-ty').style.display = 'block';
+}
+
+/* ═══════════════════════════════════════════
+   SHARE
+═══════════════════════════════════════════ */
+function rpDoWA() {
+  window.open('https://wa.me/?text=' + encodeURIComponent("You're invited to Milind & Avika's Royal Wedding! 👑\n" + location.href), '_blank');
+}
+function rpDoCal() {
+  window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=Milind+%26+Avika+Wedding&dates=20261128T050000Z/20261128T120000Z&location=Kukatpally,+Hyderabad', '_blank');
+}
+function rpDoCopy() {
+  navigator.clipboard
+    ? navigator.clipboard.writeText(location.href).then(() => alert('Link copied! ✓'))
+    : alert(location.href);
+}
+
+
+
+
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = "translateY(0)";
+    }
+  });
+});
+
+document.querySelectorAll("[data-sr]").forEach(el=>{
+  el.style.opacity = 0;
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "all 0.8s ease";
+  observer.observe(el);
+});
+
+</script>
+<script>
+function rpOpenInv(){
+  const entry = document.getElementById("rp-entry");
+  const inv = document.getElementById("rp-invitation");
+  const musicBtn = document.getElementById("rp-mfloat");
+
+  // hide entry
+  entry.style.display = "none";
+
+  // show invitation
+  inv.classList.add("open");
+
+  // show floating music button
+  musicBtn.classList.add("visible");
+
+  // start music (user interaction allows it)
+
+  if(audio){
+    audio.play().catch(()=>{});
+  }
+
+  // start countdown
+  startCountdown();
+}
+</script>
+
+
+<script>
+
+/* ======================
+   SINGLE SOURCE SYSTEM
+====================== */
+
+const audio = document.getElementById("rp-bgm");
+const musicTexts = document.querySelectorAll(".rp-music__text");
+
+/* ======================
+   MUSIC
+====================== */
+function rpToggleMusic(){
+  if(!audio) return;
+
+  if(audio.paused){
+    audio.play().then(()=>updateUI("Sound On"));
+  }else{
+    audio.pause();
+    updateUI("Sound Off");
+  }
+}
+
+function updateUI(text){
+  musicTexts.forEach(el=>el.innerText = text);
+}
+
+/* ======================
+   COUNTDOWN (ONLY ONE)
+====================== */
+function startCountdown(){
+  const target = new Date("Nov 28, 2026 00:00:00").getTime();
+
+  setInterval(()=>{
+    const now = Date.now();
+    const diff = target - now;
+    if(diff <= 0) return;
+
+    document.getElementById("cd-d").innerText = Math.floor(diff/86400000);
+    document.getElementById("cd-h").innerText = Math.floor((diff%86400000)/3600000);
+    document.getElementById("cd-m").innerText = Math.floor((diff%3600000)/60000);
+    document.getElementById("cd-s").innerText = Math.floor((diff%60000)/1000);
+  },1000);
+}
+
+/* ======================
+   OPEN INVITATION (ONLY ONE)
+====================== */
+function rpOpenInv(){
+  const entry = document.getElementById("rp-entry");
+  const inv = document.getElementById("rp-invitation");
+  const musicBtn = document.getElementById("rp-mfloat");
+
+  entry.style.display = "none";
+  inv.classList.add("open");
+  musicBtn.classList.add("visible");
+
+  // start music
+  if(audio){
+    audio.play().catch(()=>{});
+  }
+
+  // start countdown
+  startCountdown();
+}
+
+/* ======================
+   LIGHTBOX (FIXED)
+====================== */
+function rpOpenLB(src){
+  const img = document.getElementById("rp-lb-img");
+  const box = document.getElementById("rp-lightbox");
+
+  if(img && box){
+    img.src = src;
+    box.classList.add("open");
+  }
+}
+
+function rpCloseLB(){
+  document.getElementById("rp-lightbox").classList.remove("open");
+}
+
+</script>
+
+<script>
+gsap.utils.toArray("[data-stagger]").forEach((wrap) => {
+
+  gsap.from(wrap.children, {
+    opacity: 0,
+    y: 60,
+    stagger: 0.2,
+    duration: 1.2,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: wrap,
+      start: "top 85%"
+    }
+  });
+
+});
+</script>
+<script>
+gsap.to(".rp-hero__bg", {
+  yPercent: 25,
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".rp-hero",
+    scrub: true
+  }
+});
+</script>
+<script>
+  
+function rpOpenInv(){
+  const entry = document.getElementById("rp-entry");
+  const inv = document.getElementById("rp-invitation");
+  const musicBtn = document.getElementById("rp-mfloat");
+
+  // cinematic fade out
+  gsap.to(entry, {
+    opacity: 0,
+    scale: 1.05,
+    duration: 1.2,
+    ease: "power3.inOut",
+    onComplete: () => {
+      entry.style.display = "none";
+      inv.classList.add("open");
+
+      // 🎬 HERO INTRO SEQUENCE
+      gsap.timeline()
+        .from(".rp-hero__mandala", {
+          scale: 0,
+          opacity: 0,
+          duration: 1,
+          ease: "back.out(1.7)"
+        })
+        .from(".rp-hero__label", {
+          y: 40,
+          opacity: 0,
+          duration: 0.8
+        }, "-=0.5")
+        .from(".rp-hero__names", {
+          y: 80,
+          opacity: 0,
+          stagger: 0.3,
+          duration: 1.2,
+          ease: "power4.out"
+        }, "-=0.6")
+        .from(".rp-hero__date", {
+          y: 40,
+          opacity: 0,
+          duration: 0.8
+        }, "-=0.8");
+
+      musicBtn.classList.add("visible");
+
+      if(audio){
+        audio.play().catch(()=>{});
+      }
+
+      startCountdown();
+    }
+  });
+}
+
+
+</script>
+</body>
+</html>

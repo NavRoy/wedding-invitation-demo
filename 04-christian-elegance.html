@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>James & Sarah | Christian Elegance | MyWedLink</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=IM+Fell+English:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+/* ══════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cormorant Garamond',Georgia,serif;background:#0a0f06;color:#1a2010;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+a{text-decoration:none}
+
+/* ══════════════════════════════════════════════
+   SCROLL PROGRESS BAR
+══════════════════════════════════════════════ */
+#prog{
+  position:fixed;top:0;left:0;height:3px;width:0%;z-index:9995;
+  background:linear-gradient(to right,#4CAF50,#A5D6A7,#4CAF50);
+  transition:width .1s linear;
+}
+
+/* ══════════════════════════════════════════════
+   PAGE LOAD OVERLAY
+══════════════════════════════════════════════ */
+#page-overlay{
+  position:fixed;inset:0;z-index:9990;
+  background:#f5f0eb;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  transition:opacity .8s ease,transform .8s ease;
+}
+#page-overlay.out{opacity:0;transform:scale(1.04);pointer-events:none;}
+.po-cross{
+  width:60px;height:75px;position:relative;
+  animation:crossFloat 2s ease-in-out infinite;
+}
+@keyframes crossFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.po-text{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.35em;color:rgba(100,150,60,.55);}
+
+/* ══════════════════════════════════════════════
+   SCATTER PETALS (fixed layer)
+══════════════════════════════════════════════ */
+#petal-layer{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden;}
+.spetal{position:absolute;top:-30px;animation:spetalFall linear forwards;}
+@keyframes spetalFall{
+  0%  {opacity:0;  transform:translateY(0)     rotate(0deg)   translateX(0);}
+  7%  {opacity:.85;}
+  90% {opacity:.7;}
+  100%{opacity:0;  transform:translateY(108vh) rotate(800deg) translateX(30px);}
+}
+
+/* Sparkle canvas */
+#sparkle-cv{position:fixed;inset:0;pointer-events:none;z-index:9997;}
+
+/* ══════════════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════════════ */
+#lightbox{
+  position:fixed;inset:0;z-index:8000;
+  background:rgba(0,0,0,.96);backdrop-filter:blur(14px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#lightbox.on{display:flex;animation:lbIn .25s ease;}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+#lightbox img{max-width:100%;max-height:88vh;object-fit:contain;border:1px solid rgba(100,170,60,.22);border-radius:2px;}
+.lb-close{
+  position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(100,170,60,.3);background:rgba(100,170,60,.08);
+  color:rgba(200,240,160,.9);font-size:18px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+}
+
+/* ══════════════════════════════════════════════
+   WRAPPER
+══════════════════════════════════════════════ */
+.ce-wrap{max-width:480px;margin:0 auto;}
+
+/* ══════════════════════════════════════════════
+   LANDING SCREEN
+   The envelope-poster.jpg is the BG
+   Text + button are CENTERED over it with z-index
+══════════════════════════════════════════════ */
+#landing{
+  position:fixed;inset:0;z-index:1000;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:20px;
+  overflow:hidden;
+  transition:opacity .9s ease,transform .9s ease;
+}
+#landing.out{opacity:0;transform:scale(1.05);pointer-events:none;}
+
+/* Background: envelope poster */
+#landing-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://myshaadhilink.in/assets/christian-elegance/envelope-poster.jpg') center/cover no-repeat;
+  animation:bgZoom 20s ease-in-out infinite alternate;
+}
+@keyframes bgZoom{0%{transform:scale(1)}100%{transform:scale(1.06)}}
+
+/* Very subtle dark vignette — NOT too dark so button is visible */
+#landing-veil{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(ellipse at 50% 50%,transparent 20%,rgba(0,0,0,.25) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.05) 40%,rgba(0,0,0,.35) 100%);
+}
+
+/* Scatter petals on landing */
+#land-petals{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden;}
+
+/* Floral corner images */
+.ce-fc{position:absolute;z-index:3;pointer-events:none;}
+.ce-fc img{width:min(140px,32vw);height:auto;display:block;}
+.ce-fc.tl{top:0;left:0;}
+.ce-fc.tr{top:0;right:0;transform:scaleX(-1);}
+.ce-fc.bl{bottom:80px;left:0;transform:scaleY(-1);}
+.ce-fc.br{bottom:80px;right:0;transform:scale(-1,-1);}
+
+/* Music toggle */
+#land-music{
+  position:absolute;top:18px;right:16px;z-index:10;
+  display:flex;align-items:center;gap:6px;
+  background:rgba(0,0,0,.35);backdrop-filter:blur(10px);
+  border:1px solid rgba(200,240,160,.25);
+  padding:8px 16px;
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.18em;
+  color:rgba(200,240,160,.75);
+}
+
+/* THE LANDING CONTENT — sits above everything with z-index:5 */
+#landing-content{
+  position:relative;z-index:5;
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;
+  /* Slight glass panel behind text for legibility */
+  background:rgba(0,0,0,.18);
+  backdrop-filter:blur(2px);
+  border:1px solid rgba(255,255,255,.08);
+  padding:28px 32px 24px;
+  border-radius:2px;
+  max-width:340px;width:90%;
+}
+.lc-with{
+  font-family:'IM Fell English',serif;font-style:italic;
+  font-size:15px;color:rgba(255,255,255,.75);
+  margin-bottom:6px;text-shadow:0 1px 6px rgba(0,0,0,.5);
+}
+.lc-we{
+  font-family:'IM Fell English',serif;font-size:18px;
+  color:rgba(255,255,255,.85);margin-bottom:8px;
+  text-shadow:0 1px 6px rgba(0,0,0,.5);
+}
+.lc-names{
+  font-family:'Cinzel',serif;font-size:clamp(28px,8vw,38px);font-weight:700;
+  background:linear-gradient(135deg,#6aaa4a,#a8e080,#8fcc60,#a8e080,#6aaa4a);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:greenShimmer 3.5s linear infinite;
+  line-height:1.1;margin-bottom:12px;
+}
+@keyframes greenShimmer{0%{background-position:0% center}100%{background-position:200% center}}
+
+/* Floral divider */
+.ce-fdiv{width:min(180px,44vw);margin:10px auto;}
+.ce-fdiv img{width:100%;height:auto;display:block;}
+
+.lc-save{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.32em;
+  color:rgba(255,255,255,.45);margin-top:8px;
+}
+/* THE OPEN BUTTON — must be very visible */
+#land-open-btn{
+  margin-top:16px;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.28em;
+  color:#fff;
+  border:1.5px solid rgba(200,240,160,.6);
+  padding:14px 36px;
+  background:rgba(50,120,30,.45);
+  backdrop-filter:blur(8px);
+  position:relative;overflow:hidden;
+  transition:background .3s,border-color .3s,transform .2s;
+  animation:openBtnPulse 2.5s ease-in-out infinite;
+}
+@keyframes openBtnPulse{0%,100%{box-shadow:0 0 0 0 rgba(100,200,60,.4)}50%{box-shadow:0 0 0 10px rgba(100,200,60,0)}}
+#land-open-btn:hover{
+  background:rgba(60,140,35,.65);border-color:rgba(200,240,160,.9);
+  transform:translateY(-2px);
+}
+#land-open-btn::before{
+  content:'✝';display:inline-block;margin-right:8px;font-size:12px;
+}
+
+/* ══════════════════════════════════════════════
+   DEMO BAR (fixed bottom)
+══════════════════════════════════════════════ */
+.demo-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:900;
+  max-width:480px;margin:0 auto;
+  display:flex;align-items:center;
+  background:rgba(4,8,2,.97);
+  border-top:1px solid rgba(80,150,40,.32);
+  backdrop-filter:blur(18px);
+  overflow:hidden;
+}
+.demo-bar::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,#4CAF50,#A5D6A7,#4CAF50,transparent);
+}
+.db-info{padding:10px 16px;flex:1;}
+.db-info-top{font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:rgba(165,214,167,.9);letter-spacing:.04em;}
+.db-info-sub{font-size:11px;color:rgba(255,255,255,.22);margin-top:2px;}
+.db-btn{
+  background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.14em;
+  padding:20px 22px;white-space:nowrap;position:relative;overflow:hidden;
+}
+.db-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent,rgba(255,255,255,.12),transparent);transform:translateX(-100%);transition:transform .5s;}
+.db-btn:hover::before{transform:translateX(100%);}
+
+/* Float music btn */
+#mfloat{
+  position:fixed;bottom:72px;right:14px;z-index:800;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(8,20,5,.95);border:1px solid rgba(80,150,40,.42);
+  color:rgba(165,214,167,.9);font-size:17px;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);backdrop-filter:blur(10px);
+  transition:transform .2s,box-shadow .2s;
+}
+#mfloat:hover{transform:scale(1.1);}
+#mfloat.vis{display:flex;}
+
+/* ══════════════════════════════════════════════
+   INVITATION WRAPPER
+══════════════════════════════════════════════ */
+#invitation{display:none;max-width:480px;margin:0 auto;padding-bottom:72px;}
+#invitation.on{display:block;}
+
+/* Section reveal classes (GSAP controls opacity/transform) */
+.sr-sec{opacity:0;transform:translateY(40px);}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ══════════════════════════════════════════════
+   HERO  — ivory/cream full height
+══════════════════════════════════════════════ */
+.ce-hero{
+  position:relative;min-height:100vh;
+  background:linear-gradient(160deg,#f8f4ee 0%,#f0ece4 40%,#eae6de 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:60px 20px 160px;overflow:hidden;
+}
+.ce-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 18% 22%,rgba(120,180,80,.065) 0%,transparent 50%),
+    radial-gradient(ellipse at 82% 78%,rgba(100,160,60,.05) 0%,transparent 50%);
+  pointer-events:none;
+}
+/* Diagonal texture */
+.ce-hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(120,180,80,.012) 40px,rgba(120,180,80,.012) 41px);
+  pointer-events:none;
+}
+/* Floral corners on hero */
+.hero-fc{position:absolute;pointer-events:none;}
+.hero-fc.tl{top:0;left:0;width:min(155px,36vw);}
+.hero-fc.tr{top:0;right:0;width:min(155px,36vw);transform:scaleX(-1);}
+.hero-fc.bl{bottom:60px;left:0;width:min(155px,36vw);transform:scaleY(-1);}
+.hero-fc.br{bottom:60px;right:0;width:min(155px,36vw);transform:scale(-1,-1);}
+.hero-fc img{width:100%;height:auto;display:block;}
+
+/* Gold frame */
+.hero-frame{position:absolute;inset:18px;border:1px solid rgba(100,150,60,.18);pointer-events:none;z-index:1;}
+.hero-frame::before{content:'';position:absolute;inset:7px;border:0.5px solid rgba(100,150,60,.08);}
+.hfc{position:absolute;color:rgba(80,140,40,.3);font-size:14px;line-height:1;}
+.hfc.tl{top:2px;left:2px}.hfc.tr{top:2px;right:2px}.hfc.bl{bottom:2px;left:2px}.hfc.br{bottom:2px;right:2px}
+
+/* Watercolor cross */
+.hero-cross{width:min(85px,20vw);margin:0 auto 20px;position:relative;z-index:2;animation:crossFloat 4.5s ease-in-out infinite;}
+.hero-with{font-family:'IM Fell English',serif;font-style:italic;font-size:16px;color:rgba(60,90,40,.65);margin-bottom:8px;position:relative;z-index:2;}
+.hero-we{font-family:'IM Fell English',serif;font-size:20px;color:rgba(40,70,25,.75);margin-bottom:8px;position:relative;z-index:2;}
+.hero-names{font-family:'Cinzel',serif;font-size:clamp(30px,8.5vw,42px);font-weight:700;color:#1B5E20;line-height:1.1;position:relative;z-index:2;}
+.hero-amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;color:rgba(60,120,40,.4);display:block;margin:2px 0;position:relative;z-index:2;}
+
+/* Sage line with cross */
+.sage-line{width:min(220px,55vw);height:1.5px;background:linear-gradient(to right,transparent,rgba(100,160,60,.5),rgba(140,200,80,.7),rgba(100,160,60,.5),transparent);margin:14px auto;position:relative;z-index:2;}
+.sage-line::before{content:'✝';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;color:rgba(80,140,40,.7);padding:0 8px;background:linear-gradient(160deg,#f8f4ee,#f0ece4);}
+
+.hero-date{font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:.16em;color:rgba(40,70,25,.4);margin-top:12px;position:relative;z-index:2;}
+.hero-verse{font-family:'IM Fell English',serif;font-style:italic;font-size:13.5px;color:rgba(40,70,25,.4);max-width:300px;margin:14px auto 0;line-height:1.65;position:relative;z-index:2;}
+.hero-btm{position:absolute;bottom:0;left:0;right:0;pointer-events:none;z-index:3;height:80px;background:linear-gradient(to bottom,transparent,rgba(30,80,20,.1));}
+
+/* ══════════════════════════════════════════════
+   STRIPE DIVIDERS
+══════════════════════════════════════════════ */
+.ce-stripe{height:5px;background:linear-gradient(to right,#0a0f06,#2E7D32,#A5D6A7,#2E7D32,#0a0f06);}
+.ce-stripe-thin{height:1px;background:linear-gradient(to right,transparent,rgba(80,150,40,.5),rgba(120,200,80,.8),rgba(80,150,40,.5),transparent);position:relative;}
+.ce-stripe-thin::after{content:'✝';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:9px;color:rgba(80,150,40,.6);padding:0 6px;background:inherit;}
+
+/* ══════════════════════════════════════════════
+   SECTION COMMONS
+══════════════════════════════════════════════ */
+.ce-sec{padding:60px 22px;position:relative;overflow:hidden;}
+.ce-sec-dark{background:linear-gradient(180deg,#1B4D10,#134010);}
+.ce-sec-light{background:linear-gradient(180deg,#fff,#f5f9f0);}
+.ce-sec-lavender{background:linear-gradient(180deg,#f5f9f0,#eef5e8);}
+.ce-sec-ivory{background:linear-gradient(180deg,#fafff7,#f5f9f0);}
+
+.ce-jali{position:absolute;inset:0;background:url('https://myshaadhilink.in/assets/royal-premium/jali-pattern.svg') center/200px repeat;opacity:.04;pointer-events:none;z-index:0;}
+
+.sec-lbl{font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.34em;color:#2E7D32;text-transform:uppercase;text-align:center;margin-bottom:10px;position:relative;z-index:1;}
+.ce-ornament{width:min(200px,50vw);margin:10px auto 18px;display:block;position:relative;z-index:1;}
+.sage-line2{width:min(200px,50vw);height:1px;background:linear-gradient(to right,transparent,rgba(80,150,40,.4),rgba(120,200,80,.6),rgba(80,150,40,.4),transparent);margin:12px auto;position:relative;z-index:1;}
+
+/* ══════════════════════════════════════════════
+   SAVE THE DATE
+══════════════════════════════════════════════ */
+.sd-lbl{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.36em;color:rgba(180,230,140,.65);margin-bottom:16px;position:relative;z-index:1;text-align:center;}
+.sd-date{font-family:'Cinzel',serif;font-size:clamp(26px,7vw,36px);font-weight:700;color:rgba(200,240,160,.88);letter-spacing:.06em;line-height:1.2;position:relative;z-index:1;text-align:center;}
+.sd-location{font-family:'IM Fell English',serif;font-style:italic;font-size:16px;color:rgba(180,230,140,.5);margin-top:8px;position:relative;z-index:1;text-align:center;}
+.sd-invite{font-style:italic;font-size:15px;color:rgba(180,230,140,.42);margin:16px auto 0;position:relative;z-index:1;text-align:center;line-height:1.7;max-width:300px;}
+
+/* Countdown inside SD section */
+.cd-row{display:flex;align-items:flex-start;justify-content:center;margin-top:28px;position:relative;z-index:1;}
+.cd-unit{text-align:center;padding:0 6px;}
+.cd-box{background:rgba(255,255,255,.04);border:1px solid rgba(100,200,80,.16);padding:12px 8px 10px;min-width:60px;position:relative;overflow:hidden;}
+.cd-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,#4CAF50,transparent);}
+.cd-num{font-family:'Cinzel',serif;font-size:clamp(32px,8vw,46px);font-weight:700;color:rgba(200,240,160,.88);line-height:1;display:block;transition:transform .18s,opacity .18s;}
+.cd-num.flip{transform:translateY(-100%);opacity:0;}
+.cd-lbl{font-size:9px;letter-spacing:.2em;color:rgba(180,230,140,.35);text-transform:uppercase;margin-top:7px;display:block;}
+.cd-sep{font-family:'Cinzel',serif;font-size:clamp(26px,7vw,36px);color:rgba(80,200,60,.45);padding-top:10px;}
+
+/* ══════════════════════════════════════════════
+   COUPLE / BLESSED UNION
+══════════════════════════════════════════════ */
+.couple-row{display:flex;align-items:flex-start;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px;position:relative;z-index:1;}
+.person-blk{display:flex;flex-direction:column;align-items:center;max-width:148px;}
+/* Double ring with spin */
+.p-ring{width:100px;height:100px;border-radius:50%;position:relative;margin-bottom:12px;}
+.p-ring::before{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(80,150,40,.55);animation:ringPulse 3.5s ease-in-out infinite;}
+@keyframes ringPulse{0%,100%{box-shadow:0 0 0 0 rgba(80,150,40,0)}50%{box-shadow:0 0 0 7px rgba(80,150,40,.07)}}
+.p-ring::after{content:'';position:absolute;inset:-11px;border-radius:50%;border:1px solid rgba(80,150,40,.2);}
+.p-ring-spin{position:absolute;inset:-18px;border-radius:50%;border:.5px dashed rgba(80,150,40,.18);animation:spinRing 24s linear infinite;}
+@keyframes spinRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.p-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2.5px solid rgba(80,150,40,.45);}
+.p-role{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.22em;color:#4CAF50;margin-bottom:6px;}
+.p-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#1B5E20;}
+.p-rel{font-style:italic;font-size:12px;color:rgba(40,100,20,.5);margin-top:2px;}
+.p-par{font-size:13px;color:rgba(30,70,15,.65);line-height:1.55;margin-top:2px;}
+.couple-mid{display:flex;flex-direction:column;align-items:center;align-self:center;margin-top:48px;gap:8px;}
+.couple-and{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:rgba(60,120,40,.38);}
+
+/* Bible verse card */
+.verse-card{margin:24px 0 0;padding:16px 18px;border-left:3px solid rgba(80,150,40,.3);background:rgba(120,200,80,.04);text-align:left;position:relative;z-index:1;}
+.verse-text{font-family:'IM Fell English',serif;font-style:italic;font-size:15px;color:rgba(30,70,15,.7);line-height:1.75;}
+.verse-ref{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;color:rgba(80,150,40,.55);margin-top:8px;}
+
+/* ══════════════════════════════════════════════
+   CELEBRATION TIMELINE  — event cards with photos
+══════════════════════════════════════════════ */
+.timeline-bible{font-family:'IM Fell English',serif;font-style:italic;font-size:13.5px;color:rgba(30,70,15,.42);text-align:center;margin-bottom:22px;line-height:1.65;position:relative;z-index:1;}
+.ev-card{
+  background:#fff;border-radius:2px;overflow:hidden;margin-bottom:20px;
+  box-shadow:0 2px 16px rgba(30,80,20,.07);border:1px solid rgba(80,150,40,.1);
+  position:relative;z-index:1;
+  transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;
+}
+.ev-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(30,80,20,.14);}
+.ev-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#1B5E20,#4CAF50,#1B5E20);}
+/* Shimmer sweep */
+.ev-shimmer{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(80,150,40,.04) 50%,transparent 65%);transform:translateX(-120%);transition:transform .65s ease;}
+.ev-card:hover .ev-shimmer{transform:translateX(180%);}
+/* Photo on top */
+.ev-photo{width:100%;height:160px;overflow:hidden;position:relative;}
+.ev-photo img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease;}
+.ev-card:hover .ev-photo img{transform:scale(1.06);}
+.ev-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(10,30,5,.55),transparent);}
+.ev-time{position:absolute;bottom:10px;left:14px;z-index:1;font-family:'Cinzel',serif;font-size:11px;font-weight:600;color:rgba(200,240,160,.9);text-shadow:0 1px 4px rgba(0,0,0,.5);}
+.ev-dress{position:absolute;bottom:10px;right:14px;z-index:1;font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.14em;color:rgba(200,240,160,.75);background:rgba(20,60,10,.45);padding:3px 8px;}
+.ev-body{padding:14px 16px;}
+.ev-badge{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.22em;color:#4CAF50;margin-bottom:5px;}
+.ev-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#1B5E20;margin-bottom:8px;}
+.ev-detail{font-size:13.5px;color:rgba(30,70,15,.7);line-height:1.78;}
+.ev-map{display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;color:#4CAF50;border-bottom:1px solid rgba(76,175,80,.28);padding-bottom:2px;transition:color .18s,border-color .18s;}
+.ev-map:hover{color:#1B5E20;border-color:#1B5E20;}
+
+/* Aisle walk */
+.aisle-img{width:100%;display:block;filter:sepia(8%) brightness(.97) saturate(.92);position:relative;z-index:1;}
+
+/* ══════════════════════════════════════════════
+   GALLERY  (with wide first cell like real site)
+══════════════════════════════════════════════ */
+.gal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:3px;margin-top:16px;position:relative;z-index:1;}
+.gal-cell{aspect-ratio:1;overflow:hidden;cursor:pointer;position:relative;background:#d8e8c8;}
+.gal-cell.wide{grid-column:span 2;aspect-ratio:2/1;}
+.gal-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s cubic-bezier(.22,1,.36,1);}
+.gal-cell:hover img{transform:scale(1.1);}
+.gal-overlay{position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(8,20,5,.6));opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:10px;}
+.gal-cell:hover .gal-overlay{opacity:1;}
+.gal-lbl{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;color:rgba(165,214,167,.9);}
+
+/* ══════════════════════════════════════════════
+   RSVP
+══════════════════════════════════════════════ */
+.rsvp-intro{font-style:italic;font-size:15px;color:rgba(30,70,15,.58);text-align:center;margin-bottom:22px;line-height:1.7;max-width:340px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.f-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;color:rgba(60,130,30,.65);margin-bottom:6px;display:block;position:relative;z-index:1;}
+.f-input{width:100%;padding:13px 15px;border:1px solid rgba(80,150,40,.18);border-radius:1px;background:rgba(255,255,255,.92);font-family:'Cormorant Garamond',serif;font-size:17px;color:#1a2010;outline:none;margin-bottom:14px;transition:border-color .25s,box-shadow .25s;position:relative;z-index:1;}
+.f-input:focus{border-color:rgba(80,150,40,.5);box-shadow:0 0 0 3px rgba(80,150,40,.07);}
+.f-input::placeholder{color:rgba(80,150,40,.4);}
+.attend-row{display:flex;gap:10px;margin-bottom:14px;position:relative;z-index:1;}
+.att-btn{flex:1;padding:13px 8px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.13em;border:1px solid rgba(80,150,40,.28);background:transparent;color:#2E7D32;transition:all .25s;}
+.att-btn.picked,.att-btn:hover{background:#2E7D32;color:rgba(200,240,160,.9);border-color:#2E7D32;}
+.confirm-btn{width:100%;padding:15px;background:linear-gradient(135deg,#1B5E20,#2E7D32);color:rgba(200,240,160,.9);font-family:'Cinzel',serif;font-size:11px;letter-spacing:.25em;border:none;position:relative;overflow:hidden;z-index:1;}
+.confirm-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-120%);transition:transform .55s;}
+.confirm-btn:hover::before{transform:translateX(120%);}
+.rsvp-ty{display:none;text-align:center;padding:28px 10px;font-style:italic;font-size:20px;color:#1B5E20;line-height:1.75;position:relative;z-index:1;}
+.ty-icon{font-size:36px;display:block;margin-bottom:10px;animation:float 3s ease-in-out infinite;}
+
+/* ══════════════════════════════════════════════
+   SHARE
+══════════════════════════════════════════════ */
+.share-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;position:relative;z-index:1;}
+.sh-btn{padding:11px 20px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.14em;border:1px solid rgba(80,150,40,.22);background:transparent;color:#2E7D32;transition:all .25s;}
+.sh-btn:hover{background:#2E7D32;color:rgba(200,240,160,.9);border-color:#2E7D32;}
+.sh-btn.wa{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-color:transparent;}
+.sh-btn.wa:hover{opacity:.88;}
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+.ce-footer{background:linear-gradient(180deg,#1B4D10,#0f3008);padding:50px 20px;text-align:center;position:relative;overflow:hidden;}
+.ce-footer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(120,200,60,.07) 0%,transparent 65%);pointer-events:none;}
+.footer-cross{width:min(55px,13vw);margin:0 auto 18px;position:relative;z-index:1;opacity:.55;}
+.footer-verse{font-family:'IM Fell English',serif;font-style:italic;font-size:13.5px;color:rgba(180,230,140,.42);max-width:280px;margin:0 auto 18px;line-height:1.65;position:relative;z-index:1;}
+.footer-names{font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:rgba(200,240,160,.75);margin-bottom:4px;position:relative;z-index:1;}
+.footer-date{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.2em;color:rgba(180,230,140,.28);margin-bottom:14px;position:relative;z-index:1;}
+.footer-brand{font-style:italic;font-size:13px;color:rgba(180,230,140,.28);position:relative;z-index:1;}
+.footer-brand a{color:rgba(200,240,160,.5);}
+
+@media(max-width:380px){.cd-unit{padding:0 3px;}.cd-box{min-width:50px;padding:10px 5px 8px;}}
+</style>
+</head>
+<body>
+
+<!-- Page load overlay -->
+<div id="page-overlay">
+  <div class="po-cross">
+    <svg viewBox="0 0 60 75" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6aaa4a" stop-opacity=".85"/><stop offset="100%" stop-color="#4CAF50" stop-opacity=".5"/></linearGradient></defs>
+      <rect x="24" y="0" width="12" height="75" rx="4" fill="url(#cg)"/>
+      <rect x="6" y="20" width="48" height="12" rx="4" fill="url(#cg)"/>
+    </svg>
+  </div>
+  <p class="po-text">PREPARING YOUR INVITATION</p>
+</div>
+
+<!-- Progress bar -->
+<div id="prog"></div>
+
+<!-- BG music -->
+<audio id="bgm" loop preload="none">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Sparkle canvas -->
+<canvas id="sparkle-cv"></canvas>
+
+<!-- Petal layer -->
+<div id="petal-layer"></div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLB()">
+  <div class="lb-close" onclick="closeLB()">✕</div>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- ╔════════════════════════════════════════════
+     LANDING SCREEN
+════════════════════════════════════════════╗ -->
+<div id="landing">
+  <!-- BG: envelope-poster.jpg -->
+  <div id="landing-bg"></div>
+  <!-- Vignette — subtle -->
+  <div id="landing-veil"></div>
+  <!-- Scatter petals -->
+  <div id="land-petals"></div>
+
+  <!-- Floral corner images -->
+  <div class="ce-fc tl"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" onerror="this.replaceWith(mkFC())"></div>
+  <div class="ce-fc tr"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" onerror="this.replaceWith(mkFC())"></div>
+  <div class="ce-fc bl"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" onerror="this.replaceWith(mkFC())"></div>
+  <div class="ce-fc br"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" onerror="this.replaceWith(mkFC())"></div>
+
+  <!-- Music toggle -->
+  <button id="land-music" onclick="toggleMusic()">♪ Sound Off</button>
+
+  <!-- ★ THE LANDING CONTENT BOX — z-index:5, always visible ★ -->
+  <div id="landing-content">
+    <!-- Watercolor cross -->
+    <div style="width:min(70px,16vw);margin:0 auto 14px;animation:crossFloat 4s ease-in-out infinite;">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/cross-watercolor.png" alt=""
+        style="width:100%;height:auto;" onerror="this.replaceWith(mkCross())">
+    </div>
+
+    <p class="lc-with">Together with our families</p>
+    <p class="lc-we">We Are Getting Married</p>
+    <div class="lc-names">James &amp; Sarah</div>
+
+    <!-- Floral divider -->
+    <div class="ce-fdiv">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt=""
+        onerror="this.replaceWith(mkFDiv())">
+    </div>
+
+    <p class="lc-save">SAVE THE DATE</p>
+
+    <!-- OPEN INVITATION BUTTON — BIG AND VISIBLE -->
+    <button id="land-open-btn" onclick="openInv()">Open Invitation</button>
+  </div>
+</div>
+
+<!-- ╔════════════════════════════════════════════
+     FULL INVITATION
+════════════════════════════════════════════╗ -->
+<div id="invitation">
+
+  <!-- ── HERO ───────────────────────────────── -->
+  <section class="ce-hero sr-sec">
+    <div class="hero-fc tl"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" onerror="this.replaceWith(mkFC())"></div>
+    <div class="hero-fc tr"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" style="transform:scaleX(-1)" onerror="this.replaceWith(mkFC())"></div>
+    <div class="hero-fc bl"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" style="transform:scaleY(-1)" onerror="this.replaceWith(mkFC())"></div>
+    <div class="hero-fc br"><img src="https://myshaadhilink.in/assets/christian-elegance/floral-corner.png" alt="" style="transform:scale(-1,-1)" onerror="this.replaceWith(mkFC())"></div>
+    <div class="hero-frame"><span class="hfc tl">✦</span><span class="hfc tr">✦</span><span class="hfc bl">✦</span><span class="hfc br">✦</span></div>
+    <div class="hero-cross">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/cross-watercolor.png" alt="" style="width:100%;" onerror="this.replaceWith(mkCross())">
+    </div>
+    <p class="hero-with">Together with our families</p>
+    <p class="hero-we">We Are Getting Married</p>
+    <div class="hero-names">James</div>
+    <span class="hero-amp">&amp;</span>
+    <div class="hero-names">Sarah</div>
+    <div style="width:min(180px,44vw);margin:14px auto;position:relative;z-index:2;">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt="" style="width:100%;height:auto;" onerror="this.replaceWith(mkFDiv())">
+    </div>
+    <p class="hero-date">SATURDAY, DECEMBER 19, 2026</p>
+    <p class="hero-verse">&ldquo;We invite you to celebrate the beginning of our forever.&rdquo;</p>
+    <div class="hero-btm"></div>
+  </section>
+
+  <!-- ── SAVE THE DATE + COUNTDOWN ─────────── -->
+  <section class="ce-sec ce-sec-dark sr-sec">
+    <div class="ce-jali"></div>
+    <!-- Petals inside dark section -->
+    <div id="sd-petals" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2;"></div>
+    <p class="sd-lbl">SAVE THE DATE</p>
+    <div style="width:min(180px,44vw);margin:0 auto 16px;position:relative;z-index:1;">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt=""
+        style="width:100%;height:auto;filter:brightness(1.4) saturate(.4);" onerror="this.replaceWith(mkFDiv('#a8d48a'))">
+    </div>
+    <div class="sd-date">Saturday<br>December 19, 2026</div>
+    <p class="sd-location">Nashville, Tennessee</p>
+    <p class="sd-invite">We invite you to celebrate the beginning of our forever. Your presence will make our celebration truly special.</p>
+    <p style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:.26em;color:rgba(180,230,140,.45);margin-top:28px;margin-bottom:14px;text-align:center;position:relative;z-index:1;">Counting down to our special day</p>
+    <div class="cd-row">
+      <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-d">00</span></div><span class="cd-lbl">Days</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-h">00</span></div><span class="cd-lbl">Hours</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-m">00</span></div><span class="cd-lbl">Mins</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><div class="cd-box"><span class="cd-num" id="cd-s">00</span></div><span class="cd-lbl">Secs</span></div>
+    </div>
+    <p style="font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.22em;color:rgba(180,230,140,.32);margin-top:20px;text-align:center;position:relative;z-index:1;">Join the Celebration</p>
+  </section>
+
+  <div class="ce-stripe"></div>
+
+  <!-- ── BLESSED UNION ─────────────────────── -->
+  <section class="ce-sec ce-sec-light sr-sec">
+    <p class="sec-lbl">Blessed Union</p>
+    <div class="ce-ornament">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt="" style="width:100%;height:auto;" onerror="this.replaceWith(mkFDiv())">
+    </div>
+    <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:15px;color:rgba(30,70,15,.52);text-align:center;margin-bottom:20px;position:relative;z-index:1;">With the blessings of our families</p>
+    <div class="couple-row">
+      <div class="person-blk">
+        <p class="p-role">THE GROOM</p>
+        <div class="p-ring">
+          <div class="p-ring-spin"></div>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format" alt="James">
+        </div>
+        <p class="p-name">James</p>
+        <p class="p-rel">Son of</p>
+        <p class="p-par">Mr. Robert &amp; Mrs. Catherine Anderson</p>
+      </div>
+      <div class="couple-mid">
+        <svg width="28" height="36" viewBox="0 0 28 36" style="opacity:.35"><rect x="12" y="0" width="4" height="36" rx="2" fill="#4CAF50"/><rect x="0" y="10" width="28" height="4" rx="2" fill="#4CAF50"/></svg>
+        <span class="couple-and">&amp;</span>
+      </div>
+      <div class="person-blk">
+        <p class="p-role">THE BRIDE</p>
+        <div class="p-ring">
+          <div class="p-ring-spin"></div>
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face&auto=format" alt="Sarah">
+        </div>
+        <p class="p-name">Sarah</p>
+        <p class="p-rel">Daughter of</p>
+        <p class="p-par">Mr. David &amp; Mrs. Margaret Mitchell</p>
+      </div>
+    </div>
+    <div class="verse-card">
+      <p class="verse-text">&ldquo;For where two or three gather in my name, there am I with them.&rdquo;</p>
+      <p class="verse-ref">— MARK 10:9</p>
+    </div>
+  </section>
+
+  <div class="ce-stripe-thin"></div>
+
+  <!-- ── CELEBRATION TIMELINE ──────────────── -->
+  <section class="ce-sec ce-sec-lavender sr-sec">
+    <p class="sec-lbl">Celebration Timeline</p>
+    <div class="ce-ornament">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt="" style="width:100%;height:auto;" onerror="this.replaceWith(mkFDiv())">
+    </div>
+    <p class="timeline-bible">&ldquo;Two are better than one.&rdquo; — Ecclesiastes 4:9</p>
+
+    <div class="ev-card">
+      <div class="ev-shimmer"></div>
+      <div class="ev-photo">
+        <img src="https://myshaadhilink.in/assets/christian-elegance/event-madhurumveppu.jpg" alt="Madhurumveppu"
+          onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=480&h=200&fit=crop&auto=format'">
+        <div class="ev-time">10:00 AM</div>
+        <div class="ev-dress">Dress Code: Traditional</div>
+      </div>
+      <div class="ev-body">
+        <p class="ev-badge">Pre-Wedding</p>
+        <h3 class="ev-title">Madhurumveppu</h3>
+        <div class="ev-detail">Friday, December 18, 2026<br>Bride's Residence, Nashville</div>
+        <a class="ev-map" href="https://maps.google.com/?q=Nashville+TN" target="_blank">View Map →</a>
+      </div>
+    </div>
+
+    <div class="ev-card">
+      <div class="ev-shimmer"></div>
+      <div class="ev-photo">
+        <img src="https://myshaadhilink.in/assets/christian-elegance/event-wedding.jpg" alt="Holy Matrimony"
+          onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=480&h=200&fit=crop&auto=format'">
+        <div class="ev-time">4:00 PM</div>
+      </div>
+      <div class="ev-body">
+        <p class="ev-badge">Holy Matrimony</p>
+        <h3 class="ev-title">Church Wedding</h3>
+        <div class="ev-detail">Saturday, December 19, 2026<br>Christ Church Cathedral, Nashville</div>
+        <a class="ev-map" href="https://maps.google.com/?q=Christ+Church+Cathedral+Nashville" target="_blank">View Map →</a>
+      </div>
+    </div>
+
+    <div class="ev-card">
+      <div class="ev-shimmer"></div>
+      <div class="ev-photo">
+        <img src="https://myshaadhilink.in/assets/christian-elegance/event-reception.jpg" alt="Reception"
+          onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=480&h=200&fit=crop&auto=format'">
+        <div class="ev-time">6:30 PM</div>
+      </div>
+      <div class="ev-body">
+        <p class="ev-badge">Reception</p>
+        <h3 class="ev-title">Wedding Reception</h3>
+        <div class="ev-detail">Saturday, December 19, 2026<br>The Bell Tower, Nashville</div>
+        <a class="ev-map" href="https://maps.google.com/?q=The+Bell+Tower+Nashville" target="_blank">View Map →</a>
+      </div>
+    </div>
+
+    <!-- Aisle walk -->
+    <img class="aisle-img" src="https://myshaadhilink.in/assets/christian-elegance/aisle-walk.png" alt="Aisle walk" loading="lazy" onerror="this.style.display='none'">
+  </section>
+
+  <div class="ce-stripe"></div>
+
+  <!-- ── GALLERY ───────────────────────────── -->
+  <section class="ce-sec ce-sec-ivory sr-sec">
+    <p class="sec-lbl">Our Gallery</p>
+    <div class="ce-ornament">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt="" style="width:100%;height:auto;" onerror="this.replaceWith(mkFDiv())">
+    </div>
+    <div class="gal-grid">
+      <div class="gal-cell wide" onclick="openLB('https://myshaadhilink.in/assets/royal-premium/ext-couple-hero.jpg')">
+        <img src="https://myshaadhilink.in/assets/royal-premium/ext-couple-hero.jpg" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=400&fit=crop'">
+        <div class="gal-overlay"><span class="gal-lbl">Together ✦</span></div>
+      </div>
+      <div class="gal-cell" onclick="openLB('https://myshaadhilink.in/assets/royal-premium/ext-mehndi-hands.jpg')">
+        <img src="https://myshaadhilink.in/assets/royal-premium/ext-mehndi-hands.jpg" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&h=400&fit=crop'">
+        <div class="gal-overlay"><span class="gal-lbl">Mehndi</span></div>
+      </div>
+      <div class="gal-cell" onclick="openLB('https://myshaadhilink.in/assets/royal-premium/dl-india-ceremony.jpg')">
+        <img src="https://myshaadhilink.in/assets/royal-premium/dl-india-ceremony.jpg" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&h=400&fit=crop'">
+        <div class="gal-overlay"><span class="gal-lbl">Ceremony</span></div>
+      </div>
+      <div class="gal-cell" onclick="openLB('https://myshaadhilink.in/assets/royal-premium/dl-india-couple-portrait.jpg')">
+        <img src="https://myshaadhilink.in/assets/royal-premium/dl-india-couple-portrait.jpg" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1609501676725-7186f017a4b7?w=400&h=400&fit=crop'">
+        <div class="gal-overlay"><span class="gal-lbl">Portrait</span></div>
+      </div>
+      <div class="gal-cell" onclick="openLB('https://myshaadhilink.in/assets/royal-premium/dl-india-groom-ritual.jpg')">
+        <img src="https://myshaadhilink.in/assets/royal-premium/dl-india-groom-ritual.jpg" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=400&fit=crop'">
+        <div class="gal-overlay"><span class="gal-lbl">Ritual</span></div>
+      </div>
+      <div class="gal-cell" onclick="openLB('https://myshaadhilink.in/assets/royal-premium/dl-india-pheras.jpg')">
+        <img src="https://myshaadhilink.in/assets/royal-premium/dl-india-pheras.jpg" alt="" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&h=400&fit=crop'">
+        <div class="gal-overlay"><span class="gal-lbl">Pheras</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ce-stripe-thin"></div>
+
+  <!-- ── RSVP ─────────────────────────────── -->
+  <section class="ce-sec ce-sec-light sr-sec">
+    <div style="position:absolute;bottom:0;right:-20px;width:180px;height:180px;background:url('https://myshaadhilink.in/assets/christian-elegance/rsvp-illustration.jpg') center/cover no-repeat;opacity:.055;border-radius:50%;pointer-events:none;z-index:0;"></div>
+    <p class="sec-lbl">RSVP</p>
+    <div class="ce-ornament">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt="" style="width:100%;height:auto;" onerror="this.replaceWith(mkFDiv())">
+    </div>
+    <p class="rsvp-intro">We would be honored by your presence as we begin our new life together.</p>
+    <div id="rsvp-form">
+      <label class="f-label">Full Name</label>
+      <input class="f-input" type="text" id="rname" placeholder="Enter your full name">
+      <label class="f-label">Email Address</label>
+      <input class="f-input" type="email" id="remail" placeholder="Your email">
+      <label class="f-label">Number of Guests</label>
+      <input class="f-input" type="number" id="rguests" placeholder="How many guests?" min="1" max="10">
+      <label class="f-label">Attendance</label>
+      <div class="attend-row">
+        <button class="att-btn" id="btn-yes" onclick="pick('yes')">✓ Joyfully Accept</button>
+        <button class="att-btn" id="btn-no"  onclick="pick('no')">✗ Regretfully Decline</button>
+      </div>
+      <label class="f-label">Message (Optional)</label>
+      <textarea class="f-input" id="rmsg" rows="3" style="resize:none;" placeholder="Write your heartfelt wishes..."></textarea>
+      <button class="confirm-btn" onclick="submitRSVP()">✝ Send RSVP ✝</button>
+    </div>
+    <div class="rsvp-ty" id="rsvp-ty">
+      <span class="ty-icon">🕊️</span>
+      Thank you! James &amp; Sarah are blessed by your gracious presence!
+    </div>
+  </section>
+
+  <!-- ── SHARE ─────────────────────────────── -->
+  <section class="ce-sec ce-sec-lavender sr-sec" style="padding:32px 22px;border-top:1px solid rgba(80,150,40,.1);">
+    <p class="sec-lbl">Share This Invitation</p>
+    <p style="font-style:italic;font-size:14px;color:rgba(30,70,15,.45);text-align:center;margin-top:5px;position:relative;z-index:1;">Spread the joy with loved ones</p>
+    <div class="share-row">
+      <button class="sh-btn wa" onclick="doWA()">💚 WhatsApp</button>
+      <button class="sh-btn" onclick="doCal()">📅 Calendar</button>
+      <button class="sh-btn" onclick="doCopy()">🔗 Copy Link</button>
+    </div>
+    <div class="verse-card" style="margin-top:20px;position:relative;z-index:1;">
+      <p class="verse-text">&ldquo;A threefold chord is not quickly broken.&rdquo;</p>
+      <p class="verse-ref">— ECCLESIASTES 4:12</p>
+    </div>
+  </section>
+
+  <div class="ce-stripe"></div>
+
+  <!-- ── FOOTER ────────────────────────────── -->
+  <footer class="ce-footer">
+    <div class="footer-cross">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/cross-watercolor.png" alt=""
+        style="width:100%;filter:brightness(1.5) saturate(.35);" onerror="this.replaceWith(mkCross('#6aaa4a'))">
+    </div>
+    <p class="footer-verse">&ldquo;Therefore what God has joined together, let no one separate.&rdquo;<br>— Mark 10:9</p>
+    <div style="width:min(180px,44vw);margin:0 auto 16px;position:relative;z-index:1;">
+      <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt=""
+        style="width:100%;height:auto;filter:brightness(1.3) saturate(.35) opacity(.45);" onerror="this.replaceWith(mkFDiv('#5a8a3a'))">
+    </div>
+    <p class="footer-names">James &amp; Sarah</p>
+    <p class="footer-date">DECEMBER 19, 2026 · NASHVILLE</p>
+    <p class="footer-brand">Made with love by <a href="#">MyWedLink</a></p>
+  </footer>
+
+  <!-- DEMO BAR -->
+  <div class="demo-bar">
+    <div class="db-info">
+      <p class="db-info-top">Christian Elegance &nbsp;·&nbsp; ₹3,999</p>
+      <p class="db-info-sub">This is a demo preview</p>
+    </div>
+    <a class="db-btn" href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20Christian%20Elegance%20template" target="_blank">₹3,999 &nbsp; Order Now</a>
+  </div>
+
+</div><!-- /invitation -->
+
+<button id="mfloat" onclick="toggleMusic()">🎵</button>
+
+<script>
+/* ── SVG FALLBACKS ─────────────────────────── */
+function mkCross(c='#5a8a3a'){
+  const d=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  d.setAttribute('viewBox','0 0 60 75');d.style.cssText='width:100%;height:auto;display:block;';
+  d.innerHTML=`<defs><linearGradient id="cg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${c}" stop-opacity=".85"/><stop offset="100%" stop-color="${c}" stop-opacity=".5"/></linearGradient></defs><rect x="24" y="0" width="12" height="75" rx="4" fill="url(#cg2)"/><rect x="6" y="20" width="48" height="12" rx="4" fill="url(#cg2)"/>`;
+  return d;
+}
+function mkFDiv(c='#6aaa4a'){
+  const d=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  d.setAttribute('viewBox','0 0 200 22');d.style.cssText='width:100%;height:auto;display:block;';
+  d.innerHTML=`<line x1="0" y1="11" x2="60" y2="11" stroke="${c}" stroke-width="0.7" opacity="0.5"/><circle cx="70" cy="11" r="4" fill="${c}" opacity="0.4"/><circle cx="84" cy="7" r="3" fill="${c}" opacity="0.35"/><circle cx="100" cy="11" r="6" fill="${c}" opacity="0.5"/><circle cx="116" cy="7" r="3" fill="${c}" opacity="0.35"/><circle cx="130" cy="11" r="4" fill="${c}" opacity="0.4"/><line x1="140" y1="11" x2="200" y2="11" stroke="${c}" stroke-width="0.7" opacity="0.5"/>`;
+  return d;
+}
+function mkFC(){
+  const d=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  d.setAttribute('viewBox','0 0 140 140');d.style.cssText='width:100%;height:auto;display:block;';
+  d.innerHTML=`<ellipse cx="14" cy="70" rx="11" ry="62" fill="rgba(100,170,60,.22)" transform="rotate(-15 14 70)"/><ellipse cx="70" cy="14" rx="62" ry="11" fill="rgba(100,170,60,.18)"/><ellipse cx="38" cy="38" rx="28" ry="52" fill="rgba(120,190,70,.14)" transform="rotate(-45 38 38)"/><circle cx="12" cy="12" r="9" fill="rgba(100,170,60,.22)"/><circle cx="25" cy="7" r="5" fill="rgba(140,210,80,.18)"/>`;
+  return d;
+}
+
+/* ── SCATTER PETALS ────────────────────────── */
+function mkPetal(){
+  const c=['rgba(255,255,255,.88)','rgba(240,250,230,.85)','rgba(220,240,200,.8)','rgba(255,250,245,.85)'];
+  return `<svg viewBox="0 0 16 22" xmlns="http://www.w3.org/2000/svg"><path d="M8 1C12 4,14 11,8 21C2 11,4 4,8 1Z" fill="${c[Math.floor(Math.random()*c.length)]}"/><path d="M8 1C8 7,8 14,8 21" stroke="rgba(180,220,140,.3)" stroke-width="0.4" fill="none"/></svg>`;
+}
+function spawnP(id){
+  const l=document.getElementById(id);if(!l)return;
+  const el=document.createElement('div');el.className='spetal';
+  const sz=9+Math.random()*12,dur=6+Math.random()*10,del=Math.random()*3;
+  el.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz*1.4}px;animation-duration:${dur}s;animation-delay:${del}s;`;
+  el.innerHTML=mkPetal();l.appendChild(el);setTimeout(()=>el.remove(),(dur+del+2)*1000);
+}
+/* Landing petals: 24 like real site */
+for(let i=0;i<24;i++) setTimeout(()=>spawnP('land-petals'),i*150);
+setInterval(()=>spawnP('land-petals'),700);
+/* Global petals after inv opens */
+function startGlobalPetals(){
+  for(let i=0;i<8;i++) setTimeout(()=>spawnP('petal-layer'),i*200);
+  setInterval(()=>spawnP('petal-layer'),800);
+}
+
+/* ── SPARKLE CANVAS ────────────────────────── */
+(function(){
+  const cv=document.getElementById('sparkle-cv');
+  const ctx=cv.getContext('2d');let W,H,pts=[];
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  for(let i=0;i<70;i++)pts.push({
+    x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,
+    vx:(Math.random()-.5)*.3,vy:-Math.random()*.4-.1,
+    r:Math.random()*1.5+.3,a:Math.random()*.4+.06,
+    c:`rgba(${140+~~(Math.random()*60)},${200+~~(Math.random()*40)},${80+~~(Math.random()*60)},`
+  });
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.y<-10){p.y=H+5;p.x=Math.random()*W;}
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.c+p.a+')';ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }draw();
+})();
+
+/* ── PAGE OVERLAY ──────────────────────────── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const o=document.getElementById('page-overlay');
+    o.classList.add('out');
+    setTimeout(()=>o.style.display='none',850);
+  },700);
+});
+
+/* ── MUSIC ─────────────────────────────────── */
+const bgm=document.getElementById('bgm');
+let playing=false;
+function toggleMusic(){
+  if(playing){
+    bgm.pause();
+    document.getElementById('land-music').textContent='♪ Sound Off';
+    document.getElementById('mfloat').textContent='🎵';
+    playing=false;
+  }else{
+    bgm.play().catch(()=>{});
+    document.getElementById('land-music').textContent='♪ Sound On';
+    document.getElementById('mfloat').textContent='🔇';
+    playing=true;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   OPEN INVITATION  — GSAP cinematic transition
+══════════════════════════════════════════════ */
+gsap.registerPlugin(ScrollTrigger);
+let invOpened=false;
+
+function openInv(){
+  if(invOpened)return;invOpened=true;
+
+  /* Fade out landing */
+  gsap.to('#landing',{
+    opacity:0,scale:1.05,duration:1.1,ease:'power3.inOut',
+    onComplete:()=>{
+      document.getElementById('landing').style.display='none';
+      const inv=document.getElementById('invitation');
+      inv.classList.add('on');
+      document.getElementById('mfloat').classList.add('vis');
+
+      /* Auto-play music */
+      bgm.play().catch(()=>{});playing=true;
+      document.getElementById('land-music').textContent='♪ Sound On';
+      document.getElementById('mfloat').textContent='🔇';
+
+      startCountdown();
+      startGlobalPetals();
+      spawnSDPetals();
+      initGSAP();
+    }
+  });
+}
+
+/* ── SD SECTION PETALS ─────────────────────── */
+function spawnSDPetals(){
+  const sec=document.getElementById('sd-petals');if(!sec)return;
+  function sp(){
+    const el=document.createElement('div');el.className='spetal';
+    const sz=7+Math.random()*10,dur=5+Math.random()*8,del=Math.random()*2;
+    el.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz*1.4}px;animation-duration:${dur}s;animation-delay:${del}s;position:absolute;top:-20px;`;
+    el.innerHTML=mkPetal();sec.appendChild(el);setTimeout(()=>el.remove(),(dur+del+2)*1000);
+  }
+  for(let i=0;i<18;i++) setTimeout(sp,i*140);
+  setInterval(sp,800);
+}
+
+/* ── GSAP SCROLL ANIMATIONS ────────────────── */
+function initGSAP(){
+  /* Hero intro */
+  gsap.timeline()
+    .from('.hero-cross',{scale:.5,opacity:0,duration:1,ease:'back.out(1.7)'})
+    .from('.hero-with,.hero-we',{y:40,opacity:0,stagger:.15,duration:.85,ease:'power3.out'},'-=.5')
+    .from('.hero-names',{y:70,opacity:0,stagger:.2,duration:1.1,ease:'power4.out'},'-=.5')
+    .from('.hero-date,.hero-verse',{y:35,opacity:0,duration:.8},'-=.6');
+
+  /* Section reveals */
+  gsap.utils.toArray('.sr-sec').forEach(sec=>{
+    gsap.to(sec,{
+      opacity:1,y:0,duration:.85,ease:'power3.out',
+      scrollTrigger:{trigger:sec,start:'top 88%',toggleActions:'play none none none'}
+    });
+
+    /* Stagger children */
+    const children=[
+      ...sec.querySelectorAll('.ev-card'),
+      ...sec.querySelectorAll('.gal-cell'),
+      ...sec.querySelectorAll('.person-blk'),
+      ...sec.querySelectorAll('.cd-box'),
+    ];
+    if(children.length){
+      gsap.from(children,{
+        y:50,opacity:0,stagger:.13,duration:.8,ease:'power3.out',
+        scrollTrigger:{trigger:sec,start:'top 82%'}
+      });
+    }
+    /* Labels */
+    const labels=sec.querySelectorAll('.sec-lbl,.sd-lbl,.cd-row');
+    if(labels.length){
+      gsap.from(labels,{y:30,opacity:0,duration:.7,ease:'power2.out',
+        scrollTrigger:{trigger:sec,start:'top 85%'}
+      });
+    }
+  });
+
+  /* Event card hover depth */
+  document.querySelectorAll('.ev-card').forEach(card=>{
+    card.addEventListener('mouseenter',()=>gsap.to(card,{y:-5,scale:1.015,duration:.35,ease:'power2.out'}));
+    card.addEventListener('mouseleave',()=>gsap.to(card,{y:0,scale:1,duration:.35,ease:'power2.out'}));
+  });
+
+  /* Progress bar */
+  ScrollTrigger.create({
+    start:0,end:'max',
+    onUpdate:self=>document.getElementById('prog').style.width=(self.progress*100)+'%'
+  });
+}
+
+/* ── COUNTDOWN ─────────────────────────────── */
+function startCountdown(){
+  const target=new Date('2026-12-19T16:00:00').getTime();
+  const els={d:document.getElementById('cd-d'),h:document.getElementById('cd-h'),m:document.getElementById('cd-m'),s:document.getElementById('cd-s')};
+  function setVal(el,val){
+    const v=String(val).padStart(2,'0');
+    if(el.textContent!==v){
+      el.classList.add('flip');
+      setTimeout(()=>{el.textContent=v;el.classList.remove('flip');},160);
+    }
+  }
+  function tick(){
+    const diff=target-Date.now();if(diff<=0)return;
+    setVal(els.d,Math.floor(diff/86400000));
+    setVal(els.h,Math.floor((diff%86400000)/3600000));
+    setVal(els.m,Math.floor((diff%3600000)/60000));
+    setVal(els.s,Math.floor((diff%60000)/1000));
+  }
+  tick();setInterval(tick,1000);
+}
+
+/* ── LIGHTBOX ──────────────────────────────── */
+function openLB(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('on');}
+function closeLB(){document.getElementById('lightbox').classList.remove('on');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+
+/* ── RSVP ──────────────────────────────────── */
+let choice=null;
+function pick(v){choice=v;document.getElementById('btn-yes').classList.toggle('picked',v==='yes');document.getElementById('btn-no').classList.toggle('picked',v==='no');}
+function submitRSVP(){
+  if(!document.getElementById('rname').value.trim()){alert('Please enter your name.');return;}
+  if(!choice){alert('Please select your attendance.');return;}
+  document.getElementById('rsvp-form').style.display='none';
+  document.getElementById('rsvp-ty').style.display='block';
+}
+
+/* ── SHARE ─────────────────────────────────── */
+function doWA(){window.open('https://wa.me/?text='+encodeURIComponent("You're invited to James & Sarah's Wedding! 🕊️\n"+location.href),'_blank');}
+function doCal(){window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text=James+%26+Sarah+Wedding&dates=20261219T100000Z/20261219T230000Z&location=Christ+Church+Cathedral,+Nashville','_blank');}
+function doCopy(){navigator.clipboard?navigator.clipboard.writeText(location.href).then(()=>alert('Link copied! ✓')):alert(location.href);}
+
+/* ── SCROLL PROGRESS (fallback) ────────────── */
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  document.getElementById('prog').style.width=Math.min(pct,100)+'%';
+},{passive:true});
+</script>
+</body>
+</html>
