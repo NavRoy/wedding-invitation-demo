@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MyWedLink | Digital Wedding Invitations India</title>
+<title>MyWedLink — Create Your Dream Wedding Invitation</title>
+<link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<circle cx='50' cy='50' r='45' fill='%23C9972B'/>
+<text x='50%' y='55%' text-anchor='middle' fill='white' font-size='50'>✦</text>
+</svg>">
 <meta name="description" content="Create stunning digital wedding invitations for Indian weddings. Telugu, South Indian & Pan-Indian templates with RSVP, countdown, gallery & maps."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -120,7 +125,36 @@ h1.hero-title em{color:var(--gold);font-style:italic}
 .b-premium{background:rgba(201,151,43,0.12);color:#9A6B10}
 .b-standard{background:rgba(45,21,87,0.1);color:var(--deep2)}
 .tpl-price{font-size:18px;font-weight:500;color:var(--deep)}
+.tpl-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(26,10,46,0.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
 
+  opacity:0;
+  pointer-events:none; /* IMPORTANT */
+  transition:opacity .3s;
+}
+
+.tpl-card:hover .tpl-overlay{
+  opacity:1;
+  pointer-events:auto; /* ENABLE clicks */
+}
+
+.tpl-overlay{
+  z-index:5;
+}
+
+.tpl-overlay a{
+  position:relative;
+  z-index:10;
+}
+.tpl-card{
+  position:relative;
+}
 /* Template Visual Styles */
 .tv-1{background:linear-gradient(145deg,#1A0A2E 0%,#3D1860 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
 .tv-1 .tv-border{border:1.5px solid rgba(201,151,43,0.4);border-radius:12px;padding:28px 24px;width:100%}
@@ -280,6 +314,165 @@ footer{background:var(--deep);padding:60px 5% 30px}
 .footer-logo-ring{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
 @media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+
+.fade-up{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .7s ease;
+}
+
+.fade-up.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.hero-mockup{
+  animation:floatPhone 6s ease-in-out infinite;
+}
+
+@keyframes floatPhone{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+.hero-right::before{
+  content:'';
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:radial-gradient(circle, rgba(201,151,43,0.25), transparent 70%);
+  filter:blur(40px);
+  z-index:-1;
+}
+
+.tpl-card{
+  position:relative;
+}
+
+.tpl-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  background:linear-gradient(120deg, transparent, rgba(201,151,43,0.2), transparent);
+  opacity:0;
+  transition:.4s;
+}
+
+.tpl-card:hover::after{
+  opacity:1;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+}
+
+/* icon */
+.logo-icon{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#C9972B,#F0D080);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:14px;
+  box-shadow:0 4px 15px rgba(201,151,43,0.4);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+}
+
+.logo-mark{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#C9972B,#F0D080);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:14px;
+  box-shadow:0 6px 20px rgba(201,151,43,.4);
+}
+
+.logo-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  font-weight:600;
+}
+
+.brand-main{ color:#1A0A2E; }
+.brand-accent{ color:#C9972B; }
+/* text */
+.logo-text{
+  display:flex;
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+
+/* main part */
+.brand-main{
+  color:#1A0A2E;
+}
+
+/* accent part */
+.brand-accent{
+  color:#C9972B;
+  margin-left:2px;
+}
+
+/* hover effect */
+.logo:hover .logo-icon{
+  transform:rotate(12deg) scale(1.05);
+}
+
+.footer-icon{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#C9972B,#F0D080);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  color:#fff;
+}
+
+.gold-gradient{
+  background:linear-gradient(135deg,#C9972B,#F0D080);
+}
+
+h1,h2,h3{
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:.5px;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,#C9972B,#F0D080);
+  color:#fff;
+  border-radius:40px;
+  padding:12px 28px;
+  box-shadow:0 10px 30px rgba(201,151,43,.3);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
 </style>
 </head>
 <body>
@@ -287,7 +480,12 @@ footer{background:var(--deep);padding:60px 5% 30px}
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#" class="logo"><div class="logo-ring">💍</div>MyWedLink</a>
+<a href="#" class="logo">
+  <span class="logo-mark">✦</span>
+  <span class="logo-name">
+    <span class="brand-main">MyWed</span><span class="brand-accent">Link</span>
+  </span>
+</a>
     <div class="nav-links" id="navLinks">
       <a href="#templates">Templates</a>
       <a href="#how">How It Works</a>
@@ -409,7 +607,7 @@ footer{background:var(--deep);padding:60px 5% 30px}
         </div>
         <div class="tpl-info">
           <div class="tpl-name">Signature of Love</div>
-          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹1,999</div></div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">999</div></div>
         </div>
       </div>
 
@@ -427,7 +625,7 @@ footer{background:var(--deep);padding:60px 5% 30px}
         </div>
         <div class="tpl-info">
           <div class="tpl-name">Royal Premium</div>
-          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹2,499</div></div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹1,999</div></div>
         </div>
       </div>
 
@@ -449,7 +647,7 @@ footer{background:var(--deep);padding:60px 5% 30px}
         </div>
         <div class="tpl-info">
           <div class="tpl-name">South Indian</div>
-          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹2,499</div></div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹1,999</div></div>
         </div>
       </div>
 
@@ -469,7 +667,7 @@ footer{background:var(--deep);padding:60px 5% 30px}
         </div>
         <div class="tpl-info">
           <div class="tpl-name">Christian Elegance</div>
-          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹2,499</div></div>
+          <div class="tpl-row"><span class="badge b-premium">Premium</span><div class="tpl-price">₹1,999</div></div>
         </div>
       </div>
 
@@ -755,7 +953,10 @@ footer{background:var(--deep);padding:60px 5% 30px}
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#" class="footer-logo"><div class="footer-logo-ring">💍</div>MyWedLink</a>
+        <a href="#" class="footer-logo">
+  <span class="footer-icon">✦</span>
+  <span><strong>MyWed</strong><span style="color:#C9972B">Link</span></span>
+</a>
         <p>Beautiful, personalized digital wedding invitations crafted with love and cultural care for your special day.</p>
         <div class="footer-social">
           <a href="https://instagram.com/mywedlink" target="_blank" aria-label="Instagram">
@@ -883,6 +1084,22 @@ const fadeObs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.tpl-card,.step-box,.feat-item,.testi-card,.p-card').forEach(el=>{
   el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .5s ease,transform .5s ease';
   fadeObs.observe(el);
+});
+</script>
+
+<script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.15});
+
+document.querySelectorAll('.section, .tpl-card, .step-box, .feat-item, .p-card')
+.forEach(el=>{
+  el.classList.add('fade-up');
+  observer.observe(el);
 });
 </script>
 </body>

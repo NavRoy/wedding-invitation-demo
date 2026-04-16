@@ -268,11 +268,97 @@ a{text-decoration:none}
     radial-gradient(ellipse at 82% 78%,rgba(100,160,60,.05) 0%,transparent 50%);
   pointer-events:none;
 }
+
+.hero-church{
+  position:absolute;
+  bottom:120px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(260px,70vw);
+  opacity:0.08; /* subtle = premium */
+  z-index:1;
+}
+.hero-church img{
+  width:100%;
+  filter:brightness(1.1) contrast(1.05);
+}
 /* Diagonal texture */
 .ce-hero::after{
   content:'';position:absolute;inset:0;
   background-image:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(120,180,80,.012) 40px,rgba(120,180,80,.012) 41px);
   pointer-events:none;
+}
+
+.hero-rays{
+  position:absolute;
+  inset:0;
+  background:url('LIGHT-RAYS.png') center/cover no-repeat;
+  opacity:0.06;
+  z-index:0;
+  pointer-events:none;
+}
+.hero-couple{
+  position:absolute;
+  bottom:80px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(180px,50vw);
+  opacity:0.15;
+  z-index:2;
+}
+
+.hero-church,
+.hero-couple{
+  animation:floatY 6s ease-in-out infinite;
+}
+
+@keyframes floatY{
+  0%,100%{ transform:translate(-50%,0); }
+  50%{ transform:translate(-50%,-10px); }
+}
+
+#land-open-btn{
+  background:linear-gradient(135deg,#2E7D32,#66BB6A);
+  box-shadow:0 8px 30px rgba(80,150,40,.3);
+  border:none;
+}
+
+#land-open-btn:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 14px 40px rgba(80,150,40,.5);
+}
+
+.hero-rays{ z-index:0; }
+.hero-church{ z-index:1; }
+.hero-couple{ z-index:2; }
+.hero-cross,
+.hero-names,
+.hero-with,
+.hero-we{ z-index:3; position:relative; }
+
+.hero-church{
+  bottom:160px;   /* move UP */
+  width:min(300px,75vw);
+  opacity:0.12;   /* slightly stronger */
+}
+
+
+.hero-couple img{
+  width:100%;
+  mask-image: linear-gradient(to top, transparent 0%, black 40%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 40%);
+}
+.hero-cross::after{
+  content:'';
+  position:absolute;
+  inset:-20px;
+  background:radial-gradient(circle, rgba(120,180,80,.25), transparent 70%);
+  z-index:-1;
+}
+
+.ce-hero::before{
+  background:
+    radial-gradient(circle at center, transparent 40%, rgba(0,0,0,.08) 100%);
 }
 /* Floral corners on hero */
 .hero-fc{position:absolute;pointer-events:none;}
@@ -321,8 +407,8 @@ a{text-decoration:none}
 
 .ce-jali{position:absolute;inset:0;background:url('https://myshaadhilink.in/assets/royal-premium/jali-pattern.svg') center/200px repeat;opacity:.04;pointer-events:none;z-index:0;}
 
-.sec-lbl{font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.34em;color:#2E7D32;text-transform:uppercase;text-align:center;margin-bottom:10px;position:relative;z-index:1;}
-.ce-ornament{width:min(200px,50vw);margin:10px auto 18px;display:block;position:relative;z-index:1;}
+.sec-lbl{font-family:'Cinzel',serif;font-size:15px;font-weight:700;letter-spacing:.34em;color:#2E7D32;text-transform:uppercase;text-align:center;margin-bottom:10px;position:relative;z-index:1;}
+.ce-ornament{width:min(200px,50vw);margin:8px auto 12px;display:block;position:relative;z-index:1;}
 .sage-line2{width:min(200px,50vw);height:1px;background:linear-gradient(to right,transparent,rgba(80,150,40,.4),rgba(120,200,80,.6),rgba(80,150,40,.4),transparent);margin:12px auto;position:relative;z-index:1;}
 
 /* ══════════════════════════════════════════════
@@ -450,7 +536,165 @@ a{text-decoration:none}
 .footer-brand{font-style:italic;font-size:13px;color:rgba(180,230,140,.28);position:relative;z-index:1;}
 .footer-brand a{color:rgba(200,240,160,.5);}
 
+.ce-sec{
+  position:relative;
+  margin-top:-40px;
+  border-radius:30px 30px 0 0;
+  z-index:1;
+}
+
+.ce-sec{
+  padding:50px 20px;
+}
+
+.ce-footer{
+  background:
+    linear-gradient(rgba(15,48,8,.92), rgba(15,48,8,.95)),
+    url('images/assets/church.png') center/cover no-repeat;
+  padding:80px 20px 60px;
+}
+
+.ce-footer::before{
+  content:'';
+  position:absolute;
+  top:-80px;
+  left:0;
+  right:0;
+  height:120px;
+  background:linear-gradient(to bottom, transparent, rgba(15,48,8,0.95));
+}
+
+.ce-footer::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:260px;
+  height:260px;
+  
+  opacity:0.08;
+  filter:blur(1px);
+}
+
+.footer-cross{
+  opacity:0.8;
+  filter:drop-shadow(0 0 12px rgba(120,200,80,.4));
+  animation:crossFloat 4s ease-in-out infinite;
+}
+
+.footer-names::after{
+  content:'';
+  display:block;
+  width:80px;
+  height:1px;
+  margin:10px auto;
+  background:linear-gradient(to right, transparent, #A5D6A7, transparent);
+}
+
+.ce-footer{
+  overflow:hidden;
+}
+
+.ce-footer span.particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+
+  border-radius:50%;
+  animation:floatUp 8s linear infinite;
+}
+
+.ce-footer{
+  background:linear-gradient(
+    to bottom,
+    #e8f2df 0%,
+    #1B4D10 40%,
+    #0f3008 100%
+  );
+}
+
+
+@keyframes floatUp{
+  from{ transform:translateY(0); opacity:0; }
+  20%{ opacity:1; }
+  to{ transform:translateY(-200px); opacity:0; }
+}
+
 @media(max-width:380px){.cd-unit{padding:0 3px;}.cd-box{min-width:50px;padding:10px 5px 8px;}}
+
+.ce-hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,
+      rgba(255,255,255,0.9) 0%,
+      rgba(255,255,255,0.4) 30%,
+      rgba(0,0,0,0.15) 100%);
+  z-index:0;
+}
+
+.hero-church{
+  bottom:140px;
+  width:min(320px,80vw);
+  opacity:0.18;   /* increase visibility */
+  filter:blur(0.3px) brightness(1.05);
+}
+
+.ce-hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    transparent 60%,
+    rgba(0,0,0,0.25) 100%
+  );
+  z-index:1;
+}
+
+.hero-names{
+  font-size:clamp(36px,10vw,52px);
+  color:#1B5E20;
+  text-shadow:
+    0 4px 20px rgba(0,0,0,0.15),
+    0 1px 0 rgba(255,255,255,0.6);
+  letter-spacing:2px;
+}
+
+.hero-names::after{
+  content:'';
+  position:absolute;
+  inset:-10px;
+  background:radial-gradient(circle, rgba(120,180,80,0.15), transparent 70%);
+  z-index:-1;
+}
+
+.hero-couple{
+  opacity:0.12;
+  filter:blur(0.5px) brightness(0.95);
+}
+
+
+.ce-hero::after{
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(120,180,80,.15) 2px, transparent 3px),
+    radial-gradient(circle at 70% 60%, rgba(120,180,80,.12) 2px, transparent 3px);
+  background-size:200px 200px;
+  animation:particlesMove 20s linear infinite;
+}
+
+@keyframes particlesMove{
+  from{ background-position:0 0, 0 0; }
+  to{ background-position:200px 200px, -200px 200px; }
+}
+
+
+
+
+
 </style>
 </head>
 <body>
@@ -472,7 +716,7 @@ a{text-decoration:none}
 
 <!-- BG music -->
 <audio id="bgm" loop preload="none">
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" type="audio/mpeg">
+  <source src="images/assets/kalyaname-vaibhogame-.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Sparkle canvas -->
@@ -530,6 +774,9 @@ a{text-decoration:none}
     <!-- OPEN INVITATION BUTTON — BIG AND VISIBLE -->
     <button id="land-open-btn" onclick="openInv()">Open Invitation</button>
   </div>
+  <div id="envelope-open">
+  <img src="https://myshaadhilink.in/assets/christian-elegance/envelope-open.png" alt="open envelope">
+</div>
 </div>
 
 <!-- ╔════════════════════════════════════════════
@@ -547,6 +794,16 @@ a{text-decoration:none}
     <div class="hero-cross">
       <img src="https://myshaadhilink.in/assets/christian-elegance/cross-watercolor.png" alt="" style="width:100%;" onerror="this.replaceWith(mkCross())">
     </div>
+<div class="hero-rays"></div>
+
+<div class="hero-church">
+  <img src="images/assets/church.png" alt="church">
+</div>
+
+<div class="hero-couple">
+  <img src="images/assets/christian-bride-groom2.jpg">
+</div>
+
     <p class="hero-with">Together with our families</p>
     <p class="hero-we">We Are Getting Married</p>
     <div class="hero-names">James</div>
@@ -587,7 +844,121 @@ a{text-decoration:none}
   </section>
 
   <div class="ce-stripe"></div>
+ <style> .couple-modern{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
 
+/* Cards */
+.person-card{
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(100,150,60,.15);
+  padding:18px 14px;
+  border-radius:14px;
+  width:150px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:.3s ease;
+}
+
+.person-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* Image */
+.img-wrap{
+  width:100%;
+  height:150px;
+  border-radius:12px;
+  overflow:hidden;
+  margin-bottom:10px;
+}
+
+.img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Text */
+.role{
+  font-size:9px;
+  letter-spacing:.2em;
+  color:#4CAF50;
+}
+
+.name{
+  font-family:'Playfair Display',serif;
+  font-size:18px;
+  color:#1B5E20;
+  margin-top:4px;
+}
+
+.meta{
+  font-size:12px;
+  color:rgba(30,70,15,.6);
+  margin-top:4px;
+}
+
+/* Center Cross */
+.couple-center{
+  font-size:22px;
+  color:rgba(80,140,40,.5);
+}
+
+/* MOBILE FIX (side by side always) */
+@media(max-width:480px){
+  .couple-modern{
+    flex-wrap:nowrap;
+  }
+  .person-card{
+    width:48%;
+  }
+}
+
+
+.section-header{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  margin-bottom:14px;
+}
+
+
+.section-header p{
+  position:relative;
+  padding:6px 14px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(6px);
+  border-radius:20px;
+}
+
+.section-header .line{
+  width:120px;
+  height:1px;
+  background:linear-gradient(
+    to right,
+    transparent,
+    #4CAF50,
+    transparent
+  );
+}
+
+.section-header p::after{
+  content:'✝';
+  display:block;
+  font-size:10px;
+  color:rgba(80,150,40,.6);
+  margin-top:4px;
+}
+</style>
   <!-- ── BLESSED UNION ─────────────────────── -->
   <section class="ce-sec ce-sec-light sr-sec">
     <p class="sec-lbl">Blessed Union</p>
@@ -595,32 +966,34 @@ a{text-decoration:none}
       <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt="" style="width:100%;height:auto;" onerror="this.replaceWith(mkFDiv())">
     </div>
     <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:15px;color:rgba(30,70,15,.52);text-align:center;margin-bottom:20px;position:relative;z-index:1;">With the blessings of our families</p>
-    <div class="couple-row">
-      <div class="person-blk">
-        <p class="p-role">THE GROOM</p>
-        <div class="p-ring">
-          <div class="p-ring-spin"></div>
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format" alt="James">
-        </div>
-        <p class="p-name">James</p>
-        <p class="p-rel">Son of</p>
-        <p class="p-par">Mr. Robert &amp; Mrs. Catherine Anderson</p>
-      </div>
-      <div class="couple-mid">
-        <svg width="28" height="36" viewBox="0 0 28 36" style="opacity:.35"><rect x="12" y="0" width="4" height="36" rx="2" fill="#4CAF50"/><rect x="0" y="10" width="28" height="4" rx="2" fill="#4CAF50"/></svg>
-        <span class="couple-and">&amp;</span>
-      </div>
-      <div class="person-blk">
-        <p class="p-role">THE BRIDE</p>
-        <div class="p-ring">
-          <div class="p-ring-spin"></div>
-          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face&auto=format" alt="Sarah">
-        </div>
-        <p class="p-name">Sarah</p>
-        <p class="p-rel">Daughter of</p>
-        <p class="p-par">Mr. David &amp; Mrs. Margaret Mitchell</p>
-      </div>
+<div class="couple-modern">
+
+  <div class="person-card groom">
+    <div class="img-wrap">
+      <img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=200&h=200&fit=crop&crop=faces" onerror="this.src='https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=200&h=200&fit=crop&crop=faces'">
     </div>
+    <p class="role">THE GROOM</p>
+    <h3 class="name">James</h3>
+    <p class="meta">Son of<br>Mr. Robert & Mrs. Catherine</p>
+  </div>
+
+  <div class="couple-center">
+    ✝
+  </div>
+
+  <div class="person-card bride">
+ <div class="img-wrap">
+  <img 
+    src="images/women.jpg" 
+    onerror="this.src='https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=200&h=200&fit=crop&crop=faces'" 
+    alt="Bride">
+</div>
+    <p class="role">THE BRIDE</p>
+    <h3 class="name">Sarah</h3>
+    <p class="meta">Daughter of<br>Mr. David & Mrs. Margaret</p>
+  </div>
+
+</div>
     <div class="verse-card">
       <p class="verse-text">&ldquo;For where two or three gather in my name, there am I with them.&rdquo;</p>
       <p class="verse-ref">— MARK 10:9</p>
@@ -631,8 +1004,8 @@ a{text-decoration:none}
 
   <!-- ── CELEBRATION TIMELINE ──────────────── -->
   <section class="ce-sec ce-sec-lavender sr-sec">
-    <p class="sec-lbl">Celebration Timeline</p>
-    <div class="ce-ornament">
+   <p class="sec-lbl">Celebration Timeline</p>
+     <div class="ce-ornament">
       <img src="https://myshaadhilink.in/assets/christian-elegance/floral-divider.png" alt="" style="width:100%;height:auto;" onerror="this.replaceWith(mkFDiv())">
     </div>
     <p class="timeline-bible">&ldquo;Two are better than one.&rdquo; — Ecclesiastes 4:9</p>
@@ -791,10 +1164,10 @@ a{text-decoration:none}
   <!-- DEMO BAR -->
   <div class="demo-bar">
     <div class="db-info">
-      <p class="db-info-top">Christian Elegance &nbsp;·&nbsp; ₹3,999</p>
+      <p class="db-info-top">Christian Elegance &nbsp;·&nbsp; ₹1,999</p>
       <p class="db-info-sub">This is a demo preview</p>
     </div>
-    <a class="db-btn" href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20Christian%20Elegance%20template" target="_blank">₹3,999 &nbsp; Order Now</a>
+    <a class="db-btn" href="https://wa.me/918247855938?text=Hi%2C%20I%27m%20interested%20in%20Christian%20Elegance%20template" target="_blank">₹3,999 &nbsp; Order Now</a>
   </div>
 
 </div><!-- /invitation -->
